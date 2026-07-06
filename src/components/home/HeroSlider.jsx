@@ -1,34 +1,55 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AppLink } from '../ui/index.js'
 import { ChevronLeftIcon, ChevronRightIcon } from '../icons/index.js'
 import { heroSlides } from '../../data/heroSlides.js'
 
+// Mismo timing que baic.com.ar (Swiper real, inspeccionado con devtools):
+// delay 5000ms, disableOnInteraction:false (al navegar a mano el contador se reinicia en vez de detenerse),
+// no se pausa con el mouse encima (pauseOnMouseEnter:false).
+const AUTOPLAY_DELAY = 5000
+
 export default function HeroSlider() {
   const [current, setCurrent] = useState(0)
+  const intervalRef = useRef(null)
+
+  const restartAutoplay = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current)
+    intervalRef.current = setInterval(() => {
+      setCurrent((c) => (c + 1) % heroSlides.length)
+    }, AUTOPLAY_DELAY)
+  }
 
   useEffect(() => {
-    const id = setInterval(() => setCurrent((c) => (c + 1) % heroSlides.length), 5300)
-    return () => clearInterval(id)
+    restartAutoplay()
+    return () => clearInterval(intervalRef.current)
   }, [])
 
-  const goTo = (i) => setCurrent((i + heroSlides.length) % heroSlides.length)
+  const goTo = (i) => {
+    setCurrent((i + heroSlides.length) % heroSlides.length)
+    restartAutoplay() // igual que el sitio real: navegar a mano reinicia el contador de 5s
+  }
 
   return (
     <section className="hero">
       {heroSlides.map((slide, i) => (
-        <div key={slide.id} className={`slide ${i === current ? 'active' : ''}`}>
+        <div key={slide.id} className={`slide ${slide.variant ? `slide-${slide.variant}` : ''} ${i === current ? 'active' : ''}`}>
           {slide.image ? (
-            <img className="slide-bg" src={slide.image} alt={slide.title} />
+            <img className="slide-bg-img" src={slide.image} alt={slide.title} />
           ) : (
             <div className="ph">Banner {slide.title}</div>
           )}
-          <div className="slide-content">
+          <div className="slide-overlay" />
+          <div className={`slide-content pos-${slide.position || 'left'}`}>
             {slide.logo ? (
-              <img className="slide-logo" src={slide.logo} alt={slide.title} />
+              <img className={`slide-logo ${slide.logoClass || ''}`} src={slide.logo} alt={slide.title} />
             ) : (
               <h2>{slide.title}</h2>
             )}
-            <AppLink to={slide.to} className="ui-button ui-button--outline ui-button--md">{slide.cta}</AppLink>
+            {slide.to.startsWith('http') ? (
+              <a href={slide.to} target="_blank" rel="noreferrer" className="slide-cta">{slide.cta}</a>
+            ) : (
+              <AppLink to={slide.to} className="slide-cta">{slide.cta}</AppLink>
+            )}
           </div>
         </div>
       ))}

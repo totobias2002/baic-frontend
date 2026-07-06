@@ -1,4 +1,4 @@
-import { Logo } from '../ui/index.js'
+import { Logo, AppLink } from '../ui/index.js'
 import { models } from '../../data/models.js'
 
 export default function Footer() {
@@ -10,7 +10,7 @@ export default function Footer() {
           <span className="footer__rule" />
           <ul>
             {models.map((m) => (
-              <li key={m.slug}><a href={`/modelos/${m.slug}`}>{m.name}</a></li>
+              <li key={m.slug}><AppLink to={`/modelos/${m.slug}`}>{m.name}</AppLink></li>
             ))}
           </ul>
         </div>
@@ -18,19 +18,19 @@ export default function Footer() {
           <h5>Nosotros</h5>
           <span className="footer__rule" />
           <ul>
-            <li><a href="/nosotros">Empresa</a></li>
-            <li><a href="/concesionarios">Concesionarios</a></li>
-            <li><a href="/service">Service</a></li>
-            <li><a href="/nosotros#vision">Visión</a></li>
-            <li><a href="/contacto">Contacto</a></li>
-            <li><a href="/descargas">Centro de Descargas</a></li>
+            <li><AppLink to="/nosotros">Empresa</AppLink></li>
+            <li><AppLink to="/concesionarios">Concesionarios</AppLink></li>
+            <li><AppLink to="/service">Service</AppLink></li>
+            <li><AppLink to="/nosotros#vision">Visión</AppLink></li>
+            <li><AppLink to="/contacto">Contacto</AppLink></li>
+            <li><AppLink to="/descargas">Centro de Descargas</AppLink></li>
           </ul>
         </div>
         <div>
           <h5>Novedades</h5>
           <span className="footer__rule" />
           <ul>
-            <li><a href="/novedades">Noticias</a></li>
+            <li><AppLink to="/novedades">Noticias</AppLink></li>
           </ul>
         </div>
         <div className="footer__brand">

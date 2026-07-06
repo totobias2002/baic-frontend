@@ -43,6 +43,7 @@ img{max-width:100%;display:block;}
 .ui-button--dark{background:var(--baic-negro);color:#fff;border-radius:24px;text-transform:uppercase;letter-spacing:.5px;}
 .ui-button--dark:hover{background:var(--baic-rojo);}
 .ui-button--sm{padding:6px 14px;font-size:.75rem;}
+.ui-button--lg{padding:16px 34px;font-size:1rem;}
 .ui-field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
 .ui-field__label{font-size:.8rem;font-weight:600;color:var(--color-text-muted);}
 .ui-field__error{font-size:.75rem;color:var(--color-danger);}
@@ -156,10 +157,12 @@ img{max-width:100%;display:block;}
 }
 .ph{background:linear-gradient(135deg,var(--baic-gris-oscuro),var(--baic-gris));color:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;font-size:.75rem;text-align:center;padding:6px;}
 
-/* Navbar */
-.navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:linear-gradient(rgba(255,255,255,.42) 15%,rgba(255,255,255,0) 100%);border-bottom:none;box-shadow:none;transition:background .3s ease,box-shadow .3s ease;}
+/* Navbar — calcado del sitio real: NO es fixed, va en el flujo normal y se "come" el espacio de abajo
+   con margin-bottom negativo para que el hero (u otro contenido) quede debajo suyo. Por eso desaparece
+   al hacer scroll, igual que en baic.com.ar (comprobado con devtools: position:relative + margin-bottom:-125px). */
+.navbar{position:relative;z-index:100;background:linear-gradient(rgba(255,255,255,.42) 15%,rgba(255,255,255,0) 100%);border-bottom:none;box-shadow:none;transition:background .3s ease,box-shadow .3s ease;margin-bottom:-125px;}
 .navbar:hover{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.08);}
-.navbar__inner{max-width:none;margin:0;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between;}
+.navbar__inner{max-width:none;margin:0;padding:0 24px;height:86px;display:flex;align-items:center;justify-content:space-between;}
 .navbar__links{display:flex;gap:20px;align-items:center;flex:none;justify-content:flex-end;}
 .navbar__models-trigger{background:none;border:none;display:flex;align-items:center;gap:4px;font-size:1rem;font-weight:600;text-transform:uppercase;letter-spacing:normal;cursor:pointer;color:var(--baic-negro);}
 .menu-toggle{display:none;font-size:1.6rem;background:none;border:none;color:var(--baic-negro);}
@@ -167,35 +170,80 @@ img{max-width:100%;display:block;}
 .navbar .ui-navlink:hover{color:var(--baic-rojo);}
 .navbar .ui-navlink--active{color:var(--baic-rojo);}
 .navbar__models-trigger:hover{color:var(--baic-rojo);}
-.app-main{padding-top:72px;}
 .ui-logo{display:inline-flex;align-items:center;}
-.ui-logo__img{height:24px;width:auto;display:block;}
+.ui-logo__img{height:25px;width:auto;display:block;}
 .footer .ui-logo__img{height:30px;}
 
-/* Dropdown modelos */
-.dropdown{position:relative;}
-.megamenu{position:absolute;top:100%;left:50%;transform:translateX(-50%);width:min(1000px,95vw);background:#fff;box-shadow:0 12px 30px rgba(0,0,0,.15);padding:24px;display:none;grid-template-columns:repeat(5,1fr);gap:18px;border-top:3px solid var(--baic-rojo);}
-.dropdown.open .megamenu, .dropdown:hover .megamenu{display:grid;}
+/* Dropdown modelos: panel a todo el ancho, igual que el real (wpr-mega-menu full width, 6 + 4 en dos filas) */
+.dropdown{position:static;}
+.megamenu{position:absolute;top:100%;left:0;right:0;width:100%;background:#fff;box-shadow:0 12px 30px rgba(0,0,0,.15);padding:24px 32px;display:none;flex-direction:column;gap:18px;border-top:3px solid var(--baic-rojo);}
+.dropdown.open .megamenu, .dropdown:hover .megamenu{display:flex;}
+.megamenu__row{display:flex;gap:18px;}
+.megamenu__row .model-card{flex:1;}
 .model-card{text-align:center;display:block;}
 .model-card .ph{aspect-ratio:4/3;border-radius:4px;margin-bottom:8px;}
 .model-card__img{aspect-ratio:4/3;object-fit:contain;margin-bottom:8px;width:100%;}
 .model-card h4{font-size:.85rem;font-weight:700;margin-bottom:6px;color:var(--baic-negro);}
+.model-card__cta{display:inline-block;background:#fff;color:var(--baic-negro);border:1px solid var(--baic-negro);border-radius:20px;padding:12px 24px;font-size:.8rem;font-weight:500;text-transform:none;transition:all .2s ease;}
+.model-card:hover .model-card__cta{background:var(--baic-negro);color:#fff;}
 
-/* Hero slider */
-.hero{position:relative;height:100vh;min-height:560px;overflow:hidden;background:var(--baic-negro);margin-top:-72px;}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity .6s ease;display:flex;align-items:flex-end;}
+/* Hero slider — calcado 1:1 de baic.com.ar (inspeccionado con devtools: .baic-slider-wrapper / #baicSlider / swiper-fade) */
+/* Llena siempre el alto de pantalla completo (sin scrollear y sin dejar hueco abajo).
+   Se suman los 39px que el navbar "descuenta" con su margin-bottom negativo, para que el borde
+   inferior del hero termine justo en el borde inferior de la ventana (no 39px antes). */
+.hero{position:relative;width:100%;height:calc(100vh + 39px);min-height:600px;overflow:hidden;background:var(--baic-negro);}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .8s ease;display:flex;align-items:center;overflow:hidden;}
 .slide.active{opacity:1;}
 .slide .ph{position:absolute;inset:0;border-radius:0;}
-.slide-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
-.slide::after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(0,0,0,.55),rgba(0,0,0,0) 45%);}
-.slide-content{position:relative;z-index:2;padding:0 60px 90px;color:#fff;}
-.slide-content h2{font-size:3.4rem;font-weight:800;margin:0 0 6px;text-shadow:0 2px 10px rgba(0,0,0,.5);letter-spacing:.5px;}
-.slide-content__subtitle{font-size:1.1rem;font-weight:600;letter-spacing:1px;margin:0 0 20px;text-shadow:0 2px 10px rgba(0,0,0,.5);}
-.slide-logo{max-width:min(360px,60vw);height:auto;margin-bottom:20px;filter:drop-shadow(0 2px 10px rgba(0,0,0,.5));}
-.slide-dots{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:3;}
-.dot{width:8px;height:8px;border-radius:50%;background:transparent;border:2px solid rgba(255,255,255,.6);cursor:pointer;padding:0;box-sizing:border-box;}
-.dot.active{background:#fff;border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.3);}
-.slide-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;background:none;color:#fff;width:70px;height:70px;border-radius:0;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;filter:drop-shadow(0 1px 4px rgba(0,0,0,.4));}
+.slide-bg-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center center;z-index:1;}
+.slide-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(to right,rgb(0 0 0 / .6) 0%,transparent 60%);}
+.slide-content{position:absolute;z-index:3;display:flex;flex-direction:column;width:fit-content;color:#fff;}
+.slide-logo{width:auto;max-width:350px;height:auto;margin-bottom:25px;filter:drop-shadow(0 2px 4px rgb(0 0 0 / .3));display:block;}
+.slide-logo.logo-arcfox{max-width:420px;}
+.slide-cta{display:inline-block;padding:.8em 2.5em;border:2px solid #fff;border-radius:50px;color:#fff;text-decoration:none;font-family:'HarmonyOS Sans',sans-serif;font-size:clamp(0.7rem,1vw,1rem);font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:all .3s ease;backdrop-filter:blur(2px);white-space:nowrap;}
+.slide-cta:hover{background:#fff;color:#000;}
+@media (min-width:1025px){
+  .slide-content{top:50%;transform:translateY(-50%);}
+  .pos-left{left:8%;align-items:flex-start;}
+  .pos-right{right:8%;align-items:flex-end;}
+  /* Override puntual de la slide X55 II Hybrid: título pegado arriba en vez de centrado, tal cual el sitio real */
+  .slide-x55hybrid .slide-bg-img{object-position:bottom center;}
+  .slide-x55hybrid .slide-content{top:18%;transform:none;}
+  .slide-x55hybrid .slide-logo{max-width:380px;margin-bottom:20px;}
+  .slide-x55hybrid .slide-cta{padding:.9em 2.8em;font-size:clamp(0.75rem,1.1vw,1.1rem);}
+}
+@media (max-width:1024px){
+  .slide-content{top:12%;transform:none;}
+  .pos-left{left:6%;align-items:flex-start;}
+  .pos-right{right:6%;align-items:flex-end;}
+  .slide-logo{max-width:150px;margin-bottom:12px;}
+  .slide-logo.logo-arcfox{max-width:180px;}
+  .slide-cta{padding:.6em 1.8em;font-size:.75rem;}
+  .slide-x55hybrid .slide-bg-img{object-fit:cover;object-position:center center;}
+  .slide-x55hybrid .slide-content{top:10%;}
+  .slide-x55hybrid .slide-logo{max-width:90px;margin-bottom:6px;}
+  .slide-x55hybrid .slide-cta{padding:.3em 1em;font-size:.6rem;}
+  .slide-arrow{display:none;}
+}
+@media (max-width:480px){
+  .slide-logo{max-width:120px;}
+  .slide-cta{padding:.5em 1.5em;font-size:.7rem;}
+  .slide-x55hybrid .slide-logo{max-width:120px;}
+  .slide-x55hybrid .slide-cta{padding:.25em .8em;font-size:.55rem;}
+}
+@media (max-width:950px) and (orientation:landscape){
+  .slide-content{top:25%;}
+  .slide-logo{max-width:200px;margin-bottom:15px;}
+  .slide-logo.logo-arcfox{max-width:240px;}
+  .slide-cta{padding:.7em 2em;font-size:.85rem;}
+  .slide-x55hybrid .slide-content{top:22%;}
+  .slide-x55hybrid .slide-logo{max-width:150px;margin-bottom:10px;}
+  .slide-x55hybrid .slide-cta{padding:.5em 1.5em;font-size:.75rem;}
+}
+.slide-dots{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:12px;z-index:4;}
+.dot{width:8px;height:8px;border-radius:50%;background:transparent;border:2px solid rgb(255 255 255 / .6);cursor:pointer;padding:0;box-sizing:border-box;transition:all .3s ease;}
+.dot.active{background:#fff;border-color:#fff;transform:scale(1.1);box-shadow:0 0 0 3px rgb(255 255 255 / .3);}
+.slide-arrow{position:absolute;top:50%;transform:translateY(-50%) scale(.8);z-index:4;background:none;color:#fff;width:70px;height:70px;border-radius:0;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;filter:drop-shadow(0 1px 4px rgba(0,0,0,.4));}
 .slide-arrow.prev{left:10px;}
 .slide-arrow.next{right:10px;}
 
@@ -232,8 +280,13 @@ img{max-width:100%;display:block;}
 .cta-banner .ph{position:absolute;inset:0;border-radius:0;}
 .cta-banner h3{position:relative;z-index:2;font-size:1.6rem;font-weight:700;letter-spacing:1px;margin:0;}
 .cta-banner .ui-button{position:relative;z-index:2;}
-.cta-banner--map{background:var(--baic-navy);}
+/* Fondo real: mapa de Argentina, background-size:contain (se ve completo, sin recortar), centrado,
+   con un degradado negro semitransparente encima (medido con devtools sobre baic.com.ar). */
+.cta-banner--map{background-color:var(--baic-navy);background-repeat:no-repeat;background-position:50% 50%;background-size:contain;}
+/* Efecto parallax (la imagen queda fija y el contenido se desliza encima) solo en desktop, igual que el sitio real */
+@media(min-width:1025px){.cta-banner--map{background-attachment:fixed;}}
 .cta-banner--map .ph{display:none;}
+.cta-banner__overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(rgb(0 0 0) 24%,rgba(48 34 37 / 0) 71%);opacity:.32;}
 .cta-banner__pin{position:relative;z-index:2;color:var(--baic-rojo);}
 
 /* CTA split (descargas) */
@@ -258,23 +311,54 @@ img{max-width:100%;display:block;}
 /* Vehicle detail / dealers / news / contact pages */
 .vehicle-detail-page{display:grid;grid-template-columns:1fr 1fr;gap:32px;padding:40px 0;}
 .vehicle-detail-page__gallery{aspect-ratio:1;}
-.dealers-page,.news-page,.contact-page,.about-page,.service-page,.downloads-page{padding:40px 0;}
-.dealers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-top:20px;}
+.dealers-page,.news-page,.contact-page,.about-page,.service-page,.downloads-page{padding:160px 0 60px;}
+.dealers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;margin-top:20px;}
 .dealer-card{border:1px solid var(--color-border);border-radius:12px;padding:16px;}
+.dealer-card h4{margin:0 0 8px;font-size:1rem;text-transform:uppercase;color:var(--baic-negro);}
+.dealer-card__address{display:flex;align-items:flex-start;gap:6px;font-size:.85rem;color:var(--baic-gris);margin:0 0 6px;}
+.dealer-card__address svg{flex-shrink:0;margin-top:2px;color:var(--baic-rojo);}
+.dealer-card__phone{font-size:.85rem;margin:0 0 10px;}
+.dealer-card__links{display:flex;flex-wrap:wrap;align-items:center;gap:10px;}
+.dealer-card__links a{color:var(--baic-gris);display:inline-flex;align-items:center;}
+.dealer-card__links a:hover{color:var(--baic-rojo);}
+.dealer-card__email{font-size:.78rem;word-break:break-all;}
+.dealer-card__tags{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px;}
+.dealer-card__tags li{font-size:.7rem;text-transform:uppercase;letter-spacing:.3px;background:var(--baic-navy);color:#fff;border-radius:20px;padding:4px 10px;}
+.dealers-page__group{margin-top:36px;}
+.dealers-page__province{font-size:1.1rem;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--baic-rojo);padding-bottom:10px;margin-bottom:6px;}
+.dealers-page__lead,.service-page__lead,.downloads-page__lead,.contact-page__lead{color:var(--baic-gris);margin-top:8px;}
+.service-page__subtitle{margin-top:0;text-transform:uppercase;font-size:1.3rem;}
 .contact-form{max-width:480px;margin-top:20px;}
 .not-found-page{text-align:center;padding:80px 0;}
 
+/* About / Visión */
+.about-page__lead{font-weight:600;font-size:1.05rem;}
+.about-page p{color:var(--baic-gris);line-height:1.7;}
+.about-page__vision-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:20px;}
+.about-page__vision-item{border-top:3px solid var(--baic-rojo);padding-top:14px;}
+.about-page__vision-item h3{font-size:.85rem;text-transform:uppercase;letter-spacing:.5px;margin:0 0 8px;color:var(--baic-negro);}
+.about-page__vision-item p{margin:0;color:var(--baic-gris);}
+
+/* Downloads */
+.downloads-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px;margin-top:24px;}
+.download-card{border:1px solid var(--color-border);border-radius:12px;padding:16px;text-align:center;}
+.download-card h4{margin:0 0 12px;text-transform:uppercase;}
+.download-card__img{width:100%;aspect-ratio:4/3;object-fit:contain;margin-bottom:14px;}
+
 /* Rail de redes sociales + WhatsApp flotante */
-.social-rail{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:10px;}
+/* Corrido hacia abajo (en vez de centrado) para no pisar las flechas del carrusel */
+.social-rail{position:fixed;right:20px;bottom:100px;z-index:90;display:flex;flex-direction:column;gap:10px;}
 .social-rail__item{width:38px;height:38px;border-radius:50%;background:rgba(17,18,20,.55);color:#fff;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;transition:background .2s;}
 .social-rail__item:hover{background:var(--baic-rojo);}
 .whatsapp-float{position:fixed;right:20px;bottom:20px;width:52px;height:52px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;z-index:90;box-shadow:0 4px 12px rgba(0,0,0,.25);}
 
 @media(max-width:900px){
-  .navbar__links{position:fixed;top:72px;left:0;right:0;bottom:0;background:#fff;transform:translateX(-100%);transition:transform .3s;flex-direction:column;align-items:flex-start;padding:24px;overflow:auto;gap:16px;}
+  .navbar__links{position:fixed;top:86px;left:0;right:0;bottom:0;background:#fff;transform:translateX(-100%);transition:transform .3s;flex-direction:column;align-items:flex-start;padding:24px;overflow:auto;gap:16px;}
   .navbar__links--open{transform:translateX(0);}
   .menu-toggle{display:block;}
-  .megamenu{grid-template-columns:repeat(2,1fr);position:static;transform:none;width:100%;box-shadow:none;}
+  .megamenu{position:static;width:100%;box-shadow:none;padding:16px 0;}
+  .megamenu__row{flex-wrap:wrap;}
+  .megamenu__row .model-card{flex:1 1 45%;}
   .double-links{grid-template-columns:1fr;}
   .news-grid{grid-template-columns:1fr;}
   .footer__inner{grid-template-columns:1fr 1fr;}

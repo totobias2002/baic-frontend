@@ -19,10 +19,11 @@ export const news = [
     image: news2
   },
   {
-    id: 'novedad-ejemplo',
-    title: 'Título de noticia de ejemplo',
-    excerpt: 'Texto de ejemplo para completar el listado de noticias mientras se carga contenido real.',
-    category: 'Sin categoría',
-    date: '2026-02-01'
+    id: 'baic-group-entro-en-el-top-de-las-marcas-mas-valiosas',
+    title: 'Baic Group entró en el top de las marcas más valiosas',
+    excerpt: 'Recientemente, se publicó oficialmente el informe de análisis de...',
+    category: 'Novedades',
+    date: '2025-11-10',
+    image: 'https://baic.com.ar/wp-content/uploads/2023/07/BAic-scaled.jpeg'
   }
 ]
