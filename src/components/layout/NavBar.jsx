@@ -1,11 +1,24 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Logo, AppNavLink } from '../ui/index.js'
 import { ChevronDownIcon } from '../icons/index.js'
 import ModelsMegaMenu from './ModelsMegaMenu.jsx'
 
+const CLOSE_DELAY = 400
+
 export default function NavBar() {
   const [modelsOpen, setModelsOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const closeTimer = useRef(null)
+
+  const openModels = () => {
+    clearTimeout(closeTimer.current)
+    setModelsOpen(true)
+  }
+
+  const scheduleClose = () => {
+    clearTimeout(closeTimer.current)
+    closeTimer.current = setTimeout(() => setModelsOpen(false), CLOSE_DELAY)
+  }
 
   return (
     <header className="navbar">
@@ -17,8 +30,8 @@ export default function NavBar() {
         <nav className={`navbar__links ${mobileOpen ? 'navbar__links--open' : ''}`}>
           <div
             className={`dropdown ${modelsOpen ? 'open' : ''}`}
-            onMouseEnter={() => setModelsOpen(true)}
-            onMouseLeave={() => setModelsOpen(false)}
+            onMouseEnter={openModels}
+            onMouseLeave={scheduleClose}
           >
             <button className="navbar__models-trigger" onClick={() => setModelsOpen((o) => !o)}>
               Modelos <ChevronDownIcon size={14} />

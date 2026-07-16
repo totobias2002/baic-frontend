@@ -8,6 +8,7 @@ import {
   NewsDetailPage,
   ContactPage,
   AboutPage,
+  VisionPage,
   ServicePage,
   DownloadsPage,
   NotFoundPage
@@ -24,6 +25,7 @@ export default function AppRoutes() {
         <Route path="/novedades/:newsId" element={<NewsDetailPage />} />
         <Route path="/contacto" element={<ContactPage />} />
         <Route path="/nosotros" element={<AboutPage />} />
+        <Route path="/vision" element={<VisionPage />} />
         <Route path="/service" element={<ServicePage />} />
         <Route path="/descargas" element={<DownloadsPage />} />
         <Route path="*" element={<NotFoundPage />} />

@@ -21,7 +21,7 @@ export default function Footer() {
             <li><AppLink to="/nosotros">Empresa</AppLink></li>
             <li><AppLink to="/concesionarios">Concesionarios</AppLink></li>
             <li><AppLink to="/service">Service</AppLink></li>
-            <li><AppLink to="/nosotros#vision">Visión</AppLink></li>
+            <li><AppLink to="/vision">Visión</AppLink></li>
             <li><AppLink to="/contacto">Contacto</AppLink></li>
             <li><AppLink to="/descargas">Centro de Descargas</AppLink></li>
           </ul>
