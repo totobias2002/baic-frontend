@@ -3,6 +3,7 @@ import { MainLayout } from '../components/layout/index.js'
 import {
   HomePage,
   VehicleDetailPage,
+  Bj40ProPage,
   DealersPage,
   NewsPage,
   NewsDetailPage,
@@ -19,6 +20,7 @@ export default function AppRoutes() {
     <Routes>
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
+        <Route path="/modelos/bj40-pro" element={<Bj40ProPage />} />
         <Route path="/modelos/:slug" element={<VehicleDetailPage />} />
         <Route path="/concesionarios" element={<DealersPage />} />
         <Route path="/novedades" element={<NewsPage />} />

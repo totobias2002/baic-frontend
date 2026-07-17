@@ -108,44 +108,54 @@ export const modelDetails = {
       { hex: '#e0483e', image: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-8-1024x529.png` },
       { hex: '#3f7fd1', image: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-9-1024x529.png` }
     ],
+    gallery: {
+      images: [23, 24, 25, 26].map((n) => `${CDN}/2025/01/X55-Plus_BAIC-Argentina-${n}-scaled.jpg`)
+    },
     sections: [
-      { type: 'stats', items: [
+      { type: 'stats', logo: `${CDN}/2025/01/Logo-X55Plus-Shadow.png`, counters: true, items: [
         { label: 'POTENCIA', value: '180', suffix: 'HP' },
         { label: 'TORQUE', value: '305', suffix: 'NM' },
         { label: '0 - 100 KM/H', value: '9.87', suffix: 'S' },
         { label: 'MOTOR', value: '1498', suffix: 'CC' },
         { label: 'DISTANCIA ENTRE EJES', value: '2888', suffix: 'MM' }
       ], bg: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-28.jpg` },
-      { type: 'grid', heading: 'DISEÑO EXTERIOR', items: [
-        { title: 'Llantas', text: 'Su tamaño de 19 pulgadas está acompañado de un exclusivo diseño que combina líneas delgadas y delicadas, con detalles en color negro brillante, proporcionando gran personalidad.' },
-        { title: 'Diseño', text: 'El modelado de este vehículo se adhiere perfectamente al lenguaje que caracteriza a la marca y que es mundialmente conocido como "Capital Beauty".' },
-        { title: 'Faros Traseros', text: 'El diseño se enmarca dentro del concepto Digital Matrix, delineando lo que la marca define como "Kylin Wing".' },
-        { title: 'Modernas Salidas de Escape', text: 'El diseño de escape cuádruple y bilateral resalta la dinámica y la potencia del X55 Plus.' }
+      { type: 'photo-grid', layout: 'big-left-2top-1bottom', items: [
+        { title: 'Llantas', image: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-29.jpg`, text: 'Su tamaño de 19 pulgadas está acompañado de un exclusivo diseño que combina líneas delgadas y delicadas, con detalles en color negro brillante, proporcionando gran personalidad.' },
+        { title: 'Diseño', image: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-30.jpg`, text: 'El modelado de este vehículo se adhiere perfectamente al lenguaje que caracteriza a la marca y que es mundialmente conocido como "Capital Beauty".' },
+        { title: 'Faros Traseros', image: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-31.jpg`, text: 'El diseño se enmarca dentro del concepto Digital Matrix, delineando lo que la marca define como "Kylin Wing".' },
+        { title: 'Modernas Salidas de Escape', image: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-32.jpg`, text: 'El diseño de escape cuádruple y bilateral resalta la dinámica y la potencia del X55 Plus.' }
       ] },
-      { type: 'text', heading: 'INTERIOR', body: ['La calidad de los materiales y el aprovechamiento al máximo del espacio interior, garantizan que cada centímetro esté optimizado para ofrecer las mejores soluciones de almacenamiento y un inmejorable confort tanto para el conductor como sus acompañantes.'] },
-      { type: 'grid', items: [
-        { title: 'Altavoces Flotantes', text: 'Con un diseño futurista, ofrecen una experiencia de sonido que desafía la gravedad.' },
-        { title: 'Iluminación Ambiental', text: 'Con 64 colores y funciones de bienvenida, proporciona una experiencia integrada para todos los pasajeros.' },
-        { title: 'Salida de Aire Transversal', text: 'Este diseño ofrece una excelente filtración del aire y un sistema de aire acondicionado que brinda diversas opciones de confort.' },
-        { title: 'Asientos Ergonómicos', text: 'Incluyendo un asiento premium para cada pasajero, ofrecen una experiencia de lujo, adaptándose al cuerpo y reduciendo la fatiga muscular.' },
-        { title: 'Panel Texturizado en Negro', text: 'Este elemento distintivo crea una estética moderna y audaz, elevando la sensación general del interior.' }
+      { type: 'text', heading: 'INTERIOR', hoverReveal: true, body: ['La calidad de los materiales y el aprovechamiento al máximo del espacio interior, garantizan que cada centímetro esté optimizado para ofrecer las mejores soluciones de almacenamiento y un inmejorable confort tanto para el conductor como sus acompañantes.'], bg: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-19.jpg` },
+      { type: 'photo-grid', layout: 'equal', items: [
+        { title: 'Altavoces Flotantes', image: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-33.jpg`, text: 'Con un diseño futurista, ofrecen una experiencia de sonido que desafía la gravedad.' },
+        { title: 'Iluminación Ambiental', image: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-36.jpg`, text: 'Con 64 colores y funciones de bienvenida, proporciona una experiencia integrada para todos los pasajeros.' },
+        { title: 'Salida de Aire Transversal', image: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-34.jpg`, text: 'Este diseño ofrece una excelente filtración del aire y un sistema de aire acondicionado que brinda diversas opciones de confort.' }
       ] },
-      { type: 'text', heading: 'TECHO SOLAR PANORÁMICO', body: ['Con un tamaño líder en su clase de 1320 x 850 mm, ofrece una experiencia visual inmersiva y cinematográfica.'] },
-      { type: 'text', heading: 'INTELIGENCIA', body: ['Embárquese en un viaje hacia el futuro con las funciones de conducción inteligente de nuestro vehículo. Disfrute de la libertad que ofrece la conducción inteligente, cuando cada decisión y maniobra se ve mejorada por tecnología de vanguardia.'] },
-      { type: 'grid', items: [
-        { title: 'Control de Crucero Adaptativo Integrado (IACC)', text: 'Se ajusta de manera inteligente a la velocidad preestablecida y cambia automáticamente de objetivo, permitiendo una conducción más relajada.' },
-        { title: 'Advertencia de Salida de Carril (LDW)', text: 'Ayuda a minimizar el riesgo de salidas involuntarias del carril en autopistas y rutas principales mediante alertas visuales y auditivas.' },
-        { title: 'Detección de Punto Ciego (BSD)', text: 'Utiliza un radar de ondas milimétricas para detectar puntos ciegos en la parte trasera del vehículo, reduciendo el riesgo de accidentes.' },
-        { title: 'Advertencia de Colisión Frontal (FCW)', text: 'Alerta al conductor cuando la distancia con el vehículo delantero es peligrosamente cercana, ayudando a mantener una distancia segura y prevenir accidentes.' },
-        { title: 'Frenado Autónomo de Emergencia (AEB)', text: 'Detecta peatones o vehículos al frente, emitiendo alarmas y controlando la seguridad, para minimizar cualquier tipo de accidente.' },
-        { title: 'Asistencia de Arranque en Pendientes (HHC)', text: 'Evita que el vehículo se deslice al arrancar en una pendiente, mejorando la seguridad en la conducción.' },
-        { title: 'Asistente de Luz de Carretera (HMA)', text: 'Enciende o apaga automáticamente las luces altas y bajas para evitar encandilar a otros conductores.' },
-        { title: 'Control de Descenso de Pendientes (HDC)', text: 'Permite un descenso gradual para promover la seguridad y el confort, controlando automáticamente la velocidad.' }
+      { type: 'photo-grid', layout: 'big-left-2-stack', items: [
+        { title: 'Asientos Ergonómicos', image: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-10.jpg`, text: 'Incluyendo un asiento premium para cada pasajero, ofrecen una experiencia de lujo, adaptándose al cuerpo y reduciendo la fatiga muscular.' },
+        { title: 'Panel Texturizado en Negro', image: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-37.jpg`, text: 'Este elemento distintivo crea una estética moderna y audaz, elevando la sensación general del interior.' },
+        { title: 'Experiencia de lujo en la fila trasera', image: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-35.jpg`, text: 'Sienta la diferencia a medida que el asiento ergonómico se adapta a su cuerpo, reduciendo la fatiga muscular.' }
       ] },
-      { type: 'text', heading: 'MOTORIZACIÓN', body: ['Es el resultado de una innovadora combinación de tecnología de vanguardia con ingeniería de excelencia para crear el equilibrio perfecto entre potencia y precisión.'] },
-      { type: 'grid', items: [
-        { title: 'Motor 1.5T "Magic Core"', text: 'Galardonado con el premio "China Heart" Top Ten Engine en 2021, cuenta con una eficiencia térmica del 39.2%, 21 tecnologías de reducción de ruido y una relación de flujo de más de 350 bar.' },
-        { title: 'Turbocompresor VGT', text: 'Mejora en un 43% la respuesta dinámica a baja velocidad. Su diseño ligero y de configuración eficiente brindan un rendimiento excepcional, ofreciendo una experiencia de conducción emocionante.' }
+      { type: 'text', heading: 'TECHO SOLAR PANORÁMICO', hoverReveal: true, body: ['Con un tamaño líder en su clase de 1320 x 850 mm, ofrece una experiencia visual inmersiva y cinematográfica.'], bg: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-21.jpg` },
+      { type: 'text', heading: 'INTELIGENCIA', hoverReveal: true, body: ['Embárquese en un viaje hacia el futuro con las funciones de conducción inteligente de nuestro vehículo. Disfrute de la libertad que ofrece la conducción inteligente, cuando cada decisión y maniobra se ve mejorada por tecnología de vanguardia.'], bg: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-20.jpg` },
+      { type: 'photo-grid', layout: 'big-left-2x2', items: [
+        { title: 'Control de Crucero Adaptativo Integrado (IACC)', image: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-11.jpg`, text: 'Se ajusta de manera inteligente a la velocidad preestablecida y cambia automáticamente de objetivo, permitiendo una conducción más relajada.' },
+        { title: 'Advertencia de Salida de Carril (LDW)', image: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-12.jpg`, text: 'Ayuda a minimizar el riesgo de salidas involuntarias del carril en autopistas y rutas principales mediante alertas visuales y auditivas.' },
+        { title: 'Detección de Punto Ciego (BSD)', image: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-13.jpg`, text: 'Utiliza un radar de ondas milimétricas para detectar puntos ciegos en la parte trasera del vehículo, reduciendo el riesgo de accidentes.' },
+        { title: 'Advertencia de Colisión Frontal (FCW)', image: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-14.jpg`, text: 'Alerta al conductor cuando la distancia con el vehículo delantero es peligrosamente cercana, ayudando a mantener una distancia segura y prevenir accidentes.' },
+        { title: 'Frenado Autónomo de Emergencia (AEB)', image: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-15.jpg`, text: 'Detecta peatones o vehículos al frente, emitiendo alarmas y controlando la seguridad, para minimizar cualquier tipo de accidente.' }
+      ] },
+      { type: 'photo-grid', layout: 'single', items: [
+        { title: 'Asistencia de Arranque en Pendientes (HHC)', image: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-16.jpg`, text: 'Evita que el vehículo se deslice al arrancar en una pendiente, mejorando la seguridad en la conducción.' }
+      ] },
+      { type: 'photo-grid', layout: 'equal-2', items: [
+        { title: 'Asistente de Luz de Carretera (HMA)', image: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-17.jpg`, text: 'Enciende o apaga automáticamente las luces altas y bajas para evitar encandilar a otros conductores.' },
+        { title: 'Control de Descenso de Pendientes (HDC)', image: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-18.jpg`, text: 'Permite un descenso gradual para promover la seguridad y el confort, controlando automáticamente la velocidad.' }
+      ] },
+      { type: 'text', heading: 'MOTORIZACIÓN', hoverReveal: true, body: ['Es el resultado de una innovadora combinación de tecnología de vanguardia con ingeniería de excelencia para crear el equilibrio perfecto entre potencia y precisión.'], bg: `${CDN}/2025/01/X55-Plus_BAIC-Argentina-22.jpg` },
+      { type: 'grid', wide: true, items: [
+        { title: 'Motor 1.5T "Magic Core"', video: '/videos/x55-plus-motor.mp4', text: 'Galardonado con el premio "China Heart" Top Ten Engine en 2021, cuenta con una eficiencia térmica del 39.2%, 21 tecnologías de reducción de ruido y una relación de flujo de más de 350 bar.' },
+        { title: 'Turbocompresor VGT', video: '/videos/x55-plus-turbo.mp4', text: 'Mejora en un 43% la respuesta dinámica a baja velocidad. Su diseño ligero y de configuración eficiente brindan un rendimiento excepcional, ofreciendo una experiencia de conducción emocionante.' }
       ] }
     ],
     view360: {
@@ -166,73 +176,163 @@ export const modelDetails = {
       title: 'BJ30 4x2',
       tagline: ['Un SUV híbrido, calidad premium y seguridad.']
     },
+    colors: [
+      { hex: '#8ca890', image: `${CDN}/2025/01/BJ30_BAIC-Argentina-29-1024x497.png` },
+      { hex: '#f4f5f7', image: `${CDN}/2025/01/BJ30_BAIC-Argentina-28-1024x497.png` },
+      { hex: '#8fb4c9', image: `${CDN}/2025/01/BJ30_BAIC-Argentina-26-1024x497.png` },
+      { hex: '#26282a', image: `${CDN}/2025/01/BJ30_BAIC-Argentina-30-1024x497.png` },
+      { hex: '#b0b3b6', image: `${CDN}/2025/01/BJ30_BAIC-Argentina-27-1024x497.png` },
+      { hex: '#4b4e52', image: `${CDN}/2025/04/BJ30-Color-GrisOscuro-1024x497.png` },
+      { hex: '#151517', image: `${CDN}/2025/01/BJ30_BAIC-Argentina-31-1024x497.png` }
+    ],
+    video: {
+      src: '/videos/bj30-4x2-hibrida.mp4',
+      poster: `${CDN}/2025/01/BJ30_BAIC-Argentina-Centro_De_Descargas-5.jpg`
+    },
+    gallery: {
+      images: [22, 23, 26].map((n) => `${CDN}/2025/05/BIAC-BJ30-${n}.jpg`)
+    },
     sections: [
-      { type: 'stats', items: [
+      { type: 'stats', counters: true, items: [
         { label: 'POTENCIA', value: '330', suffix: 'PH' },
-        { label: 'TRACCIÓN', value: '4x2', suffix: '' },
-        { label: 'TRANSMISIÓN', value: 'DHT', suffix: '' },
+        { label: 'TRACCIÓN', value: '4', suffix: 'x 2' },
+        { label: 'TRANSMISIÓN', value: '2', suffix: 'DHT' },
         { label: 'AUTONOMÍA', value: '1000', suffix: 'KM' }
       ], bg: `${CDN}/2025/01/BJ30_BAIC-Argentina-16.jpg` },
-      { type: 'text', heading: 'ILUMINACIÓN DELANTERA', body: ['Presenta una parrilla frontal con cinco faros incorporados.'] },
-      { type: 'grid', items: [
-        { title: 'Diseño Frontal Familiar', text: 'Combina un diseño robusto con tecnología avanzada para ofrecer una experiencia de conducción versátil y eficiente.' },
-        { title: 'Diseño Trasero Elegante', text: 'La luz trasera vertical cuenta con un patrón en doble-D, lo que la hace aún más reconocible.' }
+      { type: 'text', heading: 'ILUMINACIÓN DELANTERA', hoverReveal: true, body: ['Presenta una parrilla frontal con cinco faros incorporados.'], bg: `${CDN}/2025/05/BJ30_BAIC-Argentina-37.jpg` },
+      { type: 'photo-grid', layout: 'equal-2', items: [
+        { title: 'Diseño Frontal Familiar', image: `${CDN}/2025/05/BJ30-1-1.jpg`, text: 'Combina un diseño robusto con tecnología avanzada para ofrecer una experiencia de conducción versátil y eficiente.' },
+        { title: 'Diseño Trasero Elegante', image: `${CDN}/2025/05/BJ30-7-1.jpg`, text: 'La luz trasera vertical cuenta con un patrón en doble-D, lo que la hace aún más reconocible.' }
       ] },
-      { type: 'text', heading: 'SELECTOR DE MARCHAS ELECTRÓNICO', body: ['Adopta un diseño inspirado en un propulsor aeroespacial, haciéndolo más avanzado tecnológicamente.'] },
-      { type: 'grid', items: [
-        { title: 'Panel de Instrumentos Integrados', text: 'Combinación de doble pantalla de 10.25 pulgadas + 14.6 pulgadas.' },
-        { title: 'Espacio de Combinación Flexible', text: 'Los asientos delanteros y traseros se pueden reclinar libremente, adaptándose a cualquier necesidad, creando un espacio versátil.' }
+      { type: 'text', heading: 'SELECTOR DE MARCHAS ELECTRÓNICO', hoverReveal: true, body: ['Adopta un diseño inspirado en un propulsor aeroespacial, haciéndolo más avanzado tecnológicamente.'], bg: `${CDN}/2025/01/BJ30_BAIC-Argentina-22-V2.jpg` },
+      { type: 'photo-grid', layout: 'equal-2', items: [
+        { title: 'Panel de Instrumentos Integrados', image: `${CDN}/2025/01/BJ30_BAIC-Argentina-Centro_De_Descargas-6.jpg`, text: 'Combinación de doble pantalla de 10.25 pulgadas + 14.6 pulgadas.' },
+        { title: 'Espacio de Combinación Flexible', image: `${CDN}/2025/01/BJ30_BAIC-Argentina-Centro_De_Descargas-8.jpg`, text: 'Los asientos delanteros y traseros se pueden reclinar libremente, adaptándose a cualquier necesidad, creando un espacio versátil.' }
       ] },
-      { type: 'text', heading: 'TECHO SOLAR PANORÁMICO', body: ['Eléctrico con protección UV y apertura ajustable, integrado en la carrocería para reducir el ruido aerodinámico.'] },
-      { type: 'text', heading: 'ROBUSTA ESTRUCTURA DE SEGURIDAD', body: ['La optimización del chasis y la aplicación de tecnologías de seguridad, garantizan que la carrocería permanezca sin distorsiones y libre de deformaciones. La estructura frontal de absorción de energía en tres etapas asegura que el compartimento de pasajeros se mantenga firme y confiable.'] },
-      { type: 'stats', items: [
+      { type: 'text', heading: 'TECHO SOLAR PANORÁMICO', hoverReveal: true, body: ['Eléctrico con protección UV y apertura ajustable, integrado en la carrocería para reducir el ruido aerodinámico.'], bg: `${CDN}/2025/05/BJ30_BAIC-Argentina-36.jpg` },
+      { type: 'text', heading: 'ROBUSTA ESTRUCTURA DE SEGURIDAD', hoverReveal: true, body: ['La optimización del chasis y la aplicación de tecnologías de seguridad, garantizan que la carrocería permanezca sin distorsiones y libre de deformaciones. La estructura frontal de absorción de energía en tres etapas asegura que el compartimento de pasajeros se mantenga firme y confiable.'], bg: `${CDN}/2025/01/BJ30_BAIC-Argentina-23.jpg` },
+      { type: 'stats', counters: true, items: [
         { label: 'ACERO DE ALTA RESISTENCIA', value: '63.4', suffix: '%' },
         { label: 'MÁXIMA RIGIDEZ DE TORSIÓN', value: '25420', suffix: 'NM' },
         { label: 'ACERO FORMADO TÉRMICAMENTE', value: '20', suffix: 'POSICIONES' }
       ], bg: `${CDN}/2025/01/BJ30_BAIC-Argentina-20.jpg` },
-      { type: 'text', heading: 'CÁMARA CON VISIÓN 360°', body: ['Diseñada para eliminar puntos ciegos y facilitar maniobras en cualquier entorno.'] }
-    ]
+      { type: 'text', heading: 'CÁMARA CON VISIÓN 360°', hoverReveal: true, body: ['Diseñada para eliminar puntos ciegos y facilitar maniobras en cualquier entorno.'], bg: `${CDN}/2025/05/BJ30_BAIC-Argentina-35.jpg` }
+    ],
+    view360: {
+      images: Array.from({ length: 36 }, (_, i) => `${CDN}/2025/01/BJ30_BAIC-Argentina_360-${i + 1}.webp`),
+      bgText: 'YOUR           BAIC'
+    },
+    brochure: { pdf: '/brochures/bj30-4x2.pdf' }
   },
 
   'bj30-4x4': {
     heroImage: bj304x4,
     hero: {
       title: 'BJ30 4x4',
-      tagline: ['Un todoterreno moderno,', 'híbrido y muy confortable.']
+      tagline: ['Un todoterreno moderno, híbrido y muy confortable.']
+    },
+    colors: [
+      { hex: '#8ca890', image: `${CDN}/2025/01/BJ30_BAIC-Argentina-29-1024x497.png` },
+      { hex: '#f4f5f7', image: `${CDN}/2025/01/BJ30_BAIC-Argentina-28-1024x497.png` },
+      { hex: '#8fb4c9', image: `${CDN}/2025/01/BJ30_BAIC-Argentina-26-1024x497.png` },
+      { hex: '#26282a', image: `${CDN}/2025/01/BJ30_BAIC-Argentina-30-1024x497.png` },
+      { hex: '#b0b3b6', image: `${CDN}/2025/01/BJ30_BAIC-Argentina-27-1024x497.png` },
+      { hex: '#4b4e52', image: `${CDN}/2025/04/BJ30-Color-GrisOscuro-1024x497.png` },
+      { hex: '#151517', image: `${CDN}/2025/01/BJ30_BAIC-Argentina-31-1024x497.png` }
+    ],
+    video: {
+      src: '/videos/bj30-4x4-hibrida.mp4',
+      poster: `${CDN}/2025/01/BJ30_BAIC-Argentina-Centro_De_Descargas-5.jpg`
+    },
+    gallery: {
+      images: [
+        `${CDN}/2025/01/BJ30_BAIC-Argentina-1.jpg`,
+        `${CDN}/2025/01/BJ30_BAIC-Argentina-2.jpg`,
+        `${CDN}/2025/01/BJ30_BAIC-Argentina-3.jpg`,
+        `${CDN}/2025/01/BJ30_BAIC-Argentina-Centro_De_Descargas-14.jpg`
+      ]
     },
     sections: [
-      { type: 'stats', items: [
+      { type: 'stats', counters: true, items: [
         { label: 'POTENCIA', value: '404', suffix: 'HP' },
         { label: 'TRACCIÓN', value: '4x4', suffix: '' },
         { label: 'TRANSMISIÓN', value: 'Doble DHT', suffix: '' },
         { label: '0 - 100 KM/H', value: '6.9', suffix: 'S' }
       ], bg: `${CDN}/2025/01/BJ30_BAIC-Argentina-16.jpg` },
-      { type: 'text', heading: 'ILUMINACIÓN DELANTERA', body: ['Presenta una parrilla frontal con cinco faros integrados.'] },
-      { type: 'grid', items: [
-        { title: 'Diseño Frontal Familiar', text: 'Combina un diseño robusto con tecnología avanzada para ofrecer una experiencia de conducción versátil y eficiente.' },
-        { title: 'Diseño Trasero Elegante', text: 'La luz trasera vertical cuenta con un patrón en doble-D, lo que la hace aún más reconocible.' }
+      { type: 'text', heading: 'ILUMINACIÓN DELANTERA', hoverReveal: true, body: ['Presenta una parrilla frontal con cinco faros integrados.'], bg: `${CDN}/2025/01/BJ30_BAIC-Argentina-Centro_De_Descargas-9.jpg` },
+      { type: 'photo-grid', layout: 'equal-2', items: [
+        { title: 'Diseño Frontal Familiar', image: `${CDN}/2025/01/BJ30_BAIC-Argentina-9.jpg`, text: 'Combina un diseño robusto con tecnología avanzada para ofrecer una experiencia de conducción versátil y eficiente.' },
+        { title: 'Diseño Trasero Elegante', image: `${CDN}/2025/01/BJ30_BAIC-Argentina-19.jpg`, text: 'La luz trasera vertical cuenta con un patrón en doble-D, lo que la hace aún más reconocible.' }
       ] },
-      { type: 'text', heading: 'SELECTOR DE MARCHAS ELECTRÓNICO', body: ['Adopta un diseño inspirado en un propulsor aeroespacial, haciéndolo más avanzado tecnológicamente.'] },
-      { type: 'grid', items: [
-        { title: 'Panel de Instrumentos Integrados', text: 'Combinación de doble pantalla de 10.25 pulgadas + 14.6 pulgadas.' },
-        { title: 'Espacio de Combinación Flexible', text: 'Los asientos delanteros y traseros se pueden reclinar libremente, adaptándose a cualquier necesidad, creando un espacio versátil.' }
+      { type: 'text', heading: 'SELECTOR DE MARCHAS ELECTRÓNICO', hoverReveal: true, body: ['Adopta un diseño inspirado en un propulsor aeroespacial, haciéndolo más avanzado tecnológicamente.'], bg: `${CDN}/2025/01/BJ30_BAIC-Argentina-22-V2.jpg` },
+      { type: 'photo-grid', layout: 'equal-2', items: [
+        { title: 'Panel de Instrumentos Integrados', image: `${CDN}/2025/01/BJ30_BAIC-Argentina-Centro_De_Descargas-6.jpg`, text: 'Combinación de doble pantalla de 10.25 pulgadas + 14.6 pulgadas.' },
+        { title: 'Espacio de Combinación Flexible', image: `${CDN}/2025/01/BJ30_BAIC-Argentina-Centro_De_Descargas-8.jpg`, text: 'Los asientos delanteros y traseros se pueden reclinar libremente, adaptándose a cualquier necesidad, creando un espacio versátil.' }
       ] },
-      { type: 'text', heading: 'EXCELENTE RENDIMIENTO TODOTERRENO', body: ['El chasis sólido le otorga al vehículo una excelente capacidad todoterreno.', 'Ha pasado rigurosas pruebas y verificaciones, garantizando un rendimiento confiable en condiciones extremas.'] },
-      { type: 'text', heading: 'ROBUSTA ESTRUCTURA DE SEGURIDAD', body: ['La optimización del chasis y la aplicación de tecnologías de seguridad, garantizan que la carrocería permanezca sin distorsiones y libre de deformaciones. La estructura frontal de absorción de energía en tres etapas asegura que el compartimento de pasajeros se mantenga firme y confiable.'] },
-      { type: 'stats', items: [
+      { type: 'text', heading: 'EXCELENTE RENDIMIENTO TODOTERRENO', hoverReveal: true, body: ['El chasis sólido le otorga al vehículo una excelente capacidad todoterreno.', 'Ha pasado rigurosas pruebas y verificaciones, garantizando un rendimiento confiable en condiciones extremas.'], bg: `${CDN}/2025/01/BJ30_BAIC-Argentina-15.jpg` },
+      { type: 'text', heading: 'ROBUSTA ESTRUCTURA DE SEGURIDAD', hoverReveal: true, body: ['La optimización del chasis y la aplicación de tecnologías de seguridad, garantizan que la carrocería permanezca sin distorsiones y libre de deformaciones. La estructura frontal de absorción de energía en tres etapas asegura que el compartimento de pasajeros se mantenga firme y confiable.'], bg: `${CDN}/2025/01/BJ30_BAIC-Argentina-23.jpg` },
+      { type: 'stats', counters: true, items: [
         { label: 'ACERO DE ALTA RESISTENCIA', value: '63.4', suffix: '%' },
         { label: 'MÁXIMA RIGIDEZ DE TORSIÓN', value: '25420', suffix: 'NM' },
         { label: 'ACERO FORMADO TÉRMICAMENTE', value: '20', suffix: 'POSICIONES' }
       ], bg: `${CDN}/2025/01/BJ30_BAIC-Argentina-20.jpg` },
-      { type: 'text', heading: 'SISTEMA DE CONTROL TODOTERRENO (ATS)', body: ['Puede optimizar automáticamente los diversos sistemas de control del vehículo, permitiendo que se adapte a diferentes tipos de terrenos.'] }
-    ]
+      { type: 'text', heading: 'SISTEMA DE CONTROL TODOTERRENO (ATS)', hoverReveal: true, body: ['Puede optimizar automáticamente los diversos sistemas de control del vehículo, permitiendo que se adapte a diferentes tipos de terrenos.'], bg: `${CDN}/2025/01/BJ30_BAIC-Argentina-7.jpg` }
+    ],
+    view360: {
+      images: Array.from({ length: 36 }, (_, i) => `${CDN}/2025/01/BJ30_BAIC-Argentina_360-${i + 1}.webp`),
+      bgText: 'YOUR           BAIC'
+    },
+    brochure: { pdf: '/brochures/bj30-4x4.pdf' }
   },
 
   'bj40-pro': {
-    comingSoon: true,
+    heroImage: 'https://baic.com.ar/bj40pro/static/bj40/bg1.webp',
     hero: {
       title: 'BJ40 PRO',
-      tagline: ['Elegancia se encuentra con expedición']
+      tagline: ['Elegancia se encuentra con expedición.']
+    },
+    sections: [
+      { type: 'stats', counters: true, items: [
+        { label: 'POTENCIA', value: '241.38', suffix: 'HP' },
+        { label: 'PAR', value: '386', suffix: 'N·M' },
+        { label: 'MOTOR', value: '2.0 T', suffix: '' },
+        { label: 'MODOS DE CONDUCCIÓN', value: '11', suffix: '' }
+      ], bg: 'https://baic.com.ar/bj40pro/_nuxt/esargument-img.BbaYZZVg.webp' },
+      { type: 'text', heading: 'SISTEMA DE 4WD A TIEMPO PARCIAL', hoverReveal: true, body: ['Equipado con un sistema de tracción integral inteligente, soporta el cambio de cuatro modos de 2H, 4H, 4L, 4A mediante un selector electrónico, adaptándose a las diferentes necesidades de conducción.'], bg: 'https://baic.com.ar/bj40pro/_nuxt/page2_cover.Cs_lHSfs.webp' },
+      { type: 'text', heading: 'SISTEMA DE ATS', hoverReveal: true, body: ['El sistema de control todo terreno de ATS soporta hasta 11 modos de conducción. Mediante un cambio inteligente, el sistema ofrece la mejor distribución de potencia al vehículo.'], bg: 'https://baic.com.ar/bj40pro/_nuxt/page3_cover.EcHOjjTm.webp' },
+      { type: 'photo-grid', layout: 'equal', items: [
+        { title: 'Rocoso', image: 'https://baic.com.ar/bj40pro/static/bj40/ats/yanshi_orange.webp' },
+        { title: 'Nevado', image: 'https://baic.com.ar/bj40pro/static/bj40/ats/xuehua_orange.webp' },
+        { title: 'Desierto', image: 'https://baic.com.ar/bj40pro/static/bj40/ats/shamo_orange.webp' }
+      ] },
+      { type: 'stats', counters: true, items: [
+        { label: 'ÁNGULO DE APROXIMACIÓN', value: '37', suffix: '°' },
+        { label: 'ÁNGULO DE SALIDA', value: '31', suffix: '°' },
+        { label: 'ALTURA AL SUELO', value: '220', suffix: 'MM' },
+        { label: 'PROFUNDIDAD DE VADEO', value: '750', suffix: 'MM' }
+      ], bg: 'https://baic.com.ar/bj40pro/_nuxt/esargument-img.BbaYZZVg.webp' },
+      { type: 'text', heading: 'ESTRUCTURA TUBULAR DE ALTA RESISTENCIA', hoverReveal: true, body: ['Estructura de la jaula diseñada con exigencia militar, reduciendo eficazmente las deformaciones por colisión. Proporción de acero de alta resistencia conformado en caliente: 79.8%. Coeficiente de ligereza: 4.34.'], bg: 'https://baic.com.ar/bj40pro/_nuxt/page5_cover.DXzACCtP.webp' },
+      { type: 'text', heading: 'CHASIS TODOTERRENO DE GRADO MILITAR', hoverReveal: true, body: ['Diseño de chasis con viga integral de dos vigas longitudinales y ocho transversales, combinando acero de alta resistencia y acero ultra alto. Proporción de acero de hasta el 52% que asegura estabilidad incluso en condiciones extremas de conducción off-road.'], bg: 'https://baic.com.ar/bj40pro/_nuxt/page6_cover.CQYV3Jlp.webp' },
+      { type: 'text', heading: 'TECNOLOGÍA LUMÍNICA DE ALTA INTENSIDAD: VISIBILIDAD TOTAL', hoverReveal: true, body: ['Parrilla LED de cinco orificios integra un sistema de iluminación envolvente de última generación. Proyecta una potencia lumínica superior para enfrentar terrenos nocturnos con total confianza, mientras que optimiza la refrigeración del motor.'], bg: 'https://baic.com.ar/bj40pro/_nuxt/page7_cover.CvuK3ecd.webp' },
+      { type: 'text', heading: 'SENSACIÓN DE LIBERTAD TOTAL', hoverReveal: true, body: ['La ausencia de marcos superiores te regala una vista lateral más amplia y despejada para dominar cada sendero, combinada con una estructura robusta garantizando seguridad y aventura.'], bg: 'https://baic.com.ar/bj40pro/_nuxt/page8_cover.CynH4R7H.webp' },
+      { type: 'text', heading: 'PUERTA TRASERA DIVIDIDA', hoverReveal: true, body: ['La puerta trasera dividida ofrece dos formas de acceder a tu mundo. Este sistema maximiza la funcionalidad en cada situación, demostrando que la verdadera belleza del off-road está en la versatilidad.'], bg: 'https://baic.com.ar/bj40pro/_nuxt/page9_cover.CXQUpRUY.webp' },
+      { type: 'grid', heading: 'DISEÑO DE INTERIORES', items: [
+        { title: 'Habitáculo Panorámico, Tecnología y Visión', image: 'https://baic.com.ar/bj40pro/static/bj40/trim/img1.webp', text: 'Interior diseñado para ofrecer una visibilidad panorámica excepcional, además de un espacio amplio y cómodo.' },
+        { title: 'Central de Mando Digital: Primera Configuración Quíntuple del Off-Road', image: 'https://baic.com.ar/bj40pro/static/bj40/trim/img2.webp', text: 'Sistema de cinco pantallas integradas, con una distribución pensada para que cada ocupante tenga el control que necesita. Equipado con el procesador más avanzado de la industria, el SD 8155 garantiza una fluidez absoluta incluso en las condiciones más extremas.' },
+        { title: 'Techo Panorámico con Mandos Inteligentes', image: 'https://baic.com.ar/bj40pro/static/bj40/trim/img3.webp', text: 'Techo panorámico ultra amplio con interruptores inteligentes permiten su operación con movimientos precisos e intuitivos, sin apartar la vista del camino.' },
+        { title: 'Infinity: El Audio que Evoluciona con la Velocidad', image: 'https://baic.com.ar/bj40pro/static/bj40/trim/img4.webp', text: 'Equipado con un sistema de 12 altavoces de alta eficiencia más un amplificador externo que entrega la potencia necesaria para llenar el amplio habitáculo sin distorsión, marcando la diferencia con una ecualización dinámica por velocidad.' },
+        { title: 'Asientos con Abatimiento: Baúl con Gran Capacidad', image: 'https://baic.com.ar/bj40pro/static/bj40/trim/img5.webp', text: 'Con un único botón, los asientos traseros se abaten completamente, transformando el área de carga en un piso perfectamente plano. Versatilidad para ampliar la capacidad de guardado o facilitar un espacio de acampe.' },
+        { title: 'Central de Energía: Carga Rápida de 50W y 10 Puertos a Bordo', image: 'https://baic.com.ar/bj40pro/static/bj40/trim/img6.webp', text: 'El cargador inalámbrico integrado de 50W es de los más potentes del mercado, compatible con carga rápida para los últimos modelos de smartphones. Además, 10 puertos de carga distribuidos por el interior.' }
+      ] },
+      { type: 'grid', heading: 'EXPERIENCIA DE CONDUCCIÓN', items: [
+        { title: 'Volante Multifunción: Tres Modos, Cuatro Movimientos', image: 'https://baic.com.ar/bj40pro/static/bj40/driving/img1.webp', text: 'Seleccioná entre tres modos de asistencia: Ligero, Estándar y Deportivo. Para que cada conductor encuentre su posición ideal, el volante cuenta con ajuste eléctrico en 4 direcciones (arriba, abajo, adentro, afuera) memorizando tu preferencia.' },
+        { title: 'Giro Asistido con Radio Reducido', image: 'https://baic.com.ar/bj40pro/static/bj40/driving/img2.webp', text: 'Al activarlo, el vehículo bloquea electrónicamente la rueda trasera interna, generando un punto de giro sobre sí misma mientras las demás ruedas siguen avanzando. El resultado: un radio de giro reducido que te permite rotar sobre terreno complicado con una facilidad asombrosa.' },
+        { title: '2.5 T de Capacidad de Remolque', image: 'https://baic.com.ar/bj40pro/static/bj40/driving/img3.webp', text: 'Incorpora una toma de remolque reforzada y una toma de electricidad dedicada (para luces y freno del trailer). La capacidad máxima de tracción es de 2.5 toneladas (2.500 kg).' }
+      ] }
+    ],
+    view360: {
+      images: Array.from({ length: 43 }, (_, i) => `https://baic.com.ar/bj40pro/static/bj40/frame/${String(i).padStart(4, '0')}.webp`),
+      bgText: 'YOUR           BAIC'
     }
   },
 
@@ -279,7 +379,7 @@ export const modelDetails = {
     heroImage: bj60,
     hero: {
       title: 'BJ60',
-      tagline: ['Un todoterreno híbrido', 'del más alto nivel.']
+      tagline: ['Un todoterreno híbrido del más alto nivel.']
     },
     sections: [
       { type: 'stats', items: [
