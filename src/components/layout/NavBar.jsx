@@ -20,6 +20,25 @@ export default function NavBar() {
     closeTimer.current = setTimeout(() => setModelsOpen(false), CLOSE_DELAY)
   }
 
+  const closeAll = () => {
+    clearTimeout(closeTimer.current)
+    setModelsOpen(false)
+    setMobileOpen(false)
+  }
+
+  // En desktop el hover ya abre/cierra el menú; si el click también hiciera
+  // toggle, un click con mouse (que primero dispara el hover) lo abriría y
+  // lo cerraría en el mismo gesto, generando el parpadeo/"transparencia" que
+  // se veía a mitad de la transición de opacity. En mobile no hay hover, así
+  // que ahí sí necesitamos que el tap alterne.
+  const handleTriggerClick = () => {
+    if (mobileOpen) {
+      setModelsOpen((o) => !o)
+    } else {
+      openModels()
+    }
+  }
+
   return (
     <header className="navbar">
       <div className="navbar__inner">
@@ -30,19 +49,19 @@ export default function NavBar() {
         <nav className={`navbar__links ${mobileOpen ? 'navbar__links--open' : ''}`}>
           <div
             className={`dropdown ${modelsOpen ? 'open' : ''}`}
-            onMouseEnter={openModels}
-            onMouseLeave={scheduleClose}
+            onMouseEnter={mobileOpen ? undefined : openModels}
+            onMouseLeave={mobileOpen ? undefined : scheduleClose}
           >
-            <button className="navbar__models-trigger" onClick={() => setModelsOpen((o) => !o)}>
+            <button className="navbar__models-trigger" onClick={handleTriggerClick}>
               Modelos <ChevronDownIcon size={14} />
             </button>
-            <ModelsMegaMenu />
+            <ModelsMegaMenu onNavigate={closeAll} />
           </div>
-          <AppNavLink to="/nosotros">BAIC</AppNavLink>
-          <AppNavLink to="/concesionarios">Concesionarios</AppNavLink>
-          <AppNavLink to="/service">Service</AppNavLink>
-          <AppNavLink to="/novedades">Novedades</AppNavLink>
-          <AppNavLink to="/contacto">Contacto</AppNavLink>
+          <AppNavLink to="/nosotros" onClick={closeAll}>BAIC</AppNavLink>
+          <AppNavLink to="/concesionarios" onClick={closeAll}>Concesionarios</AppNavLink>
+          <AppNavLink to="/service" onClick={closeAll}>Service</AppNavLink>
+          <AppNavLink to="/novedades" onClick={closeAll}>Novedades</AppNavLink>
+          <AppNavLink to="/contacto" onClick={closeAll}>Contacto</AppNavLink>
         </nav>
       </div>
     </header>

@@ -3,9 +3,9 @@ import { AppLink } from '../ui/index.js'
 import { selectVehicles } from '../../features/vehicles/index.js'
 
 // El panel real (baic.com.ar) arma dos filas: 6 modelos arriba y 4 abajo, a todo el ancho del navbar.
-function ModelCard({ vehicle }) {
+function ModelCard({ vehicle, onNavigate }) {
   return (
-    <AppLink to={`/modelos/${vehicle.slug}`} className="model-card">
+    <AppLink to={`/modelos/${vehicle.slug}`} className="model-card" onClick={onNavigate}>
       {vehicle.image ? (
         <img className="model-card__img" src={vehicle.image} alt={vehicle.name} />
       ) : (
@@ -17,7 +17,7 @@ function ModelCard({ vehicle }) {
   )
 }
 
-export default function ModelsMegaMenu() {
+export default function ModelsMegaMenu({ onNavigate }) {
   const vehicles = useSelector(selectVehicles)
   const row1 = vehicles.slice(0, 6)
   const row2 = vehicles.slice(6)
@@ -25,11 +25,11 @@ export default function ModelsMegaMenu() {
   return (
     <div className="megamenu">
       <div className="megamenu__row">
-        {row1.map((vehicle) => <ModelCard key={vehicle.slug} vehicle={vehicle} />)}
+        {row1.map((vehicle) => <ModelCard key={vehicle.slug} vehicle={vehicle} onNavigate={onNavigate} />)}
       </div>
       {row2.length > 0 && (
         <div className="megamenu__row">
-          {row2.map((vehicle) => <ModelCard key={vehicle.slug} vehicle={vehicle} />)}
+          {row2.map((vehicle) => <ModelCard key={vehicle.slug} vehicle={vehicle} onNavigate={onNavigate} />)}
         </div>
       )}
     </div>

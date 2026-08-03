@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppLink } from '../ui/index.js'
+import { ChevronRightIcon } from '../icons/index.js'
 import { fetchNews, selectNews } from '../../features/news/index.js'
 import { truncateText } from '../../helpers/formatters.js'
 
@@ -20,7 +21,7 @@ export default function NewsSection() {
         <h2 className="section-title">ÚLTIMAS NOTICIAS</h2>
         <div className="news-grid">
           {latest.map((item) => (
-            <div key={item.id} className="news-card">
+            <AppLink key={item.id} to={`/novedades/${item.id}`} className="news-card">
               {item.image ? (
                 <img className="news-card__img" src={item.image} alt={item.title} />
               ) : (
@@ -28,8 +29,11 @@ export default function NewsSection() {
               )}
               <h4>{item.title}</h4>
               <p>{truncateText(item.excerpt, 110)}</p>
-              <AppLink to={`/novedades/${item.id}`} className="read">Leer más »</AppLink>
-            </div>
+              <span className="read">
+                <span className="read__label">Leer más »</span>
+                <span className="read__arrow"><ChevronRightIcon size={16} /></span>
+              </span>
+            </AppLink>
           ))}
           {latest.length === 0 && <p>No hay noticias todavía.</p>}
         </div>

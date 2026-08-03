@@ -338,90 +338,124 @@ export const modelDetails = {
 
   'bj40-plus': {
     heroImage: bj40plus,
+    colors: [
+      { hex: '#404544', image: 'https://baic.com.ar/wp-content/uploads/2023/10/BJ40Plus.png' },
+      { hex: '#000000', image: 'https://baic.com.ar/wp-content/uploads/2023/11/Bj40-negra.png' }
+    ],
     hero: {
       title: 'BJ40 PLUS',
       tagline: ['Tanto en la ciudad como en la naturaleza extrema, un Todoterreno que personaliza todas tus exigencias.'],
       note: 'Motor nafta 2.0T, 221 caballos de fuerza, alta capacidad de carga y excelente rendimiento.'
     },
     sections: [
-      { type: 'text', heading: 'SILUETA ROBUSTA CON ESTILO URBANO', body: ['Diseñado para ser completamente funcional.', 'No hay caminos que no puedas explorar con BAIC.'], bg: `${CDN}/2023/11/BJ40-1.jpg` },
+      { type: 'text', heading: 'SILUETA ROBUSTA CON ESTILO URBANO', hoverReveal: true, body: ['Diseñado para ser completamente funcional.', 'No hay caminos que no puedas explorar con BAIC.'], bg: `${CDN}/2023/11/BJ40-1.jpg` },
       { type: 'text', heading: 'PERFORMANCE', body: [
-        'El nuevo BJ40 PLUS cuenta con un motor de 2.0L Turbo, 221 caballos de fuerza y un torque de 380 (Nm/rpm) de rápida aceleración, baja velocidad de rotación, ahorro de energía y excelente rendimiento.',
-        'Ángulo de entrada 37° · Ángulo de salida 31° · Ángulo ventral 23° · Profundidad máxima de vadeo >600 mm · Anchura máxima de cruce de zanjas >500 mm · Altura de cruce de barricada 350 mm',
+        'El nuevo BJ40 PLUS cuenta con un motor de 2.0L Turbo, 221 caballos de fuerza y un torque de 380 (Nm/rpm) de rápida aceleración, baja velocidad de rotación, ahorro de energía y excelente rendimiento.'
+      ], iconList: [
+        { icon: `${CDN}/2024/01/Icono-5-BJ40-BaicAR-Ene24.png`, text: 'Ángulo de entrada 37°' },
+        { icon: `${CDN}/2024/01/Icono-6-BJ40-BaicAR-Ene24.png`, text: 'Ángulo de salida 31°' },
+        { icon: `${CDN}/2024/01/Icono-4-BJ40-BaicAR-Ene24.png`, text: 'Ángulo ventral 23°' },
+        { icon: `${CDN}/2024/01/Icono-3-BJ40-BaicAR-Ene24.png`, text: 'Profundidad máxima de vadeo >600 mm' },
+        { icon: `${CDN}/2024/01/Icono-2-BJ40-BaicAR-Ene24.png`, text: 'Anchura máxima de cruce de zanjas >500 mm' },
+        { icon: `${CDN}/2024/01/Icono-1-BJ40-BaicAR-Ene24.png`, text: 'Altura de cruce de barricada 350 mm' }
+      ], bodyAfter: [
         'VEHÍCULO MILITAR · Más de 1.000.000 km de Road Tests con los más altos estándares de calidad y tecnología militar.'
       ], bg: `${CDN}/2024/01/BJ40-3-BaicAR-Ene24-e1704769600997.jpg` },
-      { type: 'text', heading: 'DISEÑO · ANILLOS LUMINOSOS', body: ['Potentes luces con 200 LED para explorar con total visibilidad los terrenos más salvajes y en condiciones meteorológicas adversas. Faros traseros full led con efecto "túnel".'], bg: `${CDN}/2023/11/BJ40-3.jpg` },
+      { type: 'text', heading: 'DISEÑO · ANILLOS LUMINOSOS', hoverReveal: true, body: ['Potentes luces con 200 LED para explorar con total visibilidad los terrenos más salvajes y en condiciones meteorológicas adversas. Faros traseros full led con efecto "túnel".'], bg: `${CDN}/2023/11/BJ40-3.jpg` },
       { type: 'list', heading: 'EXPLORÁ UN NUEVO MUNDO OUTDOOR', items: [
         'Jaula antivuelco de alta resistencia de diseño reticular, garantizando al máximo la seguridad de los pasajeros.',
         'Chasis unido de forma flexible a la carrocería, lo que permite absorber mejor la energía y los impactos.',
         'Ganchos de remolque delanteros y traseros, pintados de rojo, otorgando gran personalidad y gran resistencia.',
         'Suspensión delantera y trasera optimizada para off road.',
         'Techo desmontable en 3 piezas.'
-      ], bg: `${CDN}/2024/01/BJ40-5-B-BaicAR-Ene24.jpg` },
-      { type: 'grid', heading: 'CONFIGURACIÓN INTELIGENTE', items: [
-        { title: 'Motor 2.0T – 221CV – 380Nm', text: 'Inyección directa, variador árbol de levas y escape integral ofreciendo torque, potencia, bajo consumo y bajas emisiones.' },
-        { title: 'Sistema de Tracción 2WD o 4WD', text: 'Modos de conducción: Snow, Sport, Comfort y Economy. Gracias a los 4 modos de conducción, podrá enfrentarse fácilmente a una gran variedad de condiciones meteorológicas y terrenos.' },
-        { title: 'Caja de Cambios 8AT (marca ZF)', text: 'Ahorro de energía de alta eficiencia. Con un cambio suave y un rendimiento fiable, puede explorar todos los terrenos off road y on-road con estilo y comodidad.' },
-        { title: 'Neumáticos Anchos 265/R17', text: 'De alta resistencia, fuerte absorción de impactos y alta capacidad de carga que mejoran la tracción de manera efectiva.' }
+      ], cornerGraphic: `${CDN}/2024/01/RemovableRoof-BJ40-BaicAR-Ene24.png`, bg: `${CDN}/2024/01/BJ40-4-B-BaicAR-Ene24.jpg` },
+      { type: 'grid', heading: 'CONFIGURACIÓN INTELIGENTE', rows: true, wide: true, items: [
+        { title: 'Motor 2.0T – 221CV – 380Nm', image: `${CDN}/2024/01/BJ40-11-BaicAR-Ene24.jpg`, text: 'Inyección directa, variador árbol de levas y escape integral ofreciendo torque, potencia, bajo consumo y bajas emisiones.' },
+        { title: 'Sistema de Tracción 2WD o 4WD', image: `${CDN}/2024/01/BJ40-8-BaicAR-Ene24.jpg`, text: 'Modos de conducción: Snow, Sport, Comfort y Economy. Gracias a los 4 modos de conducción, podrá enfrentarse fácilmente a una gran variedad de condiciones meteorológicas y terrenos.' },
+        { title: 'Caja de Cambios 8AT (marca ZF)', image: `${CDN}/2024/01/BJ40-9-BaicAR-Ene24.jpg`, text: 'Ahorro de energía de alta eficiencia. Con un cambio suave y un rendimiento fiable, puede explorar todos los terrenos off road y on-road con estilo y comodidad.' },
+        { title: 'Neumáticos Anchos 265/R17', image: `${CDN}/2024/01/BJ40-10-BaicAR-Ene24.jpg`, text: 'De alta resistencia, fuerte absorción de impactos y alta capacidad de carga que mejoran la tracción de manera efectiva.' }
       ], bg: `${CDN}/2024/01/BJ40-6-BaicAR-Ene24.jpg` },
-      { type: 'list', heading: 'BJ40, DISEÑADO PARA SER COMPLETAMENTE FUNCIONAL. PARA QUE SIEMPRE DISFRUTES DEL RECORRIDO.', items: [
-        'Pantalla central touch de 10” Mirror Link, Bluetooth, y puerto USB para reproducción de video. Comando de voz. Imagen de marcha atrás en alta definición (HD).',
-        'Tablero LCD de 12.3” con Survival y Off Road System. Muestra información de navegación como: ángulo de inclinación, dirección, presión de neumáticos, altitud y la presión atmosférica. Para dar rienda suelta a tus aventuras.',
-        'Panel de control multimedia de estilo moderno y suave al tacto. Comandos de calefacción de asientos. Freno de mano eléctrico y modo AutoHold. Todas las funciones al alcance de tu mano.'
-      ], bg: `${CDN}/2024/01/BJ40-17-BaicAR-Ene24.jpg` },
-      { type: 'text', heading: 'INTERIOR', body: ['Cabina de amplias dimensiones diseñada con asientos electrónicos y calefaccionados, volante de cuero multifunción calefaccionado, iluminación LED multicolor aportando vitalidad y espíritu deportivo al ambiente. Espejo retrovisor con cámara de transmisión multimedia para maximizar el ángulo de visón trasera. Sistema inteligente de control de temperatura.'], bg: `${CDN}/2024/01/BJ40-PLUS-INTERIOR-1.jpg` },
-      { type: 'text', heading: 'CONECTÁ CON TU ESTILO', body: ['Off Road.'], bg: `${CDN}/2024/01/BJ40-2-BaicAR-Ene24.jpg` },
-      { type: 'text', heading: 'NUEVAS DIMENSIONES', body: ['Nuevas dimensiones del BJ40 Plus con una mayor distancia entre ejes garantizando una experiencia de conducción más estable y cómoda.', 'Para recorrer todo tipo de terrenos sin restricciones.'], bg: `${CDN}/2024/01/BJ40-PLUS-EXTERIOR.jpg` }
-    ]
+      { type: 'photo-grid', layout: 'equal', cards: true,
+        heading: 'BJ40, DISEÑADO PARA SER COMPLETAMENTE FUNCIONAL. PARA QUE SIEMPRE DISFRUTES DEL RECORRIDO.',
+        headingAccent: 'BJ40',
+        bg: `${CDN}/2024/01/BJ40-PLUS-INTERIOR-1.jpg`,
+        items: [
+        { title: 'Pantalla Central Touch de 10”', image: `${CDN}/2024/01/BJ40-13-BaicAR-Ene24.jpg`, text: 'Mirror Link, Bluetooth y puerto USB para reproducción de video. Comando de voz. Imagen de marcha atrás en alta definición (HD).' },
+        { title: 'Tablero LCD de 12.3”', image: `${CDN}/2024/01/BJ40-14-BaicAR-Ene24.jpg`, text: 'Con Survival y Off Road System. Muestra información de navegación como ángulo de inclinación, dirección, presión de neumáticos, altitud y presión atmosférica. Para dar rienda suelta a tus aventuras.' },
+        { title: 'Panel de Control Multimedia', image: `${CDN}/2024/01/BJ40-15-BaicAR-Ene24.jpg`, text: 'Estilo moderno y suave al tacto. Comandos de calefacción de asientos. Freno de mano eléctrico y modo AutoHold. Todas las funciones al alcance de tu mano.' }
+      ] },
+      { type: 'text', heading: 'INTERIOR', hoverReveal: true, body: ['Cabina de amplias dimensiones diseñada con asientos electrónicos y calefaccionados, volante de cuero multifunción calefaccionado, iluminación LED multicolor aportando vitalidad y espíritu deportivo al ambiente. Espejo retrovisor con cámara de transmisión multimedia para maximizar el ángulo de visón trasera. Sistema inteligente de control de temperatura.'], bg: `${CDN}/2024/01/BJ40-PLUS-INTERIOR-1.jpg` },
+      { type: 'text', heading: 'Conectá con tu estilo', hoverReveal: true, staticReveal: true, captionTop: true, titlePlain: true, body: ['Off Road.'], logo: `${CDN}/2024/01/Logo-BJ40-BaicAR-Ene24-2.png`, bg: `${CDN}/2024/01/BJ40-2-BaicAR-Ene24.jpg` },
+      { type: 'text', heading: 'NUEVAS DIMENSIONES', hoverReveal: true, body: ['Nuevas dimensiones del BJ40 Plus con una mayor distancia entre ejes garantizando una experiencia de conducción más estable y cómoda.', 'Para recorrer todo tipo de terrenos sin restricciones.'], bg: `${CDN}/2024/01/BJ40-PLUS-EXTERIOR.jpg` }
+    ],
+    view360: {
+      images: Array.from({ length: 36 }, (_, i) => `${CDN}/2024/07/BAIC-BJ40PLUS-360-${i + 1}.png`),
+      bgText: 'YOUR           BAIC'
+    },
+    footnote: '*El modelo de las llantas es de carácter ilustrativo.',
+    brochure: { pdf: '/brochures/bj40-plus.pdf' }
   },
 
   'bj60': {
     heroImage: bj60,
     hero: {
       title: 'BJ60',
-      tagline: ['Un todoterreno híbrido del más alto nivel.']
+      tagline: ['Un todoterreno híbrido', 'del más alto nivel.']
+    },
+    colors: [
+      { hex: '#ffffff', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-30-1024x497.png` },
+      { hex: '#000000', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-27-1024x497.png` }
+    ],
+    video: {
+      src: '/videos/bj60-hibrida.mp4',
+      poster: `${CDN}/2025/01/BJ60_BAIC-Argentina-24.jpg`
+    },
+    gallery: {
+      images: [
+        `${CDN}/2025/01/BJ60_BAIC-Argentina-19.jpg`,
+        `${CDN}/2025/01/BJ60_BAIC-Argentina-21.jpg`,
+        `${CDN}/2025/01/BJ60_BAIC-Argentina-22.jpg`,
+        `${CDN}/2025/01/BJ60_BAIC-Argentina-23.jpg`
+      ]
     },
     sections: [
-      { type: 'stats', items: [
+      { type: 'stats', counters: true, items: [
         { label: 'POTENCIA', value: '263', suffix: 'HP' },
         { label: 'TORQUE', value: '406', suffix: 'NM' },
         { label: 'MOTOR', value: '2000', suffix: 'CC' },
         { label: 'MILD HYBRID', value: '48', suffix: 'V' },
         { label: 'DISTANCIA ENTRE EJES', value: '2820', suffix: 'MM' }
       ], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-25.jpg` },
-      { type: 'grid', items: [
-        { title: 'Llantas', text: 'Su tamaño de 20 pulgadas y su diseño moderno, logran que este todoterreno se destaque en cualquier situación.' },
-        { title: 'Luces Traseras LED', text: 'Presentan un patrón abstracto que mejora la visibilidad y aporta un toque distintivo al diseño.' },
-        { title: 'Luz de Freno', text: 'Inspirada en los baluartes de flechas de la Gran Muralla, simboliza fuerza y protección.' },
-        { title: 'Parrilla Frontal Iluminada', text: 'En este modelo se incorpora una iluminación especial, heredando elementos característicos de la familia de los vehículos todoterreno de BAIC.' }
+      { type: 'photo-grid', layout: 'big-left-2top-1bottom', items: [
+        { title: 'Llantas', text: 'Su tamaño de 20 pulgadas y su diseño moderno, logran que este todoterreno se destaque en cualquier situación.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-3.jpg` },
+        { title: 'Luces Traseras LED', text: 'Presentan un patrón abstracto que mejora la visibilidad y aporta un toque distintivo al diseño.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-4.jpg` },
+        { title: 'Luz de Freno', text: 'Inspirada en los baluartes de flechas de la Gran Muralla, simboliza fuerza y protección.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-5_V2.jpg` },
+        { title: 'Parrilla Frontal Iluminada', text: 'En este modelo se incorpora una iluminación especial, heredando elementos característicos de la familia de los vehículos todoterreno de BAIC.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-6.jpg` }
       ] },
-      { type: 'text', heading: 'INTERIOR', body: ['El sistema de sonido premium Infinity, en combinación con los asientos de primera clase, lujosos y cómodos, proporcionan una experiencia de confort inigualable.'] },
-      { type: 'grid', items: [
-        { title: 'Interfaz de Cuatro Pantallas', text: 'Incorpora un sistema de visualización frontal W-HUD, ideal para escenarios todoterreno, con una distancia de proyección de hasta 2.2 metros.' },
-        { title: 'Amplio Espacio · 7 asientos', text: 'Este modelo cuenta con una tercera fila de asientos, de muy fácil acceso, para adaptarse a diversas necesidades.' },
-        { title: 'Techo Solar Panorámico', text: 'Incluye de serie un techo panorámico transparente de 0.82 m², ofreciendo una agradable sensación de amplitud y conexión con el exterior.' }
+      { type: 'text', heading: 'INTERIOR', body: ['El sistema de sonido premium Infinity, en combinación con los asientos de primera clase, lujosos y cómodos, proporcionan una experiencia de confort inigualable.'], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-16.jpg` },
+      { type: 'photo-grid', layout: '2stack-big-right', items: [
+        { title: 'Interfaz de Cuatro Pantallas', text: 'Incorpora un sistema de visualización frontal W-HUD, ideal para escenarios todoterreno, con una distancia de proyección de hasta 2.2 metros.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-7.jpg` },
+        { title: 'Amplio Espacio · 7 asientos', text: 'Este modelo cuenta con una tercera fila de asientos, de muy fácil acceso, para adaptarse a diversas necesidades.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-8.jpg` },
+        { title: 'Techo Solar Panorámico', text: 'Incluye de serie un techo panorámico transparente de 0.82 m², ofreciendo una agradable sensación de amplitud y conexión con el exterior.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-9.jpg` }
       ] },
-      { type: 'text', heading: 'PERFORMANCE', body: ['El BJ60 es un todoterreno que combina un diseño robusto con tecnología de última generación para ofrecer una experiencia de conducción superior.'] },
-      { type: 'grid', items: [
-        { title: 'Sistema Global de Control Inteligente', text: 'Ofrece 9 modos de conducción y 17 combinaciones de manejo, optimizando el rendimiento del vehículo de acuerdo al terreno que esté transitando.' },
-        { title: 'Neumáticos', text: '275/50 R20-HT' }
+      { type: 'text', heading: 'PERFORMANCE', body: ['El BJ60 es un todoterreno que combina un diseño robusto con tecnología de última generación para ofrecer una experiencia de conducción superior.'], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-17-scaled.jpg` },
+      { type: 'photo-grid', layout: '2stack-big-left', items: [
+        { image: `${CDN}/2025/01/BJ60_BAIC-Argentina-10-V2.jpg` },
+        { title: 'Sistema Global de Control Inteligente', text: 'Ofrece 9 modos de conducción y 17 combinaciones de manejo, optimizando el rendimiento del vehículo de acuerdo al terreno que esté transitando.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-11.jpg` },
+        { title: 'Neumáticos', text: '275/50 R20-HT', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-12.jpg` }
       ] },
-      { type: 'grid', heading: 'TECNOLOGÍA', items: [
-        { title: 'Imágenes Panorámicas 360°', text: 'Cámaras de alta definición que utilizan tecnología avanzada para proporcionar una vista completa alrededor del vehículo.' },
-        { title: 'Chasis Transparente 180°', text: 'Muestra información precisa de los puntos ciegos debajo del chasis, reduciendo los riesgos durante la conducción.' },
-        { title: 'Vista Aérea', text: 'Ofrece una visión del entorno, brindando una experiencia de conducción más segura.' },
-        { title: 'Estacionamiento Autónomo', text: 'Con un solo clic, el vehículo puede estacionarse automáticamente, facilitando las maniobras en espacios reducidos.' }
-      ], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-14-C.jpg` },
-      { type: 'list', heading: 'SISTEMAS AVANZADOS DE ASISTENCIA A LA CONDUCCIÓN', items: [
-        'Advertencia de Apertura de Puertas',
-        'Frenado de Emergencia Activo',
-        'Advertencia de Tráfico Cruzado en Reversa',
-        'Control de Crucero Adaptativo',
-        'Reconocimiento de Señales de Tráfico',
-        'Advertencia de Colisión Frontal',
-        'Asistente de Mantenimiento de Carril'
-      ], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-15-V2.jpg` }
-    ]
+      // Estas dos pantallas (Tecnología / ADAS) son, en el sitio real, una única foto
+      // ya compuesta con auto + círculos + textos + líneas "horneados" en la imagen -
+      // no hace falta reconstruir el diagrama con HTML, sólo mostrar la foto completa.
+      { type: 'text', body: [], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-14-E.jpg` },
+      { type: 'text', body: [], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-15-F.jpg` }
+    ],
+    view360: {
+      images: Array.from({ length: 36 }, (_, i) => `${CDN}/2025/01/BJ60_BAIC-Argentina_360-${i + 1}.webp`),
+      bgText: 'YOUR           BAIC'
+    },
+    footnote: '*Las imágenes publicadas son de carácter ilustrativo y con fin publicitario.',
+    brochure: { pdf: '/brochures/bj60.pdf' }
   },
 
   'u5-plus': {
@@ -430,6 +464,12 @@ export const modelDetails = {
       title: 'U5 PLUS',
       tagline: ['Es posible tener todo en un sedán.', 'Performance, Confort y Tecnología.']
     },
+    colors: [
+      { hex: '#ffffff', image: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-4-1024x452.png` },
+      { hex: '#c81e2c', image: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-3-1024x452.png` },
+      { hex: '#1c1c1e', image: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-2-1024x452.png` },
+      { hex: '#b0b3b6', image: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-1-1024x452.png` }
+    ],
     sections: [
       { type: 'text', heading: 'EXTERIOR ELEGANTE, INTERIOR ESPACIOSO', body: ['Dimensiones (largo x ancho x alto): 4.660 x 1.820 x 1.480 mm', 'Distancia entre ejes: 2.670 mm'], bg: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-8.webp` },
       { type: 'text', heading: 'EXCELENTE COEFICIENTE AERODINÁMICO (0.28)', body: ['Disminución del consumo de combustible de manera eficiente y una mejor estabilidad en el camino.'], bg: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-7.webp` },
@@ -438,7 +478,12 @@ export const modelDetails = {
       { type: 'text', heading: 'DISEÑO INTERIOR ENVOLVENTE', body: ['Pantalla táctil central de 12,3”, conexión inalámbrica mirrorlink y bluetooth. Volante de cuero con comandos multifunción.'], bg: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-10.webp` },
       { type: 'text', heading: 'CÓMODOS ASIENTOS MULTIFUNCIONALES', body: ['Tapizados en ecocuero con espuma engrosada y alargada.', 'Asientos integrados de gravedad cero.'], bg: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-12.webp` },
       { type: 'text', heading: 'CABINA SILENCIOSA "TIPO BIBLIOTECA"', body: ['Gracias a una novedosa incorporación, el habitáculo logra obtener un volumen interior del ralentí de 40dB.'], bg: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-5.jpg` }
-    ]
+    ],
+    view360: {
+      images: Array.from({ length: 37 }, (_, i) => `${CDN}/2025/01/U5-Plus_BAIC-Argentina-360-${i + 1}.webp`),
+      bgText: 'YOUR           BAIC'
+    },
+    brochure: { pdf: '/brochures/u5-plus.pdf' }
   },
 
   'eu5': {
@@ -448,6 +493,14 @@ export const modelDetails = {
       tagline: ['100% Eléctrico. Excelente Rendimiento, Potencia y Tecnología.'],
       note: 'Conducción confortable y sistemas avanzados de asistencia al conductor.'
     },
+    colors: [
+      { hex: '#c81e2c', image: `${CDN}/2024/11/BAIC-EU5-16-1024x452.png` },
+      { hex: '#f5f6f8', image: `${CDN}/2024/11/BAIC-EU5-12-1024x452.png` },
+      { hex: '#1c1c1e', image: `${CDN}/2024/11/BAIC-EU5-15-1024x452.png` },
+      { hex: '#808285', image: `${CDN}/2024/11/BAIC-EU5-11-1024x452.png` },
+      { hex: '#3f7fd1', image: `${CDN}/2024/11/BAIC-EU5-13-1024x452.png` },
+      { hex: '#d8d9db', image: `${CDN}/2024/11/BAIC-EU5-14-1024x452.png` }
+    ],
     sections: [
       { type: 'text', heading: 'ÚNICO EN SU ESTILO', body: ['Desde su diseño aerodinámico hasta sus líneas elegantes, este vehículo cautiva con su presencia.'], bg: `${CDN}/2024/11/BAIC-EU5-5.jpg` },
       { type: 'text', heading: 'GRAN DISTANCIA ENTRE EJES', body: ['|- 2670 MM -|', 'Además para mayor confort en la conducción, cuenta con suspensión multibrazo.'], bg: `${CDN}/2024/12/BAIC-EU5-17.jpg` },
@@ -461,6 +514,11 @@ export const modelDetails = {
         'El grado de protección del sello de toda la estructura alcanzó IP67.',
         'Más de 30 estándares de pruebas internacionales.'
       ], bg: `${CDN}/2024/11/BAIC-EU5-1.jpg` }
-    ]
+    ],
+    view360: {
+      images: Array.from({ length: 36 }, (_, i) => `${CDN}/2024/11/BAIC-EU5-360-${i + 1}.png`),
+      bgText: 'YOUR           BAIC'
+    },
+    brochure: { pdf: '/brochures/eu5.pdf' }
   }
 }

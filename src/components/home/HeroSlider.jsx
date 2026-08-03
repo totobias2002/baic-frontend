@@ -54,10 +54,10 @@ export default function HeroSlider() {
         </div>
       ))}
       <button className="slide-arrow prev" onClick={() => goTo(current - 1)} aria-label="Anterior">
-        <ChevronLeftIcon size={64} />
+        <ChevronLeftIcon size={26} />
       </button>
       <button className="slide-arrow next" onClick={() => goTo(current + 1)} aria-label="Siguiente">
-        <ChevronRightIcon size={64} />
+        <ChevronRightIcon size={26} />
       </button>
       <div className="slide-dots">
         {heroSlides.map((slide, i) => (

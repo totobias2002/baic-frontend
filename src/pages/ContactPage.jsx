@@ -35,7 +35,7 @@ export default function ContactPage() {
           <input type="text" placeholder="Nombre" value={form.name} onChange={set('name')} required />
           <input type="tel" placeholder="Teléfono" value={form.phone} onChange={set('phone')} required />
           <input type="email" placeholder="Email" value={form.email} onChange={set('email')} required />
-          <select value={form.dealerId} onChange={set('dealerId')} defaultValue="">
+          <select value={form.dealerId} onChange={set('dealerId')}>
             <option value="">Seleccione un concesionario</option>
             {dealers.map((d) => (
               <option key={d.id} value={d.id}>{d.name} - {d.province.toUpperCase()}</option>

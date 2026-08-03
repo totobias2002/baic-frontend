@@ -24,19 +24,18 @@ export default function NewsPage() {
       <div className="container news-page">
         <div className="news-grid">
           {items.map((item) => (
-            <article key={item.id} className="news-card">
-              <AppLink to={`/novedades/${item.id}`} className="news-card__img">
+            <AppLink key={item.id} to={`/novedades/${item.id}`} className="news-card">
+              <div className="news-card__img">
                 {item.image ? (
                   <div className="news-card__img-inner" style={{ backgroundImage: `url(${item.image})` }} />
                 ) : (
                   <div className="ph">Imagen: {item.title}</div>
                 )}
                 <span className="news-card__img-overlay" />
-              </AppLink>
-              <h4><AppLink to={`/novedades/${item.id}`}>{item.title}</AppLink></h4>
+              </div>
+              <h4>{item.title}</h4>
               <p>{item.excerpt}</p>
-              <AppLink to={`/novedades/${item.id}`} className="news-card__read">Leer más »</AppLink>
-            </article>
+            </AppLink>
           ))}
         </div>
       </div>

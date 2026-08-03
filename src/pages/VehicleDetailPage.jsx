@@ -31,6 +31,7 @@ function StatCounter({ value, active, duration = 2200 }) {
   return <strong>{formatStatValue(active ? current : 0, value)}</strong>
 }
 
+
 function Section({ section, index }) {
   const side = index % 2 === 0 ? 'is-right' : 'is-left'
   const isWideStats = Boolean(section.counters)
@@ -60,21 +61,46 @@ function Section({ section, index }) {
   // nada se superponga al vehículo, igual que se ve en la web original.
   if (isWideStats) {
     return (
-      <section className="vehicle-section vehicle-stats-section" ref={sectionRef}>
-        {section.logo && <img src={section.logo} alt="" className="vehicle-stats-section__logo" />}
-        {section.bg && <img src={section.bg} alt="" className="vehicle-stats-section__photo" />}
-        <div className="vehicle-stats vehicle-stats--center">
-          {section.items.map((s, i) => (
-            <div className="vehicle-stats__item" key={i}>
-              {s.label && <span className="vehicle-stats__label">{s.label}</span>}
-              <span className="vehicle-stats__value">
-                {s.value && /^-?\d+(\.\d+)?$/.test(s.value)
-                  ? <StatCounter value={s.value} active={statsVisible} />
-                  : s.value && <strong>{s.value}</strong>} {s.suffix}
-              </span>
-            </div>
-          ))}
+      <section className={`vehicle-section vehicle-stats-section ${section.specTable ? 'vehicle-section--tall vehicle-stats-section--tall' : ''}`} ref={sectionRef}>
+        <div className="vehicle-stats-section__frame">
+          {section.logo && <img src={section.logo} alt="" className="vehicle-stats-section__logo" />}
+          {section.bg && <img src={section.bg} alt="" className="vehicle-stats-section__photo" />}
+          <div className="vehicle-stats vehicle-stats--center">
+            {section.items.map((s, i) => (
+              <div className="vehicle-stats__item" key={i}>
+                {s.label && <span className="vehicle-stats__label">{s.label}</span>}
+                <span className="vehicle-stats__value">
+                  {s.value && /^-?\d+(\.\d+)?$/.test(s.value)
+                    ? <StatCounter value={s.value} active={statsVisible} />
+                    : s.value && <strong>{s.value}</strong>} {s.suffix}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
+
+        {section.specTable && (
+          <div className="vehicle-spectable">
+            <h2 className="vehicle-spectable__title">{section.specTable.heading}</h2>
+            <div className="vehicle-spectable__grid">
+              {section.specTable.sections.map((cat) => (
+                <div className="vehicle-spectable__section" key={cat.title}>
+                  <h3 className="vehicle-spectable__section-title">{cat.title}</h3>
+                  <div className="vehicle-spectable__table">
+                    {cat.rows.map((row) => (
+                      <div className="vehicle-spectable__row" key={row.label}>
+                        <span className="vehicle-spectable__label">{row.label}</span>
+                        {row.value === '•'
+                          ? <span className="vehicle-spectable__check" aria-label="Sí" />
+                          : <span className="vehicle-spectable__value">{row.value}</span>}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </section>
     )
   }
@@ -83,13 +109,55 @@ function Section({ section, index }) {
   // al pasar el cursor (mismo widget "premium-banner" que usa el original para "Interior").
   if (section.hoverReveal) {
     return (
-      <section className="vehicle-section vehicle-photogrid vehicle-photogrid--single" ref={sectionRef}>
-        <div className="vehicle-photogrid__item" style={{ backgroundImage: `url(${section.bg})` }}>
+      <section className={`vehicle-section vehicle-photogrid vehicle-photogrid--single ${section.captionTop ? 'vehicle-photogrid--top' : ''}`} ref={sectionRef}>
+        <div className={`vehicle-photogrid__item ${section.staticReveal ? 'vehicle-photogrid__item--static' : ''}`} style={{ backgroundImage: `url(${section.bg})` }}>
           <span className="vehicle-photogrid__scrim" />
           <div className="vehicle-photogrid__caption">
-            {section.heading && <span className="vehicle-photogrid__title">{section.heading}</span>}
+            {section.logo && (
+              <>
+                <img src={section.logo} alt="" className="vehicle-photogrid__logo" />
+                <span className="vehicle-photogrid__logo-divider" />
+              </>
+            )}
+            {section.heading && <span className={`vehicle-photogrid__title ${section.titlePlain ? 'vehicle-photogrid__title--plain' : ''}`}>{section.heading}</span>}
             {section.body?.map((p, i) => <p className="vehicle-photogrid__text" key={i}>{p}</p>)}
           </div>
+        </div>
+      </section>
+    )
+  }
+
+  // Variante "cards": título centrado arriba + 3 fotos con caption abajo (no
+  // superpuesto), sobre un fondo de interior desenfocado - calcada de la
+  // sección "BJ40, DISEÑADO PARA SER..." del sitio real (baic.com.ar/baic-bj40).
+  if (section.type === 'photo-grid' && section.cards) {
+    return (
+      <section className="vehicle-section vehicle-photogrid--cards" style={section.bg ? { backgroundImage: `url(${section.bg})` } : undefined} ref={sectionRef}>
+        {section.bg && <div className="vehicle-section__scrim vehicle-section__scrim--full" />}
+        <div className="vehicle-cards__inner">
+          <div className="vehicle-cards__spacer vehicle-cards__spacer--top" />
+          {section.heading && (
+            <h2 className="vehicle-cards__heading">
+              {section.headingAccent && section.heading.startsWith(section.headingAccent) ? (
+                <>
+                  <span className="accent">{section.headingAccent}</span>
+                  {section.heading.slice(section.headingAccent.length)}
+                </>
+              ) : section.heading}
+            </h2>
+          )}
+          <div className="vehicle-cards__spacer vehicle-cards__spacer--mid" />
+          <div className="vehicle-cards__row">
+            {section.items.map((item, i) => (
+              <div className="vehicle-cards__card" key={i}>
+                <div className="vehicle-cards__media">
+                  <img src={item.image} alt="" />
+                </div>
+                <p className="vehicle-cards__caption">{item.title}{item.title && item.text ? ' ' : ''}{item.text}</p>
+              </div>
+            ))}
+          </div>
+          <div className="vehicle-cards__spacer vehicle-cards__spacer--bottom" />
         </div>
       </section>
     )
@@ -103,10 +171,12 @@ function Section({ section, index }) {
         {section.items.map((item, i) => (
           <div className="vehicle-photogrid__item" key={i} style={{ backgroundImage: `url(${item.image})` }}>
             <span className="vehicle-photogrid__scrim" />
-            <div className="vehicle-photogrid__caption">
-              <span className="vehicle-photogrid__title">{item.title}</span>
-              {item.text && <p className="vehicle-photogrid__text">{item.text}</p>}
-            </div>
+            {item.title && (
+              <div className="vehicle-photogrid__caption">
+                <span className="vehicle-photogrid__title">{item.title}</span>
+                {item.text && <p className="vehicle-photogrid__text">{item.text}</p>}
+              </div>
+            )}
           </div>
         ))}
       </section>
@@ -114,12 +184,25 @@ function Section({ section, index }) {
   }
 
   return (
-    <section className={`vehicle-section ${side} ${section.bg ? '' : 'vehicle-section--plain'}`} style={style} ref={sectionRef}>
+    <section className={`vehicle-section ${side} ${section.bg ? '' : 'vehicle-section--plain'} ${section.rows ? 'vehicle-section--rows' : ''} ${section.specTable ? 'vehicle-section--tall' : ''}`} style={style} ref={sectionRef}>
       {section.bg && <div className="vehicle-section__scrim" />}
       <div className={`vehicle-section__inner ${section.wide ? 'vehicle-section__inner--wide' : ''}`}>
         {section.heading && <h2>{section.heading}</h2>}
 
         {section.type === 'text' && section.body.map((p, i) => <p key={i}>{p}</p>)}
+
+        {section.iconList && (
+          <div className="vehicle-iconlist">
+            {section.iconList.map((item, i) => (
+              <div className="vehicle-iconlist__item" key={i}>
+                <img src={item.icon} alt="" className="vehicle-iconlist__icon" />
+                <span>{item.text}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {section.bodyAfter && section.bodyAfter.map((p, i) => <p className="vehicle-section__body-after" key={`after-${i}`}>{p}</p>)}
 
         {section.type === 'stats' && (
           <div className="vehicle-stats">
@@ -140,7 +223,33 @@ function Section({ section, index }) {
           </ul>
         )}
 
-        {section.type === 'grid' && (
+        {section.cornerGraphic && (
+          <img src={section.cornerGraphic} alt="" className="vehicle-section__corner-graphic" />
+        )}
+
+        {section.type === 'grid' && section.rows && (
+          <div className="vehicle-rows">
+            {section.items.map((item, i) => (
+              <div className={`vehicle-rows__item ${i % 2 === 1 ? 'vehicle-rows__item--reverse' : ''}`} key={i}>
+                <div className="vehicle-rows__media">
+                  {item.video && <video src={item.video} autoPlay loop muted playsInline />}
+                  {item.image && !item.video && <img src={item.image} alt="" />}
+                </div>
+                <div className="vehicle-rows__text">
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                  <div className="vehicle-rows__divider">
+                    {i % 2 === 1 && <span className="vehicle-rows__arrow">&#8250;</span>}
+                    <span className="vehicle-rows__line" />
+                    {i % 2 === 0 && <span className="vehicle-rows__arrow">&#8249;</span>}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {section.type === 'grid' && !section.rows && (
           <div className="vehicle-grid">
             {section.items.map((item, i) => (
               <div className="vehicle-grid__item" key={i}>
@@ -157,6 +266,29 @@ function Section({ section, index }) {
           </div>
         )}
       </div>
+
+      {section.specTable && (
+        <div className="vehicle-spectable">
+          <h2 className="vehicle-spectable__title">{section.specTable.heading}</h2>
+          <div className="vehicle-spectable__grid">
+            {section.specTable.sections.map((cat) => (
+              <div className="vehicle-spectable__section" key={cat.title}>
+                <h3 className="vehicle-spectable__section-title">{cat.title}</h3>
+                <div className="vehicle-spectable__table">
+                  {cat.rows.map((row) => (
+                    <div className="vehicle-spectable__row" key={row.label}>
+                      <span className="vehicle-spectable__label">{row.label}</span>
+                      {row.value === '•'
+                        ? <span className="vehicle-spectable__check" aria-label="Sí" />
+                        : <span className="vehicle-spectable__value">{row.value}</span>}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   )
 }
@@ -176,12 +308,15 @@ function GalleryCarousel({ images }) {
   return (
     <section className="vehicle-gallery">
       {images.map((src, i) => (
-        <img
-          key={src}
-          src={src}
-          alt=""
-          className={`vehicle-gallery__img ${i === index ? 'is-active' : ''}`}
-        />
+        <div key={src} className={`vehicle-gallery__slide ${i === index ? 'is-active' : ''}`}>
+          {/* Fondo desenfocado con la misma foto: en desktop la imagen de adelante
+              (object-fit:cover) tapa esto por completo. En mobile la imagen de
+              adelante pasa a object-fit:contain (ver CSS) para no recortar el auto,
+              y este fondo rellena el espacio que deja libre arriba/abajo en vez de
+              dejar franjas negras lisas. */}
+          <div className="vehicle-gallery__backdrop" style={{ backgroundImage: `url(${src})` }} />
+          <img src={src} alt="" className="vehicle-gallery__img" />
+        </div>
       ))}
 
       <button type="button" className="vehicle-gallery__arrow vehicle-gallery__arrow--prev" onClick={prev} aria-label="Foto anterior">
@@ -207,21 +342,51 @@ function GalleryCarousel({ images }) {
 }
 
 // Sección de video a pantalla completa con controles nativos (no autoplay/loop),
-// igual al video que usa el original justo después del hero.
+// igual al video que usa el original justo después del hero. Sobre el poster se
+// muestra un botón de play centrado (como el widget de video de Elementor); al
+// arrancar la reproducción el botón desaparece y vuelve a aparecer si se pausa.
 function VideoFeature({ src, poster }) {
+  const videoRef = useRef(null)
+  const [playing, setPlaying] = useState(false)
+
+  const handlePlayClick = () => {
+    const video = videoRef.current
+    if (!video) return
+    video.play()
+  }
+
   return (
     <section className="vehicle-section vehicle-video-feature">
-      <video className="vehicle-video-feature__media" src={src} poster={poster} controls playsInline />
+      <video
+        ref={videoRef}
+        className="vehicle-video-feature__media"
+        src={src}
+        poster={poster}
+        controls
+        playsInline
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+        onEnded={() => setPlaying(false)}
+      />
+      {!playing && (
+        <button type="button" className="vehicle-video-feature__play" onClick={handlePlayClick} aria-label="Reproducir video">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+        </button>
+      )}
     </section>
   )
 }
 
 function ThreeSixtyViewer({ images }) {
   const containerRef = useRef(null)
-  const dragRef = useRef({ dragging: false, startX: 0, startFrame: 0, moved: false })
+  const dragRef = useRef({ dragging: false, startX: 0, startY: 0, startFrame: 0, moved: false, axis: null })
   const [frame, setFrame] = useState(0)
   const [hovering, setHovering] = useState(false)
   const [lens, setLens] = useState({ x: 0, y: 0 })
+  // El badge "360° VIEW" sólo se oculta con :hover -en mobile no hay hover, así que se
+  // quedaba SIEMPRE tapando el auto (no había forma de verlo entero). Con este estado lo
+  // sacamos apenas el usuario toca/arrastra una vez -ya entendió que se puede rotar.
+  const [interacted, setInteracted] = useState(false)
   const frameCount = images.length
   const lensSize = 170
   const zoomFactor = 2.4
@@ -247,13 +412,36 @@ function ThreeSixtyViewer({ images }) {
     setLens({ x, y, rectW: rect.width, rectH: rect.height })
   }
 
+  // El sitio original (widget "Threesixty Rotation" de Happy Elementor Addons) deja el
+  // drag horizontal y el scroll vertical convivir sin problema en touch. Lo que rompía
+  // nuestra versión no era el drag en sí, sino que decidíamos "es un arrastre" y
+  // llamábamos setPointerCapture ANTES de saber para qué lado se movía el dedo -eso le
+  // ganaba la mano al scroll nativo aunque el gesto fuera vertical. La solución real
+  // (igual a como se comporta el sitio real) es un "axis lock": esperar a los primeros
+  // píxeles de movimiento sin decidir nada, y recién ahí elegir según qué eje domina.
+  // Si domina el vertical, soltamos todo y dejamos que el scroll de la página siga su
+  // curso normal (nunca capturamos el puntero); si domina el horizontal, ahí sí se
+  // agarra el puntero y se rota el auto. Esto anda igual para mouse y touch.
   const onPointerDown = (e) => {
-    dragRef.current = { dragging: true, startX: e.clientX, startFrame: frame, moved: false }
-    containerRef.current.setPointerCapture(e.pointerId)
+    setInteracted(true)
+    dragRef.current = { dragging: true, startX: e.clientX, startY: e.clientY, startFrame: frame, moved: false, axis: null }
   }
   const onPointerMove = (e) => {
     updateLens(e.clientX, e.clientY)
-    if (dragRef.current.dragging) updateFrameFromDrag(e.clientX)
+    if (!dragRef.current.dragging) return
+    if (!dragRef.current.axis) {
+      const dx = e.clientX - dragRef.current.startX
+      const dy = e.clientY - dragRef.current.startY
+      if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return
+      if (Math.abs(dy) > Math.abs(dx)) {
+        // Gesto vertical: no es para nosotros -lo soltamos sin haber tocado el scroll.
+        dragRef.current.dragging = false
+        return
+      }
+      dragRef.current.axis = 'x'
+      try { containerRef.current.setPointerCapture(e.pointerId) } catch { /* noop */ }
+    }
+    if (dragRef.current.axis === 'x') updateFrameFromDrag(e.clientX)
   }
   const onPointerUp = (e) => {
     dragRef.current.dragging = false
@@ -289,7 +477,7 @@ function ThreeSixtyViewer({ images }) {
         />
       )}
 
-      <div className="threesixty__badge">
+      <div className={`threesixty__badge ${interacted ? 'is-hidden' : ''}`}>
         <span>360°</span>
         <small>view</small>
       </div>
@@ -299,6 +487,16 @@ function ThreeSixtyViewer({ images }) {
 
 const DFLIP_CSS = 'https://baic.com.ar/wp-content/plugins/3d-flipbook-dflip-lite/assets/css/dflip.min.css'
 const DFLIP_JQUERY = 'https://baic.com.ar/wp-includes/js/jquery/jquery.min.js'
+// pdf.min.js / pdf.worker.min.js / three.min.js van vía el proxy /dflip-vendor
+// (mismo origen que la app) en vez de baic.com.ar directo: un navegador NUNCA
+// permite crear un Web Worker con una URL cross-origin (tira SecurityError pase
+// lo que pase con los headers CORS). Sin esto, pdf.js no puede levantar su hilo
+// de render y el libro se queda con la tapa fija: el contador de página avanza
+// pero la hoja nunca cambia, y tirar "Cannot set properties of undefined
+// (setting 'skipFlip')" al pasar de página.
+const DFLIP_PDF = '/dflip-vendor/assets/js/libs/pdf.min.js'
+const DFLIP_PDF_WORKER = '/dflip-vendor/assets/js/libs/pdf.worker.min.js'
+const DFLIP_THREE = '/dflip-vendor/assets/js/libs/three.min.js'
 const DFLIP_JS = 'https://baic.com.ar/wp-content/plugins/3d-flipbook-dflip-lite/assets/js/dflip.min.js'
 
 function loadAsset(tag, attrs, testSelector) {
@@ -325,13 +523,35 @@ function DflipBrochure({ pdfUrl, slug, title }) {
 
   useEffect(() => {
     let cancelled = false
+    let guardEl = null
+    let guardHandler = null
 
     loadAsset('link', { rel: 'stylesheet', href: DFLIP_CSS }, 'link[href*="dflip.min.css"]')
       .then(() => loadAsset('script', { src: DFLIP_JQUERY }, 'script[src*="jquery.min.js"]'))
+      // El plugin necesita pdf.js y THREE.js cargados en window ANTES de
+      // dflip.min.js (en baic.com.ar WordPress se encolan como dependencias
+      // separadas, en este orden: jquery, pdf.min.js, three.min.js, dflip.min.js);
+      // sin ellos el visor se queda con el spinner ("Unable to load THREE.js").
+      .then(() => loadAsset('script', { src: DFLIP_PDF }, 'script[src*="pdf.min.js"]'))
+      .then(() => {
+        // En baic.com.ar, WordPress fija `workerSrc` vía un script inline propio
+        // (wp_localize_script) que nosotros no ejecutamos; dflip.min.js igual lo
+        // sobreescribe al iniciar el libro usando esa variable (quedando literal
+        // "undefined" en la URL), así que fijamos un getter/setter que ignora
+        // cualquier intento de pisarlo y siempre devuelve la URL correcta.
+        if (window.pdfjsLib && window.pdfjsLib.GlobalWorkerOptions) {
+          Object.defineProperty(window.pdfjsLib.GlobalWorkerOptions, 'workerSrc', {
+            configurable: true,
+            get() { return DFLIP_PDF_WORKER },
+            set() { /* ignorar: dflip intenta pisarlo con una URL rota */ }
+          })
+        }
+      })
+      .then(() => loadAsset('script', { src: DFLIP_THREE }, 'script[src*="three.min.js"]'))
       .then(() => loadAsset('script', { src: DFLIP_JS }, 'script[src*="dflip.min.js"]'))
       .then(() => {
         if (cancelled) return
-        window[`option_${bookId}`] = {
+        const options = {
           outline: [],
           backgroundColor: '#FFFFFF',
           autoEnableOutline: 'false',
@@ -345,13 +565,72 @@ function DflipBrochure({ pdfUrl, slug, title }) {
           source: pdfUrl,
           wpOptions: 'true'
         }
-        if (window.DFLIP && window.DFLIP.parseBooks) {
-          window.DFLIP.parseBooks()
+        window[`option_${bookId}`] = options
+        // DFLIP.parseBooks() deja el visor en modo "lazy" (espera a que un
+        // IntersectionObserver detecte que entró en pantalla), pero con el
+        // scroll paginado a JS de esta página ese observer nunca dispara y el
+        // libro queda vacío. Iniciamos el visor directamente vía el plugin
+        // jQuery ($.fn.flipBook) para que renderice apenas cargan los scripts.
+        const $ = (window.DFLIP && window.DFLIP.jQuery) || window.jQuery
+        const start = () => {
+          if (cancelled) return
+          if ($) {
+            $(`#${bookId}`).flipBook(options)
+          } else if (window.DFLIP && window.DFLIP.parseBooks) {
+            window.DFLIP.parseBooks()
+          }
+        }
+        // dflip mide el ancho/alto del contenedor al iniciar para armar un pool
+        // fijo de "hojas" (sheets) que después recicla al pasar de página. Si en
+        // ese momento el contenedor todavía mide 0 (típico si esta cadena de
+        // scripts se resuelve casi instantáneo por venir de caché, antes de que
+        // el navegador termine de darle layout al <div> recién montado), ese
+        // pool queda vacío para siempre: el contador de página avanza pero la
+        // hoja nunca cambia, y tirar errores de "skipFlip"/"render" en loop.
+        // Esperamos al menos un frame de layout, y si todavía mide 0, seguimos
+        // esperando frame a frame hasta que tenga tamaño real.
+        const el = document.getElementById(bookId)
+        // A veces dflip termina de inicializar en un estado roto por dentro: queda
+        // "listo" (isViewerPrepared/isDocumentReady = true, contador de página
+        // andando) pero el pool interno de "hojas" (sheets) que recicla para pintar
+        // cada página nunca se llenó -confirmado en vivo con sheetsLen:0 y
+        // state:"ready" al mismo tiempo, incluso esperando el tamaño del contenedor.
+        // Es un bug del plugin, no un tema de timing nuestro. Si el usuario toca la
+        // flecha de pasar página en ese estado, dflip tira "Cannot set properties of
+        // undefined (setting 'skipFlip')" y la página nunca cambia. Interceptamos el
+        // click ANTES de que le llegue a dflip (fase de captura) y, si el pool está
+        // vacío, reconstruimos el visor desde cero ahí mismo en vez de dejar que
+        // crashee sin hacer nada.
+        if (el && $) {
+          guardEl = el
+          guardHandler = (ev) => {
+            const app = $(`#${bookId}`).data('df-app')
+            if (app && app.viewer && Array.isArray(app.viewer.sheets) && app.state === 'ready' && app.viewer.sheets.length === 0) {
+              ev.stopPropagation()
+              ev.preventDefault()
+              el.innerHTML = ''
+              start()
+            }
+          }
+          el.addEventListener('click', guardHandler, true)
+        }
+        if (el && (el.clientWidth === 0 || el.clientHeight === 0)) {
+          const waitForSize = () => {
+            if (cancelled) return
+            if (el.clientWidth > 0 && el.clientHeight > 0) return start()
+            requestAnimationFrame(waitForSize)
+          }
+          requestAnimationFrame(waitForSize)
+        } else {
+          requestAnimationFrame(start)
         }
       })
       .catch(() => { /* si el CDN del plugin no responde, se deja el contenedor vacío */ })
 
-    return () => { cancelled = true }
+    return () => {
+      cancelled = true
+      if (guardEl && guardHandler) guardEl.removeEventListener('click', guardHandler, true)
+    }
   }, [pdfUrl, bookId])
 
   return (
@@ -382,14 +661,31 @@ export default function VehicleDetailPage() {
     setColorIndex(0)
   }, [dispatch, slug])
 
+  // Scroll-snap nativo: refuerzo a nivel navegador para que cada pantalla (hero,
+  // secciones, 360°) quede siempre completa a la vista, sin importar el dispositivo
+  // de entrada (mouse, trackpad, barra de scroll) - el wheel handler de abajo hace la
+  // animación suave, y esto asegura que el reposo final siempre caiga en un borde limpio.
+  // OJO mobile: en pantallas chicas esto rompía el scroll -con 100vh calculado distinto
+  // al viewport visible real (barra de direcciones) + scroll-snap-stop:always, el
+  // usuario quedaba "atrapado" bajando de sección en sección y no podía volver a subir
+  // hasta el navbar. En mobile (<=900px) directamente no se activa el snap.
+  useEffect(() => {
+    if (window.matchMedia('(max-width: 900px)').matches) return undefined
+    document.documentElement.classList.add('vehicle-snap')
+    return () => document.documentElement.classList.remove('vehicle-snap')
+  }, [])
+
   // Scroll paginado: una rueda de mouse/trackpad avanza exactamente una pantalla,
-  // igual que el comportamiento de la web original.
+  // igual que el comportamiento de la web original. Solo aplica a desktop (mouse/trackpad
+  // con rueda) -en mobile el scroll es táctil y esto sólo generaba el mismo problema de
+  // quedar atrapado sin poder llegar al navbar, así que se desactiva por completo ahí.
   useEffect(() => {
     if (detail?.comingSoon) return undefined
+    if (window.matchMedia('(max-width: 900px)').matches) return undefined
     const container = containerRef.current
     if (!container) return undefined
 
-    const getSections = () => Array.from(container.querySelectorAll('.vehicle-hero, .vehicle-video-feature, .vehicle-gallery, .vehicle-section, .vehicle-360'))
+    const getSections = () => Array.from(container.querySelectorAll('.vehicle-hero, .vehicle-video-feature, .vehicle-gallery, .vehicle-section, .vehicle-360, .vehicle-brochure'))
 
     const getCurrentIndex = (sections) => {
       const y = window.scrollY + 5
@@ -411,8 +707,19 @@ export default function VehicleDetailPage() {
       const sections = getSections()
       if (!sections.length) return
       const currentIndex = getCurrentIndex(sections)
+      const currentSection = sections[currentIndex]
       const lastSection = sections[sections.length - 1]
       const inFooterZone = window.scrollY > lastSection.offsetTop + lastSection.offsetHeight - 5
+
+      // Algunas secciones (ej. la tabla de especificaciones bajo los stats) son más
+      // altas que un viewport. Mientras no se llegó a su borde superior/inferior en la
+      // dirección del gesto, se deja el scroll nativo (sin animar/saltar de pantalla).
+      if (currentSection.classList.contains('vehicle-section--tall')) {
+        const atTop = window.scrollY <= currentSection.offsetTop + 2
+        const atBottom = window.scrollY + window.innerHeight >= currentSection.offsetTop + currentSection.offsetHeight - 2
+        if (e.deltaY > 0 && !atBottom) return
+        if (e.deltaY < 0 && !atTop) return
+      }
 
       if (e.deltaY > 0) {
         if (currentIndex < sections.length - 1) {
@@ -452,6 +759,36 @@ export default function VehicleDetailPage() {
   const colors = detail?.colors
   const heroImage = (colors && colors[colorIndex]?.image) || detail?.heroImage || vehicle.image
 
+  // Scroll animado a mano (setTimeout, no rAF) en vez de scrollIntoView/scrollTo con
+  // behavior:'smooth': con el scroll-snap-type activo, el navegador cancela una animación
+  // smooth nativa de larga distancia a mitad de camino (queda pegada al principio). Sacando
+  // la clase que activa scroll-snap-type mientras dura la animación evitamos ese conflicto
+  // y logramos un scroll continuo y natural, no un salto brusco.
+  const scrollToBrochure = () => {
+    const el = containerRef.current?.querySelector('.vehicle-brochure')
+    if (!el) return
+    const startY = window.scrollY
+    const targetY = el.getBoundingClientRect().top + startY
+    const distance = targetY - startY
+    if (Math.abs(distance) < 2) return
+
+    document.documentElement.classList.remove('vehicle-snap')
+    const duration = Math.min(1800, Math.max(700, Math.abs(distance) / 7))
+    const startTime = performance.now()
+
+    const step = () => {
+      const progress = Math.min((performance.now() - startTime) / duration, 1)
+      const eased = progress < 0.5 ? 2 * progress * progress : 1 - ((-2 * progress + 2) ** 2) / 2
+      window.scrollTo(0, startY + distance * eased)
+      if (progress < 1) {
+        window.setTimeout(step, 16)
+      } else {
+        document.documentElement.classList.add('vehicle-snap')
+      }
+    }
+    step()
+  }
+
   return (
     <div className="vehicle-detail" ref={containerRef}>
       <section className="vehicle-hero">
@@ -473,7 +810,9 @@ export default function VehicleDetailPage() {
               ))}
             </div>
           )}
-          <button type="button" className="vehicle-hero__catalogo">CATÁLOGO</button>
+          {detail?.brochure && (
+            <button type="button" className="vehicle-hero__catalogo" onClick={scrollToBrochure}>CATÁLOGO</button>
+          )}
         </div>
         <div className="vehicle-hero__image">
           {heroImage ? <img src={heroImage} alt={vehicle.name} /> : <div className="ph">{vehicle.name}</div>}
@@ -509,7 +848,18 @@ export default function VehicleDetailPage() {
                 Descargar folleto
               </a>
             </div>
-            <DflipBrochure pdfUrl={detail.brochure.pdf} slug={slug} title={hero ? hero.title : vehicle.name} />
+            {/* El sitio original (baic.com.ar) usa este mismo widget dflip también en mobile
+                y se puede ver bien -touch-action:auto, deja que el scroll de la página
+                conviva con el drag para pasar hojas. Iba una versión simplificada acá
+                (sólo un link al PDF) pero el pedido fue calcar el comportamiento real. */}
+            {/* key={slug}: al navegar entre modelos SIN recargar la página (SPA), React
+                reutiliza el mismo <div> del visor si no se lo forzamos a remontar. dflip
+                le va agregando canvases/hojas propias a ese <div> por fuera de React, así
+                que si el nodo se reutiliza, el folleto del modelo anterior queda pegado
+                (o mezclado) debajo del nuevo -por eso a veces "el PDF no es del mismo auto".
+                Con key={slug} React tira el <div> viejo entero y arranca uno nuevo y vacío
+                cada vez que cambia el modelo. */}
+            <DflipBrochure key={slug} pdfUrl={detail.brochure.pdf} slug={slug} title={hero ? hero.title : vehicle.name} />
           </div>
         </section>
       )}
