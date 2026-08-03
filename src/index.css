@@ -879,38 +879,26 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
   .vehicle-photogrid--2stack-big-right .vehicle-photogrid__item,
   .vehicle-photogrid--2stack-big-left .vehicle-photogrid__item,
   .vehicle-photogrid--big-left-2x2 .vehicle-photogrid__item{grid-column:auto !important;grid-row:auto !important;}
-  /* OJO: esta sección (sin specTable) la trata como "una pantalla" el JS de scroll-snap
-     paginado de la página (busca .vehicle-section--tall para saber cuáles dejar
-     scrollear libre; esta no lo es). Antes la poníamos con height:auto -foto arriba +
-     números apilados abajo-, lo que la hacía más alta que una pantalla completa en
-     mobile: como el JS no la deja scrollear libre puertas adentro, los números
-     quedaban por debajo del borde inferior SIN FORMA de llegar a verlos -de ahí el
-     bloque negro vacío feo que se veía. La volvemos a dejar de altura fija (una
-     pantalla) con los números superpuestos abajo de la foto (como en desktop), con un
-     degradé oscuro detrás para que se lean bien. */
-  /* .vehicle-stats-section hereda "padding:44px 0;display:flex;align-items:center" de
-     la clase base .vehicle-section. Antes de esto, esos 44px de padding dejaban una
-     franja de fondo negro sólido arriba y abajo (no era la foto). Y separado de eso,
-     probamos mostrar la foto ENTERA con object-fit:contain + un fondo atenuado detrás
-     -pero la foto es mucho más ancha que alta y el cuadro medía la pantalla completa,
-     así que la foto (contain) quedaba chiquita en una franja angosta en el medio con
-     el fondo atenuado (mucho más grande, tipo cover) asomando arriba/abajo: dos
-     versiones distintas de la misma foto una encima de la otra, se veía como "el auto
-     duplicado". La solución: la relación de aspecto de esta foto (16:9) es casi
-     idéntica a la del ancho de un celular contra media pantalla de alto, así que le
-     damos al recuadro esa proporción real (aspect-ratio) en vez de forzarlo a una
-     pantalla completa -la foto entra ENTERA sin recorte y casi sin espacio libre
-     alrededor-, y los números van debajo en su propio panel oscuro (no superpuestos),
-     ocupando el resto de la pantalla. Todo suma exactamente 100dvh entre los dos, así
-     que no hay padding negro colado ni contenido que quede fuera de una pantalla. */
-  .vehicle-stats-section{height:100vh;height:100dvh;overflow:hidden;padding:0;}
-  /* La foto (logo + <img>) y los números viven los dos ADENTRO de .frame (ver JSX),
-     así que este es el que arma la columna: foto arriba con su proporción real, y
-     los números abajo repartiéndose lo que queda -entre los dos suman el alto total
-     del frame (=100dvh de la sección), sin sobrar ni faltar pantalla. */
-  .vehicle-stats-section__frame{position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:stretch;}
-  .vehicle-stats-section__photo{position:relative;width:100%;height:auto;aspect-ratio:16/9;flex:none;object-fit:cover;object-position:center;inset:auto;}
-  .vehicle-stats--center{position:static;flex:1 1 auto;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;align-items:center;gap:10px 20px;padding:10px 5%;margin-top:0;background:var(--baic-negro);}
+  /* Chequeado directamente contra baic.com.ar/baic-x55-plus/ en esta misma media query
+     (max-width:767px), leyendo su CSS generado por Elementor: la sección de stats real
+     mide 407px de alto ahí (no una pantalla completa, no el aspect-ratio "sin recortar"
+     de la foto tampoco), con la foto de fondo (cover, recortada como haga falta) y los
+     números empezando a 250px del borde superior -bien abajo, sobre la parte de la
+     ruta/piso de la foto, no sobre el auto-. Replicamos esos mismos números. (El JS de
+     scroll-snap a rueda está desactivado en mobile -matchMedia max-width:900px- así que
+     no hay problema en que esta sección no mida una pantalla completa; el scroll es
+     táctil y nativo.) Como .vehicle-stats-section también tiene la clase base
+     .vehicle-section (que acá trae min-height:100dvh), hace falta el selector
+     compuesto de abajo para anular eso -si no, esa altura mínima infla la sección de
+     más. */
+  .vehicle-stats-section{height:auto;overflow:hidden;padding:0 10px;}
+  .vehicle-section.vehicle-stats-section{min-height:0;}
+  .vehicle-stats-section__frame{position:relative;width:100%;height:auto;min-height:440px;}
+  .vehicle-stats-section__photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;}
+  /* Degradé oscuro sólo en la franja inferior (donde caen los números), no en toda la
+     foto, para no oscurecerla de más arriba. */
+  .vehicle-stats-section__frame::after{content:"";position:absolute;left:0;right:0;bottom:0;height:45%;background:linear-gradient(to top, rgba(0,0,0,.78) 0%, rgba(0,0,0,.42) 55%, rgba(0,0,0,0) 100%);z-index:1;pointer-events:none;}
+  .vehicle-stats--center{position:absolute;left:0;right:0;top:245px;z-index:2;display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:6px 18px;padding:0 4% 20px;margin-top:0;background:none;text-shadow:0 2px 10px rgba(0,0,0,.8);}
   /* Las demás pantallas completas (hero) también deben medir 100dvh -no 100vh a
      secas- para que las alturas coincidan entre sí; si no, el scroll paginado a JS
      desalinea un poco de sección a sección y se cuela una franja negra de la sección
