@@ -34,7 +34,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className="footer__brand">
-          <Logo />
+          <Logo dark />
         </div>
       </div>
       <p className="footer__legal">

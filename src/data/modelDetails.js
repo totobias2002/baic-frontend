@@ -27,16 +27,16 @@ export const modelDetails = {
       { hex: '#480807', image: `${CDN}/2023/07/marron-1-1024x452.png` }
     ],
     sections: [
-      { type: 'text', heading: 'DINÁMICO, ÚNICO Y VANGUARDISTA', body: ['La combinación perfecta de potencia, tecnología y confort, libera tu experiencia de conducción.'], bg: `${CDN}/2024/02/X35-ImagenWeb-5.jpg` },
-      { type: 'text', heading: 'FAROS OJOS DE HALCÓN BIÓNICOS', body: ['205 LED de alta calidad y diseño.'], bg: `${CDN}/2024/02/X35-ImagenWeb-2.jpg` },
-      { type: 'text', heading: 'EXPERIENCIA DE MANEJO PREMIUM', body: ['La tecnología simplifica el proceso de conducción y te hace sentir más cómodo y seguro.'], bg: `${CDN}/2024/02/X35-ImagenWeb-4.jpg` },
-      { type: 'text', heading: 'TECNOLOGÍA, DISEÑO Y UN AMPLIO ESPACIO INTERIOR', body: ['Los viajes familiares se disfrutan al máximo, gracias al amplio espacio interior y a su diseño envolvente. La consola central es fácil de utilizar y en conjunto con su pantalla de 8” garantizan una excelente experiencia audiovisual.'], bg: `${CDN}/2024/02/X35-ImagenWeb-3.jpg` },
-      { type: 'stats', heading: 'MOTOR 1.5 TURBO', items: [
+      { type: 'text', heading: 'DINÁMICO, ÚNICO Y VANGUARDISTA', hoverReveal: true, body: ['La combinación perfecta de potencia, tecnología y confort, libera tu experiencia de conducción.'], bg: `${CDN}/2024/02/X35-ImagenWeb-5.jpg` },
+      { type: 'text', heading: 'FAROS OJOS DE HALCÓN BIÓNICOS', hoverReveal: true, body: ['205 LED de alta calidad y diseño.'], bg: `${CDN}/2024/02/X35-ImagenWeb-2.jpg` },
+      { type: 'text', heading: 'EXPERIENCIA DE MANEJO PREMIUM', hoverReveal: true, body: ['La tecnología simplifica el proceso de conducción y te hace sentir más cómodo y seguro.'], bg: `${CDN}/2024/02/X35-ImagenWeb-4.jpg` },
+      { type: 'text', heading: 'TECNOLOGÍA, DISEÑO Y UN AMPLIO ESPACIO INTERIOR', hoverReveal: true, body: ['Los viajes familiares se disfrutan al máximo, gracias al amplio espacio interior y a su diseño envolvente. La consola central es fácil de utilizar y en conjunto con su pantalla de 8” garantizan una excelente experiencia audiovisual.'], bg: `${CDN}/2024/02/X35-ImagenWeb-3.jpg` },
+      { type: 'stats', heading: 'MOTOR 1.5 TURBO', hoverReveal: true, items: [
         { label: '', value: '150', suffix: 'CV de pura potencia' },
         { label: '', value: '11.2', suffix: 'segundos de 0 a 100 km/h' },
         { label: '', value: '', suffix: 'Caja automática CVT' }
       ], bg: `${CDN}/2024/02/X35-ImagenWeb-6.jpg` },
-      { type: 'list', heading: 'SEGURIDAD Y ASISTENCIA A LA CONDUCCIÓN', items: [
+      { type: 'list', heading: 'SEGURIDAD Y ASISTENCIA A LA CONDUCCIÓN', hoverReveal: true, items: [
         'ABS + EBD (Anti-lock Braking System + Electronic Brake Distribution)',
         'EBA (Electronic Brake Assistant)',
         'ESP (Electronic Stability Program)',
@@ -67,24 +67,24 @@ export const modelDetails = {
       { hex: '#eef1f4', image: `${CDN}/2023/07/Blanco-1024x452.png` }
     ],
     sections: [
-      { type: 'text', heading: 'DISEÑO FUTURISTA', body: ['Grilla frontal de diseño paramétrico con siluetas de diamantes.'], bg: `${CDN}/2024/02/X55II-ImagenWeb-1.jpg` },
-      { type: 'text', heading: 'ÓPTICAS', body: ['Leds de colores para crear una iluminación ambiental estilo halo de estrellas.'], bg: `${CDN}/2024/02/X55II-ImagenWeb-3.jpg` },
-      { type: 'text', heading: 'MANIJAS OCULTAS INDUCTIVAS', body: ['Con sistema "pop out" totalmente automático.'], bg: `${CDN}/2024/02/X55II-ImagenWeb-7.jpg` },
-      { type: 'text', heading: 'INTERIOR', body: ['Diseño envolvente, iluminación LED, tecnología y acabados premium para vivir una experiencia de lujo.'], bg: `${CDN}/2024/02/X55II-ImagenWeb-5.jpg` },
-      { type: 'text', heading: 'TECHO SOLAR PANORÁMICO INTUITIVO', body: ['Cierre automático durante los días de lluvia.'], bg: `${CDN}/2024/02/X55II-ImagenWeb-6.jpg` },
-      { type: 'stats', heading: 'MOTOR MAGIC CORE 1.5 TGV', items: [
+      { type: 'text', heading: 'DISEÑO FUTURISTA', hoverReveal: true, body: ['Grilla frontal de diseño paramétrico con siluetas de diamantes.'], bg: `${CDN}/2024/02/X55II-ImagenWeb-1.jpg` },
+      { type: 'text', heading: 'ÓPTICAS', hoverReveal: true, body: ['Leds de colores para crear una iluminación ambiental estilo halo de estrellas.'], bg: `${CDN}/2024/02/X55II-ImagenWeb-3.jpg` },
+      { type: 'text', heading: 'MANIJAS OCULTAS INDUCTIVAS', hoverReveal: true, body: ['Con sistema "pop out" totalmente automático.'], bg: `${CDN}/2024/02/X55II-ImagenWeb-7.jpg` },
+      { type: 'text', heading: 'INTERIOR', hoverReveal: true, body: ['Diseño envolvente, iluminación LED, tecnología y acabados premium para vivir una experiencia de lujo.'], bg: `${CDN}/2024/02/X55II-ImagenWeb-5.jpg` },
+      { type: 'text', heading: 'TECHO SOLAR PANORÁMICO INTUITIVO', hoverReveal: true, body: ['Cierre automático durante los días de lluvia.'], bg: `${CDN}/2024/02/X55II-ImagenWeb-6.jpg` },
+      { type: 'stats', heading: 'MOTOR MAGIC CORE 1.5 TGV', hoverReveal: true, items: [
         { label: '', value: '183', suffix: 'Potencia Máxima: HP' },
         { label: '', value: '305', suffix: 'Máximo par: Nm' },
         { label: '', value: '7.84', suffix: 'Aceleración de 0-100 Km: s' }
       ], bg: `${CDN}/2024/02/X55II-ImagenWeb-8.jpg` },
-      { type: 'list', heading: 'MÚLTIPLES SENSORES Y ASISTENCIA A LA CONDUCCIÓN', items: [
+      { type: 'list', heading: 'MÚLTIPLES SENSORES Y ASISTENCIA A LA CONDUCCIÓN', hoverReveal: true, items: [
         'Control Crucero Adaptativo e Inteligente',
         'Estacionamiento Autónomo',
         'Imagen 3D Panorámica de 360°',
         'Frenado de Emergencia Autónomo',
         'Asistencia autónoma en Embotellamientos'
       ], bg: `${CDN}/2024/02/X55II-ImagenWeb-9-e1707244164921.jpg` },
-      { type: 'text', heading: '8 AIRBAGS', body: ['Sistema de seguridad pasiva en todas las direcciones para minimizar lesiones en casos de emergencia.'], bg: `${CDN}/2024/02/X55II-ImagenWeb-11.jpg` }
+      { type: 'text', heading: '8 AIRBAGS', hoverReveal: true, body: ['Sistema de seguridad pasiva en todas las direcciones para minimizar lesiones en casos de emergencia.'], bg: `${CDN}/2024/02/X55II-ImagenWeb-11.jpg` }
     ],
     view360: {
       images: Array.from({ length: 36 }, (_, i) => `${CDN}/2024/07/BAIC-X55II-360-${i + 1}.png`),
@@ -432,23 +432,43 @@ export const modelDetails = {
         { title: 'Luz de Freno', text: 'Inspirada en los baluartes de flechas de la Gran Muralla, simboliza fuerza y protección.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-5_V2.jpg` },
         { title: 'Parrilla Frontal Iluminada', text: 'En este modelo se incorpora una iluminación especial, heredando elementos característicos de la familia de los vehículos todoterreno de BAIC.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-6.jpg` }
       ] },
-      { type: 'text', heading: 'INTERIOR', body: ['El sistema de sonido premium Infinity, en combinación con los asientos de primera clase, lujosos y cómodos, proporcionan una experiencia de confort inigualable.'], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-16.jpg` },
+      { type: 'text', heading: 'INTERIOR', textBottom: true, body: ['El sistema de sonido premium Infinity, en combinación con los asientos de primera clase, lujosos y cómodos, proporcionan una experiencia de confort inigualable.'], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-16.jpg` },
       { type: 'photo-grid', layout: '2stack-big-right', items: [
         { title: 'Interfaz de Cuatro Pantallas', text: 'Incorpora un sistema de visualización frontal W-HUD, ideal para escenarios todoterreno, con una distancia de proyección de hasta 2.2 metros.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-7.jpg` },
         { title: 'Amplio Espacio · 7 asientos', text: 'Este modelo cuenta con una tercera fila de asientos, de muy fácil acceso, para adaptarse a diversas necesidades.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-8.jpg` },
         { title: 'Techo Solar Panorámico', text: 'Incluye de serie un techo panorámico transparente de 0.82 m², ofreciendo una agradable sensación de amplitud y conexión con el exterior.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-9.jpg` }
       ] },
-      { type: 'text', heading: 'PERFORMANCE', body: ['El BJ60 es un todoterreno que combina un diseño robusto con tecnología de última generación para ofrecer una experiencia de conducción superior.'], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-17-scaled.jpg` },
-      { type: 'photo-grid', layout: '2stack-big-left', items: [
-        { image: `${CDN}/2025/01/BJ60_BAIC-Argentina-10-V2.jpg` },
+      { type: 'text', heading: 'PERFORMANCE', hoverReveal: true, fullPhoto: true, body: ['El BJ60 es un todoterreno que combina un diseño robusto con tecnología de última generación para ofrecer una experiencia de conducción superior.'], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-17-scaled.jpg` },
+      // Chequeado contra baic.com.ar/baic-bj60/ real: estas 3 tarjetas tienen foto +
+      // texto real propios (no es una única foto con texto horneado como se había
+      // armado antes) - se reconstruyen con su contenido real.
+      { type: 'photo-grid', layout: 'equal', items: [
+        { title: 'Tracción 4WD Parcial', text: 'Permite una transición suave entre 2H, 4H y 4L, adaptándose a diversas condiciones de conducción.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-10-III.jpg` },
+        { title: 'Tres Bloqueos de Diferencial', text: 'Cuando una rueda motriz pierde tracción, pueden transferir el torque del motor a la rueda opuesta, ayudando al vehículo a salir de situaciones difíciles.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-10-II.jpg` },
+        { title: 'Sistema de Control de Arrastre', text: 'Desarrollado específicamente para conducir en terrenos desafiantes, con un rango de velocidad controlable de 1 a 12 km/h.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-10-I.jpg` }
+      ] },
+      { type: 'photo-grid', layout: 'equal-2', items: [
         { title: 'Sistema Global de Control Inteligente', text: 'Ofrece 9 modos de conducción y 17 combinaciones de manejo, optimizando el rendimiento del vehículo de acuerdo al terreno que esté transitando.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-11.jpg` },
         { title: 'Neumáticos', text: '275/50 R20-HT', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-12.jpg` }
       ] },
-      // Estas dos pantallas (Tecnología / ADAS) son, en el sitio real, una única foto
-      // ya compuesta con auto + círculos + textos + líneas "horneados" en la imagen -
-      // no hace falta reconstruir el diagrama con HTML, sólo mostrar la foto completa.
-      { type: 'text', body: [], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-14-E.jpg` },
-      { type: 'text', body: [], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-15-F.jpg` }
+      // "Tecnología" (360°/chasis transparente/vista aérea/estacionamiento autónomo)
+      // y "ADAS" también tienen texto real en el sitio (antes se habían dejado como
+      // foto sola horneada). Se reconstruyen como listas con foto de fondo.
+      { type: 'list', heading: 'TECNOLOGÍA', hoverReveal: true, fullPhoto: true, items: [
+        'Imágenes Panorámicas 360°: cámaras de alta definición que utilizan tecnología avanzada para proporcionar una vista completa alrededor del vehículo.',
+        'Chasis Transparente 180°: muestra información precisa de los puntos ciegos debajo del chasis, reduciendo los riesgos durante la conducción.',
+        'Vista Aérea: ofrece una visión del entorno, brindando una experiencia de conducción más segura.',
+        'Estacionamiento Autónomo: con un solo clic, el vehículo puede estacionarse automáticamente, facilitando las maniobras en espacios reducidos.'
+      ], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-14-D.jpg` },
+      { type: 'list', heading: 'SISTEMAS AVANZADOS DE ASISTENCIA A LA CONDUCCIÓN', hoverReveal: true, fullPhoto: true, items: [
+        'Advertencia de Apertura de Puertas',
+        'Frenado de Emergencia Activo',
+        'Advertencia de Tráfico Cruzado en Reversa',
+        'Control de Crucero Adaptativo',
+        'Reconocimiento de Señales de Tráfico',
+        'Advertencia de Colisión Frontal',
+        'Asistente de Mantenimiento de Carril'
+      ], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-15-E.jpg` }
     ],
     view360: {
       images: Array.from({ length: 36 }, (_, i) => `${CDN}/2025/01/BJ60_BAIC-Argentina_360-${i + 1}.webp`),
@@ -471,13 +491,13 @@ export const modelDetails = {
       { hex: '#b0b3b6', image: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-1-1024x452.png` }
     ],
     sections: [
-      { type: 'text', heading: 'EXTERIOR ELEGANTE, INTERIOR ESPACIOSO', body: ['Dimensiones (largo x ancho x alto): 4.660 x 1.820 x 1.480 mm', 'Distancia entre ejes: 2.670 mm'], bg: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-8.webp` },
-      { type: 'text', heading: 'EXCELENTE COEFICIENTE AERODINÁMICO (0.28)', body: ['Disminución del consumo de combustible de manera eficiente y una mejor estabilidad en el camino.'], bg: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-7.webp` },
-      { type: 'text', heading: 'ESTRUCTURA DE SEGURIDAD ULTRA RESISTENTE', body: ['Acero de alta resistencia de hasta 1.500 MPa, para una mayor seguridad de los ocupantes ante una colisión.'], bg: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-6.webp` },
-      { type: 'text', heading: 'FAROS LED DE ÚLTIMA GENERACIÓN', body: ['Ajuste de altura y apagado retardado.'], bg: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-9.webp` },
-      { type: 'text', heading: 'DISEÑO INTERIOR ENVOLVENTE', body: ['Pantalla táctil central de 12,3”, conexión inalámbrica mirrorlink y bluetooth. Volante de cuero con comandos multifunción.'], bg: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-10.webp` },
-      { type: 'text', heading: 'CÓMODOS ASIENTOS MULTIFUNCIONALES', body: ['Tapizados en ecocuero con espuma engrosada y alargada.', 'Asientos integrados de gravedad cero.'], bg: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-12.webp` },
-      { type: 'text', heading: 'CABINA SILENCIOSA "TIPO BIBLIOTECA"', body: ['Gracias a una novedosa incorporación, el habitáculo logra obtener un volumen interior del ralentí de 40dB.'], bg: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-5.jpg` }
+      { type: 'text', heading: 'EXTERIOR ELEGANTE, INTERIOR ESPACIOSO', hoverReveal: true, body: ['Dimensiones (largo x ancho x alto): 4.660 x 1.820 x 1.480 mm', 'Distancia entre ejes: 2.670 mm'], bg: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-8.webp` },
+      { type: 'text', heading: 'EXCELENTE COEFICIENTE AERODINÁMICO (0.28)', hoverReveal: true, body: ['Disminución del consumo de combustible de manera eficiente y una mejor estabilidad en el camino.'], bg: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-7.webp` },
+      { type: 'text', heading: 'ESTRUCTURA DE SEGURIDAD ULTRA RESISTENTE', hoverReveal: true, body: ['Acero de alta resistencia de hasta 1.500 MPa, para una mayor seguridad de los ocupantes ante una colisión.'], bg: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-6.webp` },
+      { type: 'text', heading: 'FAROS LED DE ÚLTIMA GENERACIÓN', hoverReveal: true, body: ['Ajuste de altura y apagado retardado.'], bg: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-9.webp` },
+      { type: 'text', heading: 'DISEÑO INTERIOR ENVOLVENTE', hoverReveal: true, body: ['Pantalla táctil central de 12,3”, conexión inalámbrica mirrorlink y bluetooth. Volante de cuero con comandos multifunción.'], bg: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-10.webp` },
+      { type: 'text', heading: 'CÓMODOS ASIENTOS MULTIFUNCIONALES', hoverReveal: true, body: ['Tapizados en ecocuero con espuma engrosada y alargada.', 'Asientos integrados de gravedad cero.'], bg: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-12.webp` },
+      { type: 'text', heading: 'CABINA SILENCIOSA "TIPO BIBLIOTECA"', hoverReveal: true, body: ['Gracias a una novedosa incorporación, el habitáculo logra obtener un volumen interior del ralentí de 40dB.'], bg: `${CDN}/2025/01/U5-Plus_BAIC-Argentina-5.jpg` }
     ],
     view360: {
       images: Array.from({ length: 37 }, (_, i) => `${CDN}/2025/01/U5-Plus_BAIC-Argentina-360-${i + 1}.webp`),
@@ -502,14 +522,14 @@ export const modelDetails = {
       { hex: '#d8d9db', image: `${CDN}/2024/11/BAIC-EU5-14-1024x452.png` }
     ],
     sections: [
-      { type: 'text', heading: 'ÚNICO EN SU ESTILO', body: ['Desde su diseño aerodinámico hasta sus líneas elegantes, este vehículo cautiva con su presencia.'], bg: `${CDN}/2024/11/BAIC-EU5-5.jpg` },
-      { type: 'text', heading: 'GRAN DISTANCIA ENTRE EJES', body: ['|- 2670 MM -|', 'Además para mayor confort en la conducción, cuenta con suspensión multibrazo.'], bg: `${CDN}/2024/12/BAIC-EU5-17.jpg` },
-      { type: 'text', heading: 'ÓPTICAS LED', body: ['Una estética moderna, logrando un equilibrio perfecto entre forma y funcionalidad.'], bg: `${CDN}/2024/11/BAIC-EU5-10.jpg` },
-      { type: 'text', heading: 'FAROS TRASEROS', body: ['Los faros LED de alta tecnología proporcionan una iluminación nítida y potente, además de garantizar un menor consumo de energía, contribuyendo a su eficiencia.'], bg: `${CDN}/2024/11/BAIC-EU5-7.jpg` },
-      { type: 'text', heading: 'ESPACIO INTERIOR CONFORTABLE', body: ['Una experiencia inigualable para cada uno de sus ocupantes.'], bg: `${CDN}/2024/11/BAIC-EU5-6.jpg` },
-      { type: 'text', heading: 'PANTALLA MULTIMEDIA DE 9"', body: ['Con una interfaz intuitiva y funciones inteligentes, disfrutá del control total mientras navegás con estilo y seguridad.'], bg: `${CDN}/2024/11/BAIC-EU5-3.jpg` },
-      { type: 'text', heading: 'MÁXIMO TORQUE QUE ALCANZA LOS 240 NM', body: ['Potencia de 120kw y una aceleración de 0 a 100 km/h en 8,8".'], bg: `${CDN}/2024/11/BAIC-EU5-9.jpg` },
-      { type: 'list', heading: 'BATERÍA DE ALTA ENERGÍA DE NUEVA GENERACIÓN DE CATL 151WH/KG', items: [
+      { type: 'text', heading: 'ÚNICO EN SU ESTILO', hoverReveal: true, body: ['Desde su diseño aerodinámico hasta sus líneas elegantes, este vehículo cautiva con su presencia.'], bg: `${CDN}/2024/11/BAIC-EU5-5.jpg` },
+      { type: 'text', heading: 'GRAN DISTANCIA ENTRE EJES', hoverReveal: true, body: ['|- 2670 MM -|', 'Además para mayor confort en la conducción, cuenta con suspensión multibrazo.'], bg: `${CDN}/2024/12/BAIC-EU5-17.jpg` },
+      { type: 'text', heading: 'ÓPTICAS LED', hoverReveal: true, body: ['Una estética moderna, logrando un equilibrio perfecto entre forma y funcionalidad.'], bg: `${CDN}/2024/11/BAIC-EU5-10.jpg` },
+      { type: 'text', heading: 'FAROS TRASEROS', hoverReveal: true, body: ['Los faros LED de alta tecnología proporcionan una iluminación nítida y potente, además de garantizar un menor consumo de energía, contribuyendo a su eficiencia.'], bg: `${CDN}/2024/11/BAIC-EU5-7.jpg` },
+      { type: 'text', heading: 'ESPACIO INTERIOR CONFORTABLE', hoverReveal: true, body: ['Una experiencia inigualable para cada uno de sus ocupantes.'], bg: `${CDN}/2024/11/BAIC-EU5-6.jpg` },
+      { type: 'text', heading: 'PANTALLA MULTIMEDIA DE 9"', hoverReveal: true, body: ['Con una interfaz intuitiva y funciones inteligentes, disfrutá del control total mientras navegás con estilo y seguridad.'], bg: `${CDN}/2024/11/BAIC-EU5-3.jpg` },
+      { type: 'text', heading: 'MÁXIMO TORQUE QUE ALCANZA LOS 240 NM', hoverReveal: true, body: ['Potencia de 120kw y una aceleración de 0 a 100 km/h en 8,8".'], bg: `${CDN}/2024/11/BAIC-EU5-9.jpg` },
+      { type: 'list', heading: 'BATERÍA DE ALTA ENERGÍA DE NUEVA GENERACIÓN DE CATL 151WH/KG', hoverReveal: true, bgPosition: 'center 15%', items: [
         'Buen rendimiento de trabajo en condiciones de temperatura baja.',
         'El grado de protección del sello de toda la estructura alcanzó IP67.',
         'Más de 30 estándares de pruebas internacionales.'

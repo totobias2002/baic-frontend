@@ -166,10 +166,15 @@ img{max-width:100%;display:block;}
    con margin-bottom negativo para que el hero (u otro contenido) quede debajo suyo. Por eso desaparece
    al hacer scroll, igual que en baic.com.ar (comprobado con devtools: position:relative + margin-bottom:-125px). */
 .navbar{position:relative;z-index:100;background:linear-gradient(rgba(255,255,255,.42) 15%,rgba(255,255,255,0) 100%);border-bottom:none;box-shadow:none;transition:background .3s ease,box-shadow .3s ease;margin-bottom:-125px;}
-.navbar:hover{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.08);}
+.navbar:hover,.navbar--active{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.08);}
 .navbar__inner{max-width:none;margin:0;padding:0 24px;height:86px;display:flex;align-items:center;justify-content:space-between;}
 .navbar__links{display:flex;gap:20px;align-items:stretch;align-self:stretch;flex:none;justify-content:flex-end;}
-.navbar__links > .ui-navlink{display:flex;align-items:center;}
+.navbar__scroll > .ui-navlink{display:flex;align-items:center;}
+/* Wrapper interno agregado para separar el transform del slide-in mobile del scroll táctil
+   (ver comentario en la media query de abajo). En desktop no debe alterar el layout -por eso
+   display:contents, que "desaparece" la caja y deja a sus hijos como si fueran directos de
+   .navbar__links (que sigue siendo el flex row de siempre). */
+.navbar__scroll{display:contents;}
 .navbar__models-trigger{background:none;border:none;display:flex;align-items:center;gap:4px;font-size:1rem;font-weight:600;text-transform:uppercase;letter-spacing:normal;cursor:pointer;color:var(--baic-negro);}
 .menu-toggle{display:none;font-size:1.6rem;background:none;border:none;color:var(--baic-negro);}
 .navbar .ui-navlink{color:var(--baic-negro);text-transform:uppercase;font-size:1rem;font-weight:600;letter-spacing:normal;padding:15px 0;line-height:1rem;transition:color .2s ease;}
@@ -177,8 +182,12 @@ img{max-width:100%;display:block;}
 .navbar .ui-navlink--active{color:var(--baic-rojo);}
 .navbar__models-trigger:hover{color:var(--baic-rojo);}
 .ui-logo{display:inline-flex;align-items:center;}
-.ui-logo__img{height:25px;width:auto;display:block;}
-.footer .ui-logo__img{height:30px;}
+/* El logo nuevo (BAIC + ARCFOX + PACHECO apilados) es un cuadrado -mucho más alto en
+   proporción que el anterior (BAIC + PACHECO en 2 líneas cortas). A 40px de alto quedaba
+   un cuadradito ilegible; lo agrandamos para que se lean las 3 líneas sin salirse del
+   navbar (86px de alto). */
+.ui-logo__img{height:82px;width:auto;display:block;}
+.footer .ui-logo__img{height:92px;}
 
 /* Dropdown modelos: panel a todo el ancho, igual que el real (wpr-mega-menu full width, 6 + 4 en dos filas) */
 .dropdown{position:static;display:flex;align-items:center;align-self:stretch;}
@@ -249,8 +258,8 @@ img{max-width:100%;display:block;}
 .slide-dots{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:12px;z-index:4;}
 .dot{width:8px;height:8px;border-radius:50%;background:transparent;border:2px solid rgb(255 255 255 / .6);cursor:pointer;padding:0;box-sizing:border-box;transition:all .3s ease;}
 .dot.active{background:#fff;border-color:#fff;transform:scale(1.1);box-shadow:0 0 0 3px rgb(255 255 255 / .3);}
-.slide-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:4;background:rgba(0,0,0,.28);color:#fff;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.35);cursor:pointer;backdrop-filter:blur(2px);transition:background .25s ease,border-color .25s ease,transform .25s ease;}
-.slide-arrow svg{width:26px;height:26px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35));}
+.slide-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:4;background:rgba(0,0,0,.28);color:#fff;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.35);cursor:pointer;backdrop-filter:blur(2px);transition:background .25s ease,border-color .25s ease,transform .25s ease;}
+.slide-arrow svg{width:18px;height:18px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35));}
 .slide-arrow:hover{background:rgba(0,0,0,.5);border-color:#fff;}
 .slide-arrow:active{transform:translateY(-50%) scale(.92);}
 .slide-arrow.prev{left:20px;}
@@ -263,10 +272,19 @@ img{max-width:100%;display:block;}
 
 /* Links dobles */
 .double-links{display:grid;grid-template-columns:1fr 1fr;}
-.double-links a{position:relative;height:320px;color:#fff;display:flex;align-items:flex-end;justify-content:flex-start;overflow:hidden;}
-.double-links a::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.55),rgba(0,0,0,0) 55%);z-index:1;}
+.double-links__tile{position:relative;height:320px;color:#fff;display:flex;align-items:flex-end;justify-content:flex-start;overflow:hidden;cursor:default;}
+.double-links__tile::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.55),rgba(0,0,0,0) 55%);z-index:1;}
 .double-links .ph{position:absolute;inset:0;border-radius:0;}
 .double-links__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
+/* El logo que trae incrustado en los píxeles de la foto de fondo
+   (baic-pacheco-proximamente-desktop.png) está mal escrito ("ABCFOX") y encima se corta
+   arriba porque la foto se recorta con object-fit:cover. Como no se puede editar la foto,
+   tapamos ese rincón con un parche oscuro (mismo tono que el fondo de la composición) del
+   ancho completo, y encima el logo real completo, sin cortarse. */
+.double-links__logo-patch{position:absolute;inset:0 0 auto 0;height:46%;z-index:2;background:linear-gradient(180deg,rgba(6,6,7,.97) 70%,rgba(6,6,7,0) 100%);display:flex;align-items:center;padding:0 0 0 2%;box-sizing:border-box;}
+.double-links__logo{height:98%;width:auto;object-fit:contain;object-position:left center;}
+.double-links__tile--logo{background:linear-gradient(135deg,#0c0c0e,#1c1c20);}
+.double-links__logo-full{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:90%;width:auto;object-fit:contain;z-index:1;}
 .double-links h3{position:relative;z-index:2;font-size:1.8rem;font-weight:400;letter-spacing:.5px;margin:0;padding:28px 36px;}
 .double-links h3 strong{font-weight:800;}
 
@@ -426,10 +444,37 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
 .vehicle-cards__media img{width:100%;height:100%;object-fit:cover;display:block;}
 .vehicle-cards__caption{flex:1 1 auto;min-height:0;display:flex;align-items:flex-start;justify-content:center;text-align:center;font-size:.86rem;line-height:1.5;color:#f1f1f1;margin:0;padding:18px 18px 20px;text-shadow:0 1px 6px rgba(0,0,0,.5);}
 @media (max-width:900px){
-  .vehicle-photogrid--cards{height:auto;min-height:100vh;padding:60px 5%;}
-  .vehicle-cards__row{flex-direction:column;}
-  .vehicle-cards__card{flex:none;width:100%;height:auto;}
-  .vehicle-cards__media{height:180px;}
+  /* En el sitio real, en mobile esto NO se ve como 3 "cards" con borde/marco separadas
+     -las fotos van a todo el ancho, pegadas una tras otra, como una sola composición
+     continua, y el texto de cada caption va debajo sin caja. Sacamos el padding
+     horizontal de la sección (que empujaba todo hacia adentro), el borde/fondo/radio de
+     cada card, y el gap entre ellas -sólo queda el padding horizontal en el título y en
+     los captions, no en las fotos. */
+  .vehicle-photogrid--cards{height:auto;min-height:100vh;padding:60px 0;}
+  /* .vehicle-cards__inner tenía height:100% fijo -pensado para desktop, donde las 3 fotos
+     entran lado a lado en una sola pantalla. Al apilarlas en columna en mobile, el
+     contenido real (3 fotos + captions) mide bastante más que una pantalla, pero quedaba
+     encerrado en esa caja de alto fijo y se desbordaba, tapando visualmente lo que viene
+     después (INTERIOR, Conectá con tu estilo). height:auto deja que la sección crezca lo
+     que necesite. Los "spacers" (que centran el contenido verticalmente en desktop)
+     tampoco hacen falta acá -se sacan para que no separen de más entre título y fotos. */
+  .vehicle-cards__inner{height:auto;}
+  .vehicle-cards__spacer{display:none;}
+  h2.vehicle-cards__heading{padding:0 6%;margin:0 0 60px !important;}
+  .vehicle-cards__row{flex-direction:column;gap:32px;padding:0 5%;}
+  .vehicle-cards__card{flex:none;width:100%;height:auto;border:1px solid rgba(255,255,255,.22);border-radius:10px;background:rgba(255,255,255,.05);box-shadow:0 8px 20px rgba(0,0,0,.4);overflow:hidden;}
+  .vehicle-cards__media{height:auto;}
+  /* Sin aspect-ratio forzado ni object-fit:cover: eso recortaba (zoom) la foto para
+     rellenar una caja 4:3 pareja. Dejando que la imagen mida su alto natural se ve
+     completa, sin recortar nada del fondo/contexto de la foto. */
+  .vehicle-cards__media img{width:100%;height:auto;display:block;}
+  /* Fondo sólido (no transparente) para que el texto quede siempre legible sobre negro
+     parejo, en vez de mostrar la foto de fondo desenfocada detrás -así es en el sitio real. */
+  .vehicle-cards__caption{padding:16px 6% 28px;background:#0a0a0a;}
+  /* El scrim de fondo (la foto desenfocada detrás de todo) queda casi imperceptible en el
+     sitio real -acá lo oscurecemos mucho más que el 0.55 genérico para que el resultado
+     sea básicamente negro con apenas una insinuación de textura, no la foto asomando. */
+  .vehicle-photogrid--cards .vehicle-section__scrim{background:rgba(0,0,0,.9) !important;}
 }
 .vehicle-section__scrim{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.72) 0%,rgba(0,0,0,.5) 30%,transparent 62%);}
 .vehicle-section.is-right .vehicle-section__scrim{background:linear-gradient(to left,rgba(0,0,0,.72) 0%,rgba(0,0,0,.5) 30%,transparent 62%);}
@@ -462,14 +507,14 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
 
 .vehicle-photogrid{height:100vh;display:grid;align-items:stretch;gap:10px;padding:10px;box-sizing:border-box;background:var(--baic-negro);}
 .vehicle-photogrid__item{position:relative;overflow:hidden;background-size:cover;background-position:center;border-radius:4px;cursor:pointer;transition:filter .35s ease;}
-.vehicle-photogrid__item:hover{filter:saturate(.3) brightness(.75);}
+.vehicle-photogrid__item:hover,.vehicle-photogrid__item.is-open{filter:saturate(.3) brightness(.75);}
 .vehicle-photogrid__item::after{content:'';position:absolute;inset:0;background:rgba(8,8,10,0);transition:background .35s ease;pointer-events:none;}
-.vehicle-photogrid__item:hover::after{background:rgba(8,8,10,.4);}
+.vehicle-photogrid__item:hover::after,.vehicle-photogrid__item.is-open::after{background:rgba(8,8,10,.4);}
 .vehicle-photogrid__scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55),transparent 45%);}
 .vehicle-photogrid__caption{position:absolute;left:20px;right:20px;bottom:16px;z-index:1;}
 .vehicle-photogrid__title{display:block;color:#fff;font-weight:700;font-size:1.1rem;}
 .vehicle-photogrid__text{max-height:0;opacity:0;overflow:hidden;margin:0;color:#e8e8e8;font-size:.85rem;line-height:1.5;transition:max-height .35s ease,opacity .3s ease .05s,margin-top .35s ease;}
-.vehicle-photogrid__item:hover .vehicle-photogrid__text{max-height:160px;opacity:1;margin-top:8px;}
+.vehicle-photogrid__item:hover .vehicle-photogrid__text,.vehicle-photogrid__item.is-open .vehicle-photogrid__text{max-height:160px;opacity:1;margin-top:8px;}
 
 .vehicle-photogrid--big-left-2top-1bottom{grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;}
 .vehicle-photogrid--big-left-2top-1bottom .vehicle-photogrid__item:nth-child(1){grid-column:1;grid-row:1 / 3;}
@@ -513,7 +558,7 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
 .vehicle-photogrid--single .vehicle-photogrid__title{font-size:1.4rem;text-transform:uppercase;letter-spacing:.5px;}
 .vehicle-photogrid--single .vehicle-photogrid__title::after{content:'';display:block;width:70px;height:3px;background:var(--baic-rojo);margin-top:12px;}
 .vehicle-photogrid--single .vehicle-photogrid__text{font-size:.95rem;max-width:520px;}
-.vehicle-photogrid--single .vehicle-photogrid__item:hover .vehicle-photogrid__text{max-height:220px;}
+.vehicle-photogrid--single .vehicle-photogrid__item:hover .vehicle-photogrid__text,.vehicle-photogrid--single .vehicle-photogrid__item.is-open .vehicle-photogrid__text{max-height:220px;}
 
 /* "CONECTÁ CON TU ESTILO": logo BJ40 PLUS arriba a la izquierda en vez del
    título centrado abajo, calcado del sitio real. */
@@ -531,6 +576,15 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
 .vehicle-photogrid__item--static:hover::after{background:rgba(8,8,10,0) !important;}
 
 .vehicle-photogrid__item--static .vehicle-photogrid__text{max-height:none !important;opacity:1 !important;margin-top:8px !important;}
+.vehicle-photogrid__list{max-height:0;opacity:0;overflow:hidden;margin:0;padding-left:18px;list-style:disc;color:#e8e8e8;transition:max-height .35s ease,opacity .3s ease .05s,margin-top .35s ease;}
+.vehicle-photogrid__list li{margin-bottom:8px;font-size:.85rem;line-height:1.4;}
+.vehicle-photogrid__list li:last-child{margin-bottom:0;}
+.vehicle-photogrid__item:hover .vehicle-photogrid__list,.vehicle-photogrid__item.is-open .vehicle-photogrid__list{max-height:600px;opacity:1;margin-top:10px;}
+.vehicle-photogrid__stats{max-height:0;opacity:0;overflow:hidden;transition:max-height .35s ease,opacity .3s ease .05s,margin-top .35s ease;}
+.vehicle-photogrid__stat{margin:0 0 6px;color:#e8e8e8;font-size:.85rem;line-height:1.4;}
+.vehicle-photogrid__stat strong{color:#fff;font-size:1.3rem;font-weight:800;margin-right:5px;}
+.vehicle-photogrid__stat:last-child{margin-bottom:0;}
+.vehicle-photogrid__item:hover .vehicle-photogrid__stats,.vehicle-photogrid__item.is-open .vehicle-photogrid__stats{max-height:600px;opacity:1;margin-top:10px;}
 
 .vehicle-list{list-style:none;margin:0;padding:0;}
 .vehicle-list li{position:relative;padding-left:22px;font-size:1.02rem;font-weight:600;line-height:1.5;margin-bottom:7px;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.6);}
@@ -587,6 +641,7 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
   .vehicle-rows__item,.vehicle-rows__item--reverse{flex-direction:column;align-items:stretch;gap:12px;flex:none;}
   .vehicle-rows__media{flex:none;}
   .vehicle-rows__media img,.vehicle-rows__media video{height:110px;}
+  .vehicle-rows__divider{display:none;}
 }
 
 .vehicle-gallery{position:relative;height:100vh;overflow:hidden;background:#000;}
@@ -619,14 +674,28 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
 .vehicle-360__car img{width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 30px 30px rgba(0,0,0,.18));}
 
 .threesixty{position:relative;width:100%;cursor:grab;touch-action:pan-y;user-select:none;}
+.threesixty--loading{cursor:wait;}
 .threesixty:active{cursor:grabbing;}
-.threesixty__img{width:100%;height:auto;display:block;pointer-events:none;filter:drop-shadow(0 30px 30px rgba(0,0,0,.18));}
+/* Las 37 fotos quedan todas montadas en el DOM desde el arranque, apiladas una encima de
+   otra (position:absolute) -girar es sólo alternar cuál está en display:block, nunca
+   cambia el src de ninguna. El contenedor necesita su propio alto (aspect-ratio, fijado
+   por JS con las medidas reales de la primera foto) porque con los hijos en absolute deja
+   de heredarlo de ellos. */
+.threesixty__frame{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;filter:drop-shadow(0 30px 30px rgba(0,0,0,.18));}
 .threesixty__lens{position:absolute;border-radius:50%;border:3px solid #fff;box-shadow:0 8px 24px rgba(0,0,0,.35),inset 0 0 0 1px rgba(0,0,0,.08);background-repeat:no-repeat;pointer-events:none;z-index:2;}
 .threesixty__badge{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:110px;height:110px;border-radius:50%;background:rgba(120,10,15,.88);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.3);transition:opacity .2s;}
 .threesixty:hover .threesixty__badge,
 .threesixty__badge.is-hidden{opacity:0;}
 .threesixty__badge span{font-size:1.15rem;font-weight:800;line-height:1.1;}
 .threesixty__badge small{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;}
+
+/* Mientras bajan las 37 fotos (vienen de baic.com.ar, no de nuestros assets) mostramos
+   esto en vez de dejar arrastrar - así el giro nunca se siente trabado/con delay: no se
+   habilita hasta que está todo en caché. */
+.threesixty__loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgba(0,0,0,.12);border-radius:8px;}
+.threesixty__spinner{width:34px;height:34px;border-radius:50%;border:3px solid rgba(120,10,15,.2);border-top-color:rgba(120,10,15,.9);animation:threesixty-spin .8s linear infinite;}
+.threesixty__loading small{font-size:.75rem;font-weight:700;color:#78000f;letter-spacing:.5px;}
+@keyframes threesixty-spin{to{transform:rotate(360deg);}}
 
 .vehicle-footnote{text-align:center;font-size:.8rem;font-style:italic;color:var(--baic-gris);padding:24px 20px;margin:0;}
 .vehicle-footnote--360{position:absolute;left:0;right:0;bottom:24px;z-index:2;padding:0 20px;margin:0;}
@@ -639,6 +708,9 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
 .vehicle-brochure__download:hover{opacity:.85;}
 .vehicle-brochure__viewer{width:100%;height:80vh;border:none;display:block;}
 ._df_book{width:100%;height:80vh;}
+/* Si el visor del PDF (plugin de terceros) se cuelga y no termina de cargar, en vez de
+   dejarlo ahí colgado consumiendo recursos para siempre, mostramos esto. */
+.vehicle-brochure__fallback{width:100%;height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;color:#555;padding:20px;box-sizing:border-box;}
 
 .vehicle-teaser{min-height:calc(100vh - 88px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle at 50% 30%,#2a2a2a,#0a0a0a 70%);color:#fff;padding:120px 20px 60px;gap:8px;}
 .vehicle-teaser__logo{font-size:3.4rem;font-weight:800;color:var(--baic-rojo);letter-spacing:4px;-webkit-text-stroke:1px var(--baic-rojo);}
@@ -776,11 +848,36 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
   .vision-section p{font-size:.95rem;}
 }
 
-/* Downloads */
-.downloads-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px;margin-top:24px;}
-.download-card{border:1px solid var(--color-border);border-radius:12px;padding:16px;text-align:center;}
-.download-card h4{margin:0 0 12px;text-transform:uppercase;}
-.download-card__img{width:100%;aspect-ratio:4/3;object-fit:contain;margin-bottom:14px;}
+/* Downloads — calcado de baic.com.ar/centro-de-descargas: banda oscura lisa (sin foto) con
+   el título, y debajo, en blanco, grilla de 5 columnas (auto/BAIC negro/nombre/foto/botón
+   negro en píldora), sin bordes ni cards con caja -igual que la referencia. */
+.downloads-hero{background:var(--baic-navy);color:#fff;text-align:center;padding:160px 20px 54px;}
+.downloads-hero h1{margin:0;font-size:2.3rem;font-weight:700;}
+.downloads-page{padding:70px 0;max-width:1440px;}
+/* Grid stretch (default de CSS Grid) hace que cada card mida el alto de la fila más alta;
+   con la card en flex-column y la foto en flex:1, el auto queda centrado arriba pero el
+   botón cae siempre a la misma altura en toda la fila, sin importar cuánto "ocupe" cada
+   foto según su proporción -antes quedaban todos los botones a distinta altura. */
+.downloads-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:56px 24px;margin-top:0;}
+.download-card{text-align:center;display:flex;flex-direction:column;align-items:center;height:100%;}
+.download-card h4{margin:0 0 22px;font-size:1.4rem;font-weight:700;letter-spacing:.3px;color:var(--baic-negro);}
+.download-card__img{flex:1 1 auto;width:100%;max-width:280px;min-height:170px;object-fit:contain;margin:0 auto 26px;display:block;}
+.download-card__btn{display:inline-flex;align-items:center;gap:8px;background:var(--baic-negro);color:#fff;border-radius:24px;padding:13px 22px;font-size:.78rem;font-weight:600;letter-spacing:.3px;text-transform:uppercase;white-space:nowrap;transition:background .2s ease;}
+.download-card__btn:hover{background:var(--baic-rojo);}
+.download-card__btn svg{width:14px;height:14px;}
+@media(max-width:900px){
+  /* El navbar mobile es sólido y sin overlap (ver comentario en la sección del navbar), así
+     que acá no hace falta compensar los 160px que sí necesita desktop contra el navbar
+     transparente -sería puro espacio vacío de más arriba de la banda oscura. */
+  .downloads-hero{padding:28px 24px 26px;}
+  .downloads-hero h1{font-size:1.5rem;line-height:1.3;}
+  .downloads-page{padding:36px 0 40px;max-width:none;}
+  .downloads-grid{grid-template-columns:1fr;gap:36px;}
+  .download-card{height:auto;}
+  .download-card h4{font-size:1.15rem;margin:0 0 18px;}
+  .download-card__img{flex:none;min-height:0;max-width:260px;margin:0 auto 20px;}
+  .download-card__btn{padding:11px 16px;font-size:.66rem;letter-spacing:.2px;}
+}
 
 /* Rail de redes sociales + WhatsApp flotante */
 /* Corrido hacia abajo (en vez de centrado) para no pisar las flechas del carrusel */
@@ -794,13 +891,20 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
      en mobile no hay hover, y el logo/hamburguesa (color oscuro) quedaban invisibles sobre
      heroes oscuros (Home, fichas de modelo). Por eso en mobile el navbar es SIEMPRE blanco. */
   .navbar{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.08);margin-bottom:0;}
-  .navbar__inner{padding:0 16px;height:64px;}
+  .navbar__inner{padding:0 16px;height:78px;}
+  .ui-logo__img{height:68px;}
   /* Ojo: .navbar__links hereda justify-content:flex-end del layout desktop (para alinear a la
      derecha en fila). En mobile es flex-direction:column, y ese flex-end empuja TODO el stack
      al fondo -el "Modelos" + megamenu (oculto pero con alto real) terminaba arriba, fuera de
-     vista. Por eso hace falta resetear a flex-start acá. */
-  .navbar__links{position:fixed;top:64px;left:0;right:0;bottom:0;background:#fff;transform:translateX(-100%);transition:transform .3s;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding:24px;overflow:auto;gap:16px;z-index:120;}
+     vista. Por eso hace falta resetear a flex-start acá.
+     IMPORTANTE: .navbar__links sólo se encarga del slide-in (position:fixed + transform). El
+     scroll táctil vive aparte en .navbar__scroll (bug de iOS: un mismo elemento con transform +
+     overflow:auto + -webkit-overflow-scrolling:touch puede quedar con el scroll "congelado" al
+     tacto -el drag no mueve nada aunque funcione con mouse-wheel). Separando ambos roles el
+     drag para ver los modelos funciona bien. */
+  .navbar__links{position:fixed;top:78px;left:0;right:0;bottom:0;background:#fff;transform:translateX(-100%);transition:transform .3s;z-index:120;overflow:hidden;}
   .navbar__links--open{transform:translateX(0);}
+  .navbar__scroll{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;width:100%;height:100%;padding:24px;gap:16px;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-y;box-sizing:border-box;}
   .menu-toggle{display:block;}
   .dropdown{width:100%;flex-direction:column;align-items:flex-start;}
   .navbar__models-trigger{width:100%;justify-content:space-between;padding:15px 0;}
@@ -867,18 +971,118 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
     background:linear-gradient(to bottom, rgba(0,0,0,.4) 0%, rgba(0,0,0,.35) 20%, rgba(0,0,0,.72) 50%, rgba(0,0,0,.6) 80%, rgba(0,0,0,.45) 100%);
   }
   .vehicle-grid{grid-template-columns:1fr;}
+  /* "MOTORIZACIÓN" (Motor 1.5T / Turbocompresor VGT) usa el grid "wide", pensado para
+     desktop como 2 columnas lado a lado con el video estirado a la altura completa de
+     la sección (height:100%). En mobile esa selector (.vehicle-section__inner--wide
+     .vehicle-grid) tiene más especificidad que el reset de arriba y le sigue ganando,
+     dejando 2 columnas angostas con videos chiquitos. Lo apilamos en 1 columna, una
+     card abajo de la otra con su texto, como pidió el usuario, y le damos al video una
+     altura fija (ya no 100% de un flex sin alto definido). */
+  .vehicle-section__inner--wide{padding:20px 5%;}
+  .vehicle-section__inner--wide .vehicle-grid{grid-template-columns:1fr;gap:24px;height:auto;}
+  /* Card real (fondo + borde + sombra) para que no quede el video flotando solo
+     sobre el negro de la sección, como pidió el usuario. */
+  .vehicle-section__inner--wide .vehicle-grid__item{height:auto;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:14px;box-shadow:0 8px 24px rgba(0,0,0,.35);}
+  .vehicle-section__inner--wide .vehicle-grid__media{height:200px;min-height:200px;margin-bottom:16px;border-radius:6px;}
+  /* Títulos de las fotos en las grillas tipo "carrusel" (Diseño de Interiores, Experiencia de
+     Conducción, etc.) pedían notarse más en mobile -les agregamos el mismo subrayado rojo
+     corto que ya usan los títulos de sección grandes, sólo que a una escala más chica. */
+  .vehicle-grid__item h3{position:relative;padding-bottom:10px;font-size:1.05rem;}
+  .vehicle-grid__item h3::after{content:'';display:block;width:36px;height:3px;background:var(--baic-rojo);margin-top:10px;position:absolute;left:0;bottom:0;}
   .vehicle-stats{gap:16px 28px;}
   .vehicle-stats__value strong{font-size:1.4rem;}
   .vehicle-360__bgtext{font-size:5rem;transform:translate(-50%,-50%);}
   .vehicle-360__car{max-width:520px;padding:0 24px;}
-  .vehicle-photogrid{height:auto;grid-template-columns:1fr !important;grid-template-rows:none !important;}
-  .vehicle-photogrid__item{aspect-ratio:4/3;}
-  .vehicle-photogrid--single .vehicle-photogrid__item{aspect-ratio:16/10;}
+  .vehicle-photogrid{height:auto;grid-template-columns:1fr !important;grid-template-rows:none !important;align-content:start;padding:0;gap:0;}
+  .vehicle-photogrid__item{border-radius:0;}
+  /* 16/10 en vez de 4/3: la mayoría de estas fotos de producto son bien panorámicas
+     (autos fotografiados de perfil/3-4), y un recorte 4/3 (mucho más "cuadrado") les
+     comía gran parte de los costados dejando el auto descentrado/cortado. Con 16/10
+     se recorta mucho menos a lo ancho y el auto queda centrado en el cuadro. */
+  .vehicle-photogrid__item{aspect-ratio:16/10;transition:filter .35s ease;}
+  /* La card NO cambia de tamaño al tocarla (el usuario lo probó y no lo quería:
+     "yo toco y se agranda no quiero eso"): la foto se queda siempre del mismo
+     alto, y el texto aparece superpuesto arriba de la foto (como ya pasaba antes
+     de tocar), con más margen de altura que en desktop para que entre bien. */
+  /* max-height grande de sobra + line-clamp como tope real: así el texto nunca
+     queda cortado "a la mitad" sin avisar (como pasaba con Llantas) - si el
+     párrafo no entra en 6 líneas, se recorta con puntos suspensivos en vez de
+     mostrarse tapado/incompleto sin ninguna señal. */
+  .vehicle-photogrid__item.is-open .vehicle-photogrid__text{max-height:300px;display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden;}
+  /* En mobile no queremos el hover (un mouse real -como al probar con las devtools
+     de Chrome en modo responsive- puede seguir disparando :hover y mostrar el texto
+     sin haber tocado). El texto tiene que depender únicamente del tap (clase is-open),
+     nunca del hover, en este breakpoint. */
+  .vehicle-photogrid__item:hover:not(.is-open){filter:none;}
+  .vehicle-photogrid__item:hover:not(.is-open)::after{background:rgba(8,8,10,0);}
+  .vehicle-photogrid__item:hover:not(.is-open) .vehicle-photogrid__text{max-height:0;opacity:0;margin-top:0;}
+  .vehicle-photogrid__item:hover:not(.is-open) .vehicle-photogrid__list{max-height:0;opacity:0;margin-top:0;}
+  .vehicle-photogrid__item:hover:not(.is-open) .vehicle-photogrid__stats{max-height:0;opacity:0;margin-top:0;}
+  .vehicle-photogrid__item.is-open{filter:saturate(.3) brightness(.75);}
+  .vehicle-photogrid__item.is-open::after{background:rgba(8,8,10,.4);}
+  .vehicle-photogrid__item.is-open .vehicle-photogrid__list{max-height:600px;opacity:1;margin-top:10px;}
+  .vehicle-photogrid__item.is-open .vehicle-photogrid__stats{max-height:600px;opacity:1;margin-top:10px;}
+  .vehicle-photogrid__item.is-open .vehicle-photogrid__text{opacity:1;margin-top:8px;}
   .vehicle-photogrid--big-left-2top-1bottom .vehicle-photogrid__item,
   .vehicle-photogrid--big-left-2-stack .vehicle-photogrid__item,
   .vehicle-photogrid--2stack-big-right .vehicle-photogrid__item,
   .vehicle-photogrid--2stack-big-left .vehicle-photogrid__item,
   .vehicle-photogrid--big-left-2x2 .vehicle-photogrid__item{grid-column:auto !important;grid-row:auto !important;}
+  /* En desktop las secciones "vehicle-section" son pantallas completas (min-height:
+     100dvh, ver más abajo en este archivo), pero en mobile todas las grillas de fotos
+     (incluidas las de pocos items, como equal-2 o single) ya miden alto por su propio
+     contenido (aspect-ratio en cada foto apilada). Si dejamos ese min-height:100dvh
+     puesto, cuando el contenido real es más bajo que la pantalla queda un bloque
+     negro vacío después de las fotos, antes de la sección siguiente. Lo anulamos para
+     TODA .vehicle-photogrid (no sólo --single) para que cada sección mida sólo lo que
+     ocupan sus fotos y queden todas pegadas, sin huecos. */
+  .vehicle-section.vehicle-photogrid{min-height:0;padding:0;}
+  /* El caption de --single está pensado para el banner de pantalla completa de
+     desktop (bottom:60px, título grande). En mobile el item mide sólo ~244px de
+     alto (aspect-ratio 16/10) y el item recorta todo lo que no entra (overflow:
+     hidden) - con ese bottom:60px + título grande, el texto se armaba hacia arriba
+     y se salía por encima del item, quedando el principio ilegible/cortado. Lo
+     bajamos y achicamos el título para que quede igual que en las demás fotos
+     (Llantas, Diseño, etc.), que sí entran bien. */
+  .vehicle-photogrid--single .vehicle-photogrid__caption{left:20px;right:20px;bottom:16px;}
+  /* "Conectá con tu estilo" (--top): la regla de arriba le pisaba el bottom y
+     estiraba la caption de top:14% a bottom:16px, dejando el logo BJ40 PLUS
+     colgando a mitad de foto, tapando el auto. Lo fijamos arriba nomás. */
+  .vehicle-photogrid--top.vehicle-photogrid--single .vehicle-photogrid__caption{top:2%;bottom:auto;left:16px;right:auto;max-width:56%;}
+  .vehicle-photogrid--top .vehicle-photogrid__logo{width:110px;margin-bottom:6px;}
+  .vehicle-photogrid--top .vehicle-photogrid__logo-divider{width:40px;height:2px;margin-bottom:10px;}
+  .vehicle-photogrid--top .vehicle-photogrid__title{font-size:1rem !important;line-height:1.25;}
+  .vehicle-photogrid--top .vehicle-photogrid__title::after{display:none;}
+  .vehicle-photogrid--top .vehicle-photogrid__text{font-size:.62rem !important;max-width:none;}
+  /* Listas (TECNOLOGÍA / ADAS BJ60, hoverReveal): mismo estilo que PERFORMANCE -
+     título siempre visible abajo de la foto, superpuesto (no en flujo aparte).
+     Al tocar, la lista se despliega y puede sobresalir por fuera de la imagen
+     en vez de recortarse (overflow visible en el item). */
+  .vehicle-photogrid--list .vehicle-photogrid__item,.vehicle-photogrid--stats .vehicle-photogrid__item{overflow:visible;}
+  .vehicle-photogrid--list .vehicle-photogrid__caption{padding:18px 20px 20px;left:0;right:0;}
+  /* Listas largas (SEGURIDAD Y ASISTENCIA, ADAS, etc.) al abrirse median más que
+     la foto (231px de alto), y como crecen hacia arriba desde bottom:16px, el
+     texto terminaba pisando el borde superior de su propia imagen. Le damos más
+     alto a la foto en estas secciones y achicamos un poco los renglones. */
+  /* Al combinar min-height con el aspect-ratio:16/10 que ya trae el item, el
+     navegador recalculaba el ANCHO a partir de esa relación (320px alto x 1.6 =
+     512px), mandando la foto muchísimo más ancha que la pantalla y cortando el
+     texto contra el borde. Anulamos el aspect-ratio acá y fijamos el ancho a
+     100% para que la única variable sea el alto. */
+  .vehicle-photogrid--list .vehicle-photogrid__item{min-height:320px;aspect-ratio:auto;width:100%;}
+  .vehicle-photogrid__list li{font-size:.78rem;margin-bottom:6px;}
+  /* MOTOR 1.5 TURBO (stats): los números venían al mismo tamaño que en desktop,
+     demasiado grandes para 390px. Achicamos título y valores. */
+  .vehicle-photogrid--stats .vehicle-photogrid__title{font-size:1rem !important;}
+  .vehicle-photogrid--stats .vehicle-photogrid__stat{font-size:.75rem;}
+  .vehicle-photogrid--stats .vehicle-photogrid__stat strong{font-size:1.05rem;}
+  .vehicle-photogrid--single .vehicle-photogrid__title{font-size:1.1rem;text-transform:none;letter-spacing:normal;}
+  .vehicle-photogrid--single .vehicle-photogrid__title::after{margin-top:8px;}
+  /* Mismo criterio que en las grillas: line-clamp como tope real para que el texto
+     (que ahora se dispara con el tap, vía la clase is-open agregada en JS) nunca
+     quede cortado a la mitad sin avisar - pero calculado para que entre completo
+     dentro del alto real del item (no de sobra, si no vuelve a irse por arriba). */
+  .vehicle-photogrid--single .vehicle-photogrid__item.is-open .vehicle-photogrid__text{max-height:160px;display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden;}
   /* Chequeado directamente contra baic.com.ar/baic-x55-plus/ en esta misma media query
      (max-width:767px), leyendo su CSS generado por Elementor: la sección de stats real
      mide 407px de alto ahí (no una pantalla completa, no el aspect-ratio "sin recortar"
@@ -891,14 +1095,29 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
      .vehicle-section (que acá trae min-height:100dvh), hace falta el selector
      compuesto de abajo para anular eso -si no, esa altura mínima infla la sección de
      más. */
-  .vehicle-stats-section{height:auto;overflow:hidden;padding:0 10px;}
+  .vehicle-stats-section{height:auto;overflow:hidden;padding:0;}
   .vehicle-section.vehicle-stats-section{min-height:0;}
-  .vehicle-stats-section__frame{position:relative;width:100%;height:auto;min-height:440px;}
+  .vehicle-stats-section__frame{position:relative;width:100%;height:auto;min-height:520px;}
   .vehicle-stats-section__photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;}
   /* Degradé oscuro sólo en la franja inferior (donde caen los números), no en toda la
      foto, para no oscurecerla de más arriba. */
   .vehicle-stats-section__frame::after{content:"";position:absolute;left:0;right:0;bottom:0;height:45%;background:linear-gradient(to top, rgba(0,0,0,.78) 0%, rgba(0,0,0,.42) 55%, rgba(0,0,0,0) 100%);z-index:1;pointer-events:none;}
-  .vehicle-stats--center{position:absolute;left:0;right:0;top:245px;z-index:2;display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:6px 18px;padding:0 4% 20px;margin-top:0;background:none;text-shadow:0 2px 10px rgba(0,0,0,.8);}
+  /* Por default centrado y simétrico (BJ30 y demás sin logo propio). El corrimiento hacia
+     la derecha (padding-left extra) queda sólo para las fichas que sí traen un logo del
+     modelo arriba (X55 Plus) -ahí sí hacía falta ese ajuste puntual, pero aplicado a todas
+     por igual desbalanceaba a las que no tienen logo. También se achican min-width/gap de
+     los items para que entren 3 por fila como en el sitio real, en vez de 2. */
+  /* Anclado al fondo (no a un "top" fijo en px) para que quede siempre pegado abajo del
+     todo de la foto, sin importar el alto real de cada frame/modelo. */
+  .vehicle-stats--center{position:absolute;left:0;right:0;bottom:45px;top:auto;z-index:2;display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:10px 8px;padding:0 4%;margin-top:0;background:none;text-shadow:0 2px 10px rgba(0,0,0,.8);}
+  .vehicle-stats--center.vehicle-stats--has-logo{padding:0 4% 20px 18%;}
+  /* El label más largo ("TRANSMISIÓN") era el que fijaba el ancho de CADA item -al no
+     entrar 3 en una fila, "2 DHT" quedaba solo, empujado a la fila de abajo. Achicando
+     label y valor entran los 3 cómodos, igual que en el sitio real. */
+  .vehicle-stats--center .vehicle-stats__item{min-width:0;}
+  .vehicle-stats--center .vehicle-stats__label{font-size:.65rem;letter-spacing:.3px;white-space:nowrap;}
+  .vehicle-stats--center .vehicle-stats__value{font-size:.85rem;white-space:nowrap;}
+  .vehicle-stats--center .vehicle-stats__value strong{font-size:1.2rem;margin-right:3px;}
   /* Las demás pantallas completas (hero) también deben medir 100dvh -no 100vh a
      secas- para que las alturas coincidan entre sí; si no, el scroll paginado a JS
      desalinea un poco de sección a sección y se cuela una franja negra de la sección
@@ -909,10 +1128,68 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
      saltar) arrastra el desfasaje y se termina viendo una franja de la sección
      vecina en el borde de la pantalla. */
   .vehicle-section{min-height:100vh;min-height:100dvh;}
-  .vehicle-photogrid,
-  .vehicle-photogrid--cards{height:100vh;height:100dvh;}
-  .vehicle-video-feature,
+  /* Secciones con lista de íconos (ej. PERFORMANCE de BJ40 Plus: título+descripción+6
+     ángulos+texto final) quedaban todas centradas juntas como un bloque compacto -tapaban
+     la foto del auto de punta a punta. Acá "destructuramos" ese bloque en 3 grupos, sin
+     agrandar la sección: el inner ocupa el alto completo (align-items:stretch en vez de
+     center) y pasa a column-flex; título+descripción quedan arriba con su padding normal,
+     y CON DOS margin-top:auto (uno en la lista de íconos, otro en el texto final) el
+     espacio libre restante se reparte por igual entre los tres grupos -título/descripción
+     arriba, íconos al medio, "VEHÍCULO MILITAR" bien abajo. */
+  .vehicle-section--bottom-text{align-items:flex-end;}
+  .vehicle-section--bottom-text .vehicle-section__inner{padding-bottom:50px;}
+  /* "PERFORMANCE" BJ60: pidió el mismo estilo que "TECHO SOLAR PANORÁMICO"
+     (hoverReveal: foto + tap para oscurecer y mostrar texto), pero sin el
+     recorte a aspect-ratio 16/10 que tienen las demás hoverReveal - acá la
+     foto va completa, a su alto natural, como <img> real en vez de
+     background-image. */
+  .vehicle-photogrid--full .vehicle-photogrid__item{aspect-ratio:auto;height:auto;background-image:none !important;}
+  .vehicle-photogrid__full-img{display:block;width:100%;height:auto;}
+  .vehicle-photogrid--full .vehicle-photogrid__item:hover:not(.is-open) .vehicle-photogrid__full-img{filter:none;}
+  .vehicle-photogrid--full .vehicle-photogrid__item.is-open .vehicle-photogrid__full-img{filter:saturate(.3) brightness(.75);}
+  /* Mismo criterio para un item suelto dentro de un grid (ej. la foto-diagrama
+     "Sistema de Control de Diferencial/Tracción" del grid 2stack-big-left de
+     BJ60), que también trae el texto horneado en la imagen y no debe recortarse. */
+  .vehicle-photogrid__item--full{aspect-ratio:auto !important;height:auto !important;background-image:none !important;}
+  /* Fotos-diagrama compuestas (Tecnología/ADAS BJ60, sin heading ni texto propio):
+     mismo criterio, foto completa sin recortar en vez de background-size:cover. */
+  .vehicle-section--full-photo{min-height:0;height:auto;display:block;padding:0;background:#0a0a0a;}
+  .vehicle-section__full-photo{display:block;width:100%;height:auto;}
+  .vehicle-section--full-photo .vehicle-section__inner{display:none;}
+  .vehicle-section--spread{align-items:stretch;}
+  .vehicle-section--spread .vehicle-section__inner{display:flex;flex-direction:column;padding-top:0;padding-bottom:0;}
+  .vehicle-section--spread .vehicle-iconlist{margin-top:auto;}
+  .vehicle-section--spread .vehicle-section__body-after{margin-top:auto;}
+  .vehicle-section--spread .vehicle-section__corner-graphic{margin-top:auto;align-self:center;}
+  /* La lista (EXPLORÁ UN NUEVO MUNDO OUTDOOR) quedaba pegada al título -le sumamos otro
+     margin-top:auto para que también flote en el medio, dejando un hueco pareja arriba
+     (después del título) y otro abajo (antes del gráfico, que ya se queda donde estaba). */
+  .vehicle-section--spread .vehicle-list{margin-top:auto;}
+  /* El degradé genérico de mobile oscurece sobre todo el CENTRO (pensado para texto
+     centrado) -pero acá el contenido quedó repartido de punta a punta (título arriba,
+     lista al medio, gráfico/texto abajo), así que el techo/foto clara del auto quedaba
+     casi sin oscurecer arriba y abajo. Un negro parejo en toda la sección resuelve la
+     legibilidad sin importar en qué franja caiga el texto. */
+  .vehicle-section--spread .vehicle-section__scrim{background:rgba(0,0,0,.68) !important;}
+  /* OJO: .vehicle-photogrid--cards queda afuera de este grupo a propósito. Esa regla de
+     "100dvh fijo" es para que el scroll paginado a JS (desktop) calcule bien a dónde
+     saltar entre pantallas -pero ese JS está desactivado en mobile (matchMedia
+     max-width:900px), así que acá no hace falta, y con las 3 fotos apiladas en columna
+     esta sección necesita crecer más de una pantalla (ver override más arriba con
+     height:auto) -si quedara acá adentro, este 100dvh fijo pisaría ese fix y todo el
+     contenido de más se desbordaría encima de las secciones siguientes. */
   .vehicle-360{height:100vh;height:100dvh;}
+  /* El video post-hero (BJ30 4x2 y demás) en desktop es full-bleed con object-fit:cover
+     (se recorta a propósito para llenar la pantalla). En el sitio real, en mobile ese mismo
+     video se ve como un reproductor normal, de alto natural según su propia relación de
+     aspecto, con los controles nativos y SIN recortar nada -por eso acá se saca el alto
+     forzado a pantalla completa y se deja que el video mida lo que le corresponde. */
+  .vehicle-video-feature{height:auto;min-height:0;}
+  /* Sin aspect-ratio fijo, el video usaba el tamaño del poster hasta cargar sus
+     metadata reales; al darle play, el navegador recalculaba el alto con las
+     dimensiones reales del archivo y el video "se achicaba" de golpe. Fijamos
+     16:9 (relación real de estos videos) para que el tamaño no cambie nunca. */
+  .vehicle-video-feature__media{height:auto;aspect-ratio:16/9;object-fit:contain;}
   .vehicle-stats-section__logo{top:20px;height:42px;}
   /* Las fotos del carrusel son horizontales y varían de ancho entre sí; probamos
      forzar la sección a pantalla completa (100dvh) con object-fit:contain + un fondo
@@ -928,7 +1205,7 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
   .vehicle-gallery__arrow{width:38px;height:38px;font-size:1.4rem;}
   .vehicle-gallery__arrow--prev{left:12px;}
   .vehicle-gallery__arrow--next{right:12px;}
-  .vehicle-brochure__viewer,._df_book{height:70vh;}
+  .vehicle-brochure__viewer,._df_book,.vehicle-brochure__fallback{height:70vh;}
   .social-rail{display:none;}
 }
 @media(max-width:480px){
@@ -949,7 +1226,7 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
   .service-form input,.service-form select,.service-form textarea,.service-form button{width:100%;}
   .contact-hero{padding:130px 14px 50px;}
   .dealer-card,.service-card{padding:16px 8px;}
-  .double-links a{height:220px;}
+  .double-links__tile{height:220px;}
   .double-links h3{font-size:1.3rem;padding:20px 22px;}
 }
 
@@ -1285,7 +1562,8 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
 .bj40pro-mobile__stat span{font-size:.66rem;letter-spacing:.3px;text-transform:uppercase;color:rgba(255,255,255,.6);}
 .bj40pro-mobile__gallery{display:flex;flex-direction:column;gap:28px;margin-top:18px;}
 .bj40pro-mobile__gallery-item img{width:100%;border-radius:8px;aspect-ratio:4/3;object-fit:cover;background:#111;display:block;}
-.bj40pro-mobile__gallery-item h3{font-size:1.02rem;font-weight:700;margin:14px 0 8px;color:#fff;}
+.bj40pro-mobile__gallery-item h3{position:relative;font-size:1.05rem;font-weight:800;margin:14px 0 14px;padding-bottom:10px;color:#fff;}
+.bj40pro-mobile__gallery-item h3::after{content:'';display:block;width:36px;height:3px;background:var(--bj40-orange);margin-top:10px;position:absolute;left:0;bottom:0;}
 .bj40pro-mobile__gallery-item p{font-size:.88rem;line-height:1.6;color:rgba(255,255,255,.75);margin:0;}
 .bj40pro-spectable__grid--mobile{grid-template-columns:1fr;}
 .bj40pro-mobile__block--specs .bj40pro-spectable__title{text-align:left;margin:0 0 8px;}
@@ -1301,8 +1579,15 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
   .bj40pro-geo__title{right:6%;max-width:none;font-size:1.2rem;}
   .bj40pro-geo__car,.bj40pro-geo__overlay{width:88%;}
   .bj40pro-grid3__row{flex-direction:column;}
-  .bj40pro-spectable__row{flex-direction:column;gap:4px;}
-  .bj40pro-spectable__value{text-align:left;}
+  /* El value tiene white-space:nowrap puesto en la regla base (pensada para desktop, con
+     todo el ancho de la pantalla) -eso NUNCA se anulaba en mobile, así que un valor largo
+     ("Independiente con resorte helicoidal de doble brazo / No...") no podía saltar de
+     línea y se iba de largo por la derecha sin importar qué mas se ajustara. Acá se resetea
+     explícitamente ese nowrap, se fuerza width:100% en label y value (no confiar en que el
+     stretch del flex alcance solo) y se centra todo el texto, como pidió el usuario. */
+  .bj40pro-spectable__row{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;}
+  .bj40pro-spectable__label{width:100%;white-space:normal;overflow-wrap:break-word;box-sizing:border-box;}
+  .bj40pro-spectable__value{width:100%;white-space:normal;overflow-wrap:break-word;box-sizing:border-box;text-align:center;}
   .bj40pro-carousel-arrow{width:36px;height:36px;font-size:1.1rem;}
   .bj40pro-dots{right:10px;}
 }
@@ -1379,7 +1664,7 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
      no tiene sentido (sigue el dedo mientras arrastrás para rotar) y quedaba una bola
      blanca pegada en pantalla al terminar de arrastrar. La sacamos en mobile; el badge
      "360° VIEW" ahora se oculta solo (ver ThreeSixtyViewer/is-hidden) apenas se toca. */
-  .vehicle-360{height:auto;min-height:0;padding:48px 0;}
+  .vehicle-360{height:auto;min-height:0;padding:20px 0 48px;}
   .threesixty__lens{display:none;}
   .threesixty__badge{width:84px;height:84px;}
   .threesixty__badge span{font-size:.9rem;}

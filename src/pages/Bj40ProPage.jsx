@@ -323,15 +323,17 @@ function MobileAts({ slide }) {
 }
 
 function MobileGeo({ slide }) {
-  const diagrams = slide.steps.filter((s) => s.overlays).flatMap((s) => s.overlays)
+  // Los diagramas técnicos (overlays: es220mm/es750mm/esargument-img) son imágenes pensadas
+  // para ir apareciendo una por una encima del auto durante el scroll-jacking de desktop -en
+  // mobile, sin ese mecanismo, quedaban todas apiladas sueltas con espacios enormes entre
+  // sí (se ven "flotando" en un fondo negro altísimo). Los mismos datos (ángulo de
+  // aproximación/salida, altura al suelo, profundidad de vadeo) ya están en los "stats" de
+  // abajo en formato tarjeta, prolijo -así que en mobile mostramos sólo eso, sin los overlays.
   const statSteps = slide.steps.filter((s) => s.stats)
   return (
     <section className="bj40pro-mobile__block">
       <div className="bj40pro-mobile__text">
         <h2>{slide.heading}</h2>
-      </div>
-      <div className="bj40pro-mobile__diagrams">
-        {diagrams.map((src) => <img key={src} className="bj40pro-mobile__diagram" src={src} alt="" loading="lazy" />)}
       </div>
       {statSteps.map((step, idx) => (
         <div className="bj40pro-mobile__stats" key={idx}>

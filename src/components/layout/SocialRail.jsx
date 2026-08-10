@@ -1,4 +1,4 @@
-import { ChevronUpIcon, InstagramIcon, FacebookIcon, YoutubeIcon, LinkedinIcon, WhatsappIcon } from '../icons/index.js'
+import { ChevronUpIcon, InstagramIcon, WhatsappIcon } from '../icons/index.js'
 import { socialLinks } from '../../data/dealers.js'
 
 export default function SocialRail() {
@@ -12,15 +12,6 @@ export default function SocialRail() {
         </button>
         <a className="social-rail__item" href={socialLinks.instagram} target="_blank" rel="noreferrer" aria-label="Instagram">
           <InstagramIcon size={18} />
-        </a>
-        <a className="social-rail__item" href={socialLinks.facebook} target="_blank" rel="noreferrer" aria-label="Facebook">
-          <FacebookIcon size={18} />
-        </a>
-        <a className="social-rail__item" href={socialLinks.youtube} target="_blank" rel="noreferrer" aria-label="Youtube">
-          <YoutubeIcon size={18} />
-        </a>
-        <a className="social-rail__item" href={socialLinks.linkedin} target="_blank" rel="noreferrer" aria-label="Linkedin">
-          <LinkedinIcon size={18} />
         </a>
       </div>
       <a className="whatsapp-float" href={socialLinks.whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp">

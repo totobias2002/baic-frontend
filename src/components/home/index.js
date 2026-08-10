@@ -1,4 +1,5 @@
 export { default as HeroSlider } from './HeroSlider.jsx'
+export { default as ComingSoonBanner } from './ComingSoonBanner.jsx'
 export { default as VideoBanner } from './VideoBanner.jsx'
 export { default as DoubleLinks } from './DoubleLinks.jsx'
 export { default as NewsSection } from './NewsSection.jsx'
