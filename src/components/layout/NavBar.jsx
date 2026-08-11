@@ -78,7 +78,7 @@ export default function NavBar() {
   return (
     <header className={`navbar ${modelsOpen ? 'navbar--active' : ''}`}>
       <div className="navbar__inner">
-        <Logo onClick={closeAll} />
+        <Logo onClick={closeAll} swapOnHover />
         <button className="menu-toggle" onClick={() => setMobileOpen((o) => !o)} aria-label="Abrir menú">
           &#9776;
         </button>

@@ -187,6 +187,18 @@ img{max-width:100%;display:block;}
    un cuadradito ilegible; lo agrandamos para que se lean las 3 líneas sin salirse del
    navbar (86px de alto). */
 .ui-logo__img{height:82px;width:auto;display:block;}
+/* Crossfade del logo del navbar: arranca con el logo de texto claro (legible sobre el hero
+   oscuro, navbar transparente) y cruza al de texto oscuro cuando el navbar se pone blanco
+   (hover o dropdown de Modelos abierto). El de texto oscuro define el tamaño de la caja
+   (normal flow); el claro va superpuesto encima con position:absolute. */
+.ui-logo__stack{position:relative;display:inline-block;}
+.ui-logo__stack .ui-logo__img{transition:opacity .25s ease;}
+.ui-logo__stack .ui-logo__img--dark{opacity:0;}
+.ui-logo__stack .ui-logo__img--light{position:absolute;top:0;left:0;opacity:1;filter:drop-shadow(0 1px 2px rgba(0,0,0,.85)) drop-shadow(0 0 6px rgba(0,0,0,.5));}
+.navbar:hover .ui-logo__stack .ui-logo__img--dark,
+.navbar--active .ui-logo__stack .ui-logo__img--dark{opacity:1;}
+.navbar:hover .ui-logo__stack .ui-logo__img--light,
+.navbar--active .ui-logo__stack .ui-logo__img--light{opacity:0;}
 .footer .ui-logo__img{height:92px;}
 
 /* Dropdown modelos: panel a todo el ancho, igual que el real (wpr-mega-menu full width, 6 + 4 en dos filas) */
@@ -893,6 +905,10 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
   .navbar{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.08);margin-bottom:0;}
   .navbar__inner{padding:0 16px;height:78px;}
   .ui-logo__img{height:68px;}
+  /* En mobile el navbar ya es blanco fijo (sin hover), así que el logo siempre tiene que
+     mostrar la versión de texto oscuro -el crossfade de desktop no aplica acá. */
+  .ui-logo__stack .ui-logo__img--dark{opacity:1;}
+  .ui-logo__stack .ui-logo__img--light{opacity:0;}
   /* Ojo: .navbar__links hereda justify-content:flex-end del layout desktop (para alinear a la
      derecha en fila). En mobile es flex-direction:column, y ese flex-end empuja TODO el stack
      al fondo -el "Modelos" + megamenu (oculto pero con alto real) terminaba arriba, fuera de
