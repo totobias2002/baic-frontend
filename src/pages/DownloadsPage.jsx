@@ -6,7 +6,7 @@ export default function DownloadsPage() {
   return (
     <>
       <section className="downloads-hero">
-        <h1>Centro de Descargas BAIC</h1>
+        <h1>Universo BAIC & ARCFOX</h1>
       </section>
       <div className="container downloads-page">
         <div className="downloads-grid">

@@ -34,7 +34,10 @@ export default function HeroSlider() {
       {heroSlides.map((slide, i) => (
         <div key={slide.id} className={`slide ${slide.variant ? `slide-${slide.variant}` : ''} ${i === current ? 'active' : ''}`}>
           {slide.image ? (
-            <img className="slide-bg-img" src={slide.image} alt={slide.title} />
+            <picture>
+              {slide.mobileImage && <source media="(max-width:900px)" srcSet={slide.mobileImage} />}
+              <img className="slide-bg-img" src={slide.image} alt={slide.title} />
+            </picture>
           ) : (
             <div className="ph">Banner {slide.title}</div>
           )}

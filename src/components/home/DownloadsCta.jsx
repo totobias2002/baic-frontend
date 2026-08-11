@@ -5,7 +5,7 @@ export default function DownloadsCta() {
   return (
     <div className="split-cta" style={{ backgroundImage: `url(${descargasImg})` }}>
       <div className="split-cta__content">
-        <h3>CENTRO DE DESCARGAS</h3>
+        <h3>UNIVERSO BAIC & ARCFOX</h3>
         <AppLink to="/descargas" className="ui-button ui-button--dark ui-button--md">VER MÁS</AppLink>
       </div>
     </div>
