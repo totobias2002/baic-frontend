@@ -1,14 +1,23 @@
 import { useState, useRef, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { Logo, AppNavLink } from '../ui/index.js'
 import { ChevronDownIcon } from '../icons/index.js'
 import ModelsMegaMenu from './ModelsMegaMenu.jsx'
+import ArcfoxMegaMenu from './ArcfoxMegaMenu.jsx'
 
 const CLOSE_DELAY = 400
 
 export default function NavBar() {
+  const location = useLocation()
+  // Las páginas de modelo (BAIC y ARCFOX) arrancan con fondo blanco debajo del navbar
+  // -no una foto de hero oscura como el home-, así que ahí el logo tiene que verse
+  // siempre en su variante oscura (nunca la clara, que quedaría invisible sobre blanco).
+  const forceDarkLogo = location.pathname.startsWith('/modelos/')
   const [modelsOpen, setModelsOpen] = useState(false)
+  const [arcfoxOpen, setArcfoxOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const closeTimer = useRef(null)
+  const arcfoxCloseTimer = useRef(null)
 
   // Con el menú mobile abierto, el panel de links (.navbar__links) es fixed y
   // scrollea su propio contenido -pero el <body> de atrás seguía siendo
@@ -48,6 +57,8 @@ export default function NavBar() {
 
   const openModels = () => {
     clearTimeout(closeTimer.current)
+    clearTimeout(arcfoxCloseTimer.current)
+    setArcfoxOpen(false)
     setModelsOpen(true)
   }
 
@@ -56,9 +67,23 @@ export default function NavBar() {
     closeTimer.current = setTimeout(() => setModelsOpen(false), CLOSE_DELAY)
   }
 
-  const closeAll = () => {
+  const openArcfox = () => {
+    clearTimeout(arcfoxCloseTimer.current)
     clearTimeout(closeTimer.current)
     setModelsOpen(false)
+    setArcfoxOpen(true)
+  }
+
+  const scheduleCloseArcfox = () => {
+    clearTimeout(arcfoxCloseTimer.current)
+    arcfoxCloseTimer.current = setTimeout(() => setArcfoxOpen(false), CLOSE_DELAY)
+  }
+
+  const closeAll = () => {
+    clearTimeout(closeTimer.current)
+    clearTimeout(arcfoxCloseTimer.current)
+    setModelsOpen(false)
+    setArcfoxOpen(false)
     setMobileOpen(false)
   }
 
@@ -69,14 +94,24 @@ export default function NavBar() {
   // que ahí sí necesitamos que el tap alterne.
   const handleTriggerClick = () => {
     if (mobileOpen) {
+      setArcfoxOpen(false)
       setModelsOpen((o) => !o)
     } else {
       openModels()
     }
   }
 
+  const handleArcfoxTriggerClick = () => {
+    if (mobileOpen) {
+      setModelsOpen(false)
+      setArcfoxOpen((o) => !o)
+    } else {
+      openArcfox()
+    }
+  }
+
   return (
-    <header className={`navbar ${modelsOpen ? 'navbar--active' : ''}`}>
+    <header className={`navbar ${modelsOpen || arcfoxOpen ? 'navbar--active' : ''} ${forceDarkLogo ? 'navbar--force-dark' : ''}`}>
       <div className="navbar__inner">
         <Logo onClick={closeAll} swapOnHover />
         <button className="menu-toggle" onClick={() => setMobileOpen((o) => !o)} aria-label="Abrir menú">
@@ -96,13 +131,21 @@ export default function NavBar() {
               onMouseLeave={mobileOpen ? undefined : scheduleClose}
             >
               <button className="navbar__models-trigger" onClick={handleTriggerClick}>
-                Modelos <ChevronDownIcon size={14} />
+                BAIC <ChevronDownIcon size={14} />
               </button>
               <ModelsMegaMenu onNavigate={closeAll} />
             </div>
-            <AppNavLink to="/nosotros" onClick={closeAll}>BAIC</AppNavLink>
-            <AppNavLink to="/concesionarios" onClick={closeAll}>Concesionarios</AppNavLink>
-            <AppNavLink to="/service" onClick={closeAll}>Service</AppNavLink>
+            <div
+              className={`dropdown ${arcfoxOpen ? 'open' : ''}`}
+              onMouseEnter={mobileOpen ? undefined : openArcfox}
+              onMouseLeave={mobileOpen ? undefined : scheduleCloseArcfox}
+            >
+              <button className="navbar__models-trigger" onClick={handleArcfoxTriggerClick}>
+                ARCFOX <ChevronDownIcon size={14} />
+              </button>
+              <ArcfoxMegaMenu onNavigate={closeAll} />
+            </div>
+            <AppNavLink to="/nosotros" onClick={closeAll}>Empresa</AppNavLink>
             <AppNavLink to="/novedades" onClick={closeAll}>Novedades</AppNavLink>
             <AppNavLink to="/contacto" onClick={closeAll}>Contacto</AppNavLink>
           </div>

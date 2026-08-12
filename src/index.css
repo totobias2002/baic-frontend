@@ -199,6 +199,10 @@ img{max-width:100%;display:block;}
 .navbar--active .ui-logo__stack .ui-logo__img--dark{opacity:1;}
 .navbar:hover .ui-logo__stack .ui-logo__img--light,
 .navbar--active .ui-logo__stack .ui-logo__img--light{opacity:0;}
+/* Páginas de modelo (fondo blanco debajo del navbar, no una foto de hero): logo siempre
+   oscuro, en reposo y en hover -la variante clara no tiene contra qué contrastar ahí. */
+.navbar--force-dark .ui-logo__stack .ui-logo__img--dark{opacity:1;}
+.navbar--force-dark .ui-logo__stack .ui-logo__img--light{opacity:0;}
 .footer .ui-logo__img{height:92px;}
 
 /* Dropdown modelos: panel a todo el ancho, igual que el real (wpr-mega-menu full width, 6 + 4 en dos filas) */
@@ -206,6 +210,9 @@ img{max-width:100%;display:block;}
 .megamenu{position:absolute;top:100%;left:0;right:0;width:100%;background:#fff;box-shadow:0 12px 30px rgba(0,0,0,.15);padding:24px 8px;display:flex;flex-direction:column;gap:24px;border-top:3px solid var(--baic-rojo);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-10px);transition:opacity .35s ease,transform .35s ease,visibility 0s linear .35s;}
 .dropdown.open .megamenu{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0);transition:opacity .35s ease,transform .35s ease,visibility 0s linear 0s;}
 .megamenu__row{display:grid;grid-template-columns:repeat(6,1fr);gap:0;}
+.megamenu__row--4{grid-template-columns:repeat(4,1fr);}
+.megamenu--soon{padding:40px 24px;align-items:center;justify-content:center;text-align:center;}
+.megamenu__soon-text{font-size:1.05rem;font-weight:500;color:var(--baic-negro);max-width:520px;margin:0 auto;}
 .model-card{text-align:center;display:block;padding:0 10px;box-sizing:border-box;}
 .model-card .ph{aspect-ratio:2.2/1;border-radius:4px;margin-bottom:20px;}
 .model-card__img{aspect-ratio:2.2/1;object-fit:contain;margin-bottom:20px;width:100%;}
@@ -362,7 +369,7 @@ img{max-width:100%;display:block;}
 
 /* Footer BAIC */
 .footer{background:var(--baic-footer);color:#ccc;padding:60px 0 0;margin-top:0;}
-.footer__inner{max-width:1200px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:30px;margin-bottom:40px;align-items:start;}
+.footer__inner{max-width:1200px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;gap:30px;margin-bottom:40px;align-items:start;}
 .footer h5{color:#fff;font-size:.9rem;text-transform:uppercase;letter-spacing:.5px;margin:0 0 10px;font-weight:700;}
 .footer__rule{display:block;width:28px;height:2px;background:var(--baic-rojo);margin-bottom:14px;}
 .footer ul{list-style:none;margin:0;padding:0;}
@@ -570,7 +577,24 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
 .vehicle-photogrid--single .vehicle-photogrid__title{font-size:1.4rem;text-transform:uppercase;letter-spacing:.5px;}
 .vehicle-photogrid--single .vehicle-photogrid__title::after{content:'';display:block;width:70px;height:3px;background:var(--baic-rojo);margin-top:12px;}
 .vehicle-photogrid--single .vehicle-photogrid__text{font-size:.95rem;max-width:520px;}
-.vehicle-photogrid--single .vehicle-photogrid__item:hover .vehicle-photogrid__text,.vehicle-photogrid--single .vehicle-photogrid__item.is-open .vehicle-photogrid__text{max-height:220px;}
+/* Desktop: en las secciones de foto completa (hoverReveal), antes cualquier punto de la
+   pantalla -incluso arriba, lejos del título- oscurecía toda la foto. Ahora el oscurecido +
+   despliegue del texto sólo se activa pasando el mouse sobre el título/texto (.caption), no
+   sobre la foto entera -así se puede mirar la foto limpia y sólo se tapa si te interesa leer.
+   .item:hover general queda anulado acá y se reemplaza por :has(.caption:hover). */
+.vehicle-photogrid--single .vehicle-photogrid__item:hover{filter:none;}
+.vehicle-photogrid--single .vehicle-photogrid__item:hover::after{background:rgba(8,8,10,0);}
+.vehicle-photogrid--single .vehicle-photogrid__item:hover .vehicle-photogrid__text{max-height:0;opacity:0;margin-top:0;}
+/* Ya no hay nada clickeable acá en desktop (el despliegue es solo por hover), así que el
+   cursor no debe insinuar que se puede tocar/clickear. */
+.vehicle-photogrid--single .vehicle-photogrid__item{cursor:default;}
+.vehicle-photogrid--single .vehicle-photogrid__caption{cursor:default;}
+.vehicle-photogrid--single .vehicle-photogrid__item:has(.vehicle-photogrid__caption:hover),
+.vehicle-photogrid--single .vehicle-photogrid__item.is-open{filter:saturate(.3) brightness(.75);}
+.vehicle-photogrid--single .vehicle-photogrid__item:has(.vehicle-photogrid__caption:hover)::after,
+.vehicle-photogrid--single .vehicle-photogrid__item.is-open::after{background:rgba(8,8,10,.4);}
+.vehicle-photogrid--single .vehicle-photogrid__item:has(.vehicle-photogrid__caption:hover) .vehicle-photogrid__text,
+.vehicle-photogrid--single .vehicle-photogrid__item.is-open .vehicle-photogrid__text{max-height:220px;opacity:1;margin-top:8px;}
 
 /* "CONECTÁ CON TU ESTILO": logo BJ40 PLUS arriba a la izquierda en vez del
    título centrado abajo, calcado del sitio real. */

@@ -1,7 +1,6 @@
 export { default as HomePage } from './HomePage.jsx'
 export { default as VehicleDetailPage } from './VehicleDetailPage.jsx'
 export { default as Bj40ProPage } from './Bj40ProPage.jsx'
-export { default as DealersPage } from './DealersPage.jsx'
 export { default as NewsPage } from './NewsPage.jsx'
 export { default as NewsDetailPage } from './NewsDetailPage.jsx'
 export { default as ContactPage } from './ContactPage.jsx'

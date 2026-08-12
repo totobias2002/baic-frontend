@@ -32,7 +32,7 @@ import logo8 from '../assets/images/hero/carousel/carousel-8.png'
 // position/logoClass/variant replican exactamente las clases pos-left/pos-right, logo-arcfox
 // y el override especial de la slide x55hybrid tal como están en baic.com.ar (inspeccionado con devtools).
 export const heroSlides = [
-  { id: 'x55ii-hybrid', title: 'X55 II HYBRID', cta: 'RED DE CONCESIONARIOS', to: '/concesionarios', image: x55iiHybrid, mobileImage: x55iiHybridMobile, logo: logo1, position: 'left', variant: 'x55hybrid' },
+  { id: 'x55ii-hybrid', title: 'X55 II HYBRID', cta: 'DESCUBRILO', to: '/modelos/x55-ii', image: x55iiHybrid, mobileImage: x55iiHybridMobile, logo: logo1, position: 'left', variant: 'x55hybrid' },
   { id: 'arcfox', title: 'ARCFOX', cta: 'DESCUBRILOS', to: 'https://arcfox.com.ar/', image: arcfox, mobileImage: arcfoxMobile, logo: logo2, position: 'left', logoClass: 'logo-arcfox' },
   { id: 'bj40-pro', title: 'BJ40 PRO', cta: 'DESCUBRILO', to: '/modelos/bj40-pro', image: bj40pro, mobileImage: bj40proMobile, logo: logo3, position: 'left' },
   { id: 'bj30', title: 'BJ30', cta: 'DESCUBRILO', to: '/modelos/bj30-4x4', image: bj30, mobileImage: bj30Mobile, logo: logo4, position: 'right' },

@@ -4,7 +4,6 @@ import {
   HomePage,
   VehicleDetailPage,
   Bj40ProPage,
-  DealersPage,
   NewsPage,
   NewsDetailPage,
   ContactPage,
@@ -22,7 +21,6 @@ export default function AppRoutes() {
         <Route path="/" element={<HomePage />} />
         <Route path="/modelos/bj40-pro" element={<Bj40ProPage />} />
         <Route path="/modelos/:slug" element={<VehicleDetailPage />} />
-        <Route path="/concesionarios" element={<DealersPage />} />
         <Route path="/novedades" element={<NewsPage />} />
         <Route path="/novedades/:newsId" element={<NewsDetailPage />} />
         <Route path="/contacto" element={<ContactPage />} />

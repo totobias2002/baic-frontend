@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchVehicleBySlug, selectVehicleDetail, selectVehicleDetailStatus } from '../features/vehicleDetail/index.js'
 import { modelDetails } from '../data/modelDetails.js'
+import { arcfoxModelDetails } from '../data/arcfoxModelDetails.js'
 
 function formatStatValue(current, original) {
   const isDecimal = String(original).includes('.')
@@ -114,7 +115,14 @@ function Section({ section, index }) {
         <div
           className={`vehicle-photogrid__item ${section.staticReveal ? 'vehicle-photogrid__item--static' : ''} ${openIndex === 0 ? 'is-open' : ''}`}
           style={section.fullPhoto ? undefined : { backgroundImage: `url(${section.bg})`, backgroundPosition: section.bgPosition }}
-          onClick={() => setOpenIndex((cur) => (cur === 0 ? null : 0))}
+          onClick={() => {
+            // En desktop el despliegue es solo por hover cerca del título/texto (CSS
+            // :has(.caption:hover)) -el click no debe hacer nada ahí. En mobile no hay
+            // hover real, así que el tap sigue siendo la única forma de abrirlo.
+            if (window.matchMedia('(max-width: 900px)').matches) {
+              setOpenIndex((cur) => (cur === 0 ? null : 0))
+            }
+          }}
         >
           {section.fullPhoto && <img src={section.bg} alt="" className="vehicle-photogrid__full-img" />}
           <span className="vehicle-photogrid__scrim" />
@@ -830,7 +838,7 @@ export default function VehicleDetailPage() {
   const dispatch = useDispatch()
   const vehicle = useSelector(selectVehicleDetail)
   const status = useSelector(selectVehicleDetailStatus)
-  const detail = modelDetails[slug]
+  const detail = modelDetails[slug] || arcfoxModelDetails[slug]
   const [colorIndex, setColorIndex] = useState(0)
   const containerRef = useRef(null)
   const isAnimatingRef = useRef(false)
