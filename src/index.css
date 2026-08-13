@@ -250,6 +250,13 @@ img{max-width:100%;display:block;}
 .slide-logo.logo-arcfox{max-width:420px;}
 .slide-cta{display:inline-block;padding:.8em 2.5em;border:2px solid #fff;border-radius:50px;color:#fff;text-decoration:none;font-family:'HarmonyOS Sans',sans-serif;font-size:clamp(0.7rem,1vw,1rem);font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:all .3s ease;backdrop-filter:blur(2px);white-space:nowrap;}
 .slide-cta:hover{background:#fff;color:#000;}
+/* Texto promocional de la slide X55 II Hybrid (antes venía "quemado" en la foto de fondo).
+   Va dentro de slide-content, que ya es flex-column, así que cae en flujo normal debajo del
+   botón sin pisar nunca al auto -no depende de coordenadas fijas ni de la resolución de la foto. */
+.slide-promo{display:flex;flex-direction:column;margin-top:clamp(14px,3vw,38px);}
+.slide-promo__label{font-size:clamp(.6rem,1vw,.85rem);letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.9);font-weight:700;text-shadow:0 2px 10px rgba(0,0,0,.85),0 0 3px rgba(0,0,0,.6);}
+.slide-promo__big{font-size:clamp(1.3rem,4.2vw,2.8rem);font-weight:800;line-height:1.08;text-transform:uppercase;color:#fff;letter-spacing:.01em;text-shadow:0 2px 14px rgba(0,0,0,.85),0 0 4px rgba(0,0,0,.6);}
+.slide-promo__big--accent{color:#fff;-webkit-text-stroke:.5px rgba(0,0,0,.25);}
 @media (min-width:1025px){
   .slide-content{top:50%;transform:translateY(-50%);}
   .pos-left{left:8%;align-items:flex-start;}
@@ -259,6 +266,16 @@ img{max-width:100%;display:block;}
   .slide-x55hybrid .slide-content{top:18%;transform:none;}
   .slide-x55hybrid .slide-logo{max-width:380px;margin-bottom:20px;}
   .slide-x55hybrid .slide-cta{padding:.9em 2.8em;font-size:clamp(0.75rem,1.1vw,1.1rem);}
+  /* Fotos de perfil (auto ocupando casi todo el ancho): el logo/botón se fijan arriba del
+     techo del auto, que es la única franja libre en todo el ancho de la imagen. */
+  .slide-topband .slide-content{top:9%;transform:none;}
+  /* Variante con más margen abajo del techo (u5-plus): a la izquierda pisaba el logo del
+     navbar con el top:9% de arriba, así que baja más -esta foto tiene margen de sobra. */
+  .slide-topband-low .slide-content{top:19%;transform:none;}
+  /* x55-ii: el auto (3/4 trasero) llega bastante a la izquierda de la foto y el logo "X55 II"
+     quedaba casi tocando la rueda trasera con el left:8% default -unos puntos más a la
+     izquierda alcanza para separarlo del auto sin salirse de la franja oscura del overlay. */
+  #slide-x55-ii .slide-content{left:4%;}
 }
 @media (max-width:1024px){
   .slide-content{top:12%;transform:none;}
@@ -323,7 +340,7 @@ img{max-width:100%;display:block;}
 /* Noticias */
 .section{padding:70px 0;}
 .section--dark{background:var(--baic-navy);color:#fff;}
-.section-title{position:relative;text-align:center;font-size:1.7rem;font-weight:700;letter-spacing:1px;margin-bottom:30px;padding-bottom:18px;}
+.section-title{position:relative;text-align:center;font-size:1.7rem;font-weight:700;letter-spacing:1px;margin-bottom:52px;padding-bottom:18px;}
 .section-title::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:56px;height:3px;background:var(--baic-rojo);}
 .section--dark .section-title{color:#fff;}
 .section-title span{color:var(--baic-rojo);}

@@ -32,7 +32,7 @@ export default function HeroSlider() {
   return (
     <section className="hero">
       {heroSlides.map((slide, i) => (
-        <div key={slide.id} className={`slide ${slide.variant ? `slide-${slide.variant}` : ''} ${i === current ? 'active' : ''}`}>
+        <div key={slide.id} id={`slide-${slide.id}`} className={`slide ${slide.variant ? `slide-${slide.variant}` : ''} ${i === current ? 'active' : ''}`}>
           {slide.image ? (
             <picture>
               {slide.mobileImage && <source media="(max-width:900px)" srcSet={slide.mobileImage} />}
@@ -52,6 +52,14 @@ export default function HeroSlider() {
               <a href={slide.to} target="_blank" rel="noreferrer" className="slide-cta">{slide.cta}</a>
             ) : (
               <AppLink to={slide.to} className="slide-cta">{slide.cta}</AppLink>
+            )}
+            {slide.promo && (
+              <div className="slide-promo">
+                <span className="slide-promo__label">{slide.promo.top}</span>
+                <span className="slide-promo__big">{slide.promo.big[0]}</span>
+                <span className="slide-promo__big slide-promo__big--accent">{slide.promo.big[1]}</span>
+                <span className="slide-promo__label">{slide.promo.bottom}</span>
+              </div>
             )}
           </div>
         </div>

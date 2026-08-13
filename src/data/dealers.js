@@ -93,5 +93,5 @@ export const socialLinks = {
   facebook: 'https://facebook.com/baicargentina',
   youtube: 'https://www.youtube.com/channel/UCgs9-cuY9kvidN4ofkPgtGQ',
   linkedin: 'https://www.linkedin.com/company/baicargentina/',
-  whatsapp: 'https://wa.me/5490000000000'
+  whatsapp: 'https://wa.me/5491150008106'
 }
