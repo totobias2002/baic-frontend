@@ -89,7 +89,7 @@ export const dealers = [
 
 // Datos propios de la concesionaria: reemplazar por los de cada dealer al duplicar el sitio.
 export const socialLinks = {
-  instagram: 'https://instagram.com/baicargentina',
+  instagram: 'https://www.instagram.com/baicpacheco/',
   facebook: 'https://facebook.com/baicargentina',
   youtube: 'https://www.youtube.com/channel/UCgs9-cuY9kvidN4ofkPgtGQ',
   linkedin: 'https://www.linkedin.com/company/baicargentina/',
