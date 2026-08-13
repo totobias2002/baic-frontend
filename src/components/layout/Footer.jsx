@@ -31,7 +31,6 @@ export default function Footer() {
             <li><AppLink to="/nosotros">Empresa</AppLink></li>
             <li><AppLink to="/vision">Visión</AppLink></li>
             <li><AppLink to="/contacto">Contacto</AppLink></li>
-            <li><AppLink to="/descargas">Universo BAIC & ARCFOX</AppLink></li>
           </ul>
         </div>
         <div>

@@ -175,13 +175,26 @@ img{max-width:100%;display:block;}
    display:contents, que "desaparece" la caja y deja a sus hijos como si fueran directos de
    .navbar__links (que sigue siendo el flex row de siempre). */
 .navbar__scroll{display:contents;}
-.navbar__models-trigger{background:none;border:none;display:flex;align-items:center;gap:4px;font-size:1rem;font-weight:600;text-transform:uppercase;letter-spacing:normal;cursor:pointer;color:var(--baic-negro);}
+.navbar__models-trigger{background:none;border:none;display:flex;align-items:center;gap:4px;font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:normal;cursor:pointer;color:var(--baic-negro);}
 .menu-toggle{display:none;font-size:1.6rem;background:none;border:none;color:var(--baic-negro);}
-.navbar .ui-navlink{color:var(--baic-negro);text-transform:uppercase;font-size:1rem;font-weight:600;letter-spacing:normal;padding:15px 0;line-height:1rem;transition:color .2s ease;}
+.navbar .ui-navlink{color:var(--baic-negro);text-transform:uppercase;font-size:1rem;font-weight:700;letter-spacing:normal;padding:15px 0;line-height:1rem;transition:color .2s ease,text-shadow .2s ease;}
 .navbar .ui-navlink:hover{color:var(--baic-rojo);}
 .navbar .ui-navlink--active{color:var(--baic-rojo);}
 .navbar__models-trigger:hover{color:var(--baic-rojo);}
+/* Con el navbar flotando transparente sobre la foto del hero, el texto negro se pierde en
+   las zonas oscuras de algunas fotos (igual que le pasaba al logo, que ya usa drop-shadow
+   claro para el mismo problema). Antes solo tenía un halo claro -ayudaba contra fondos
+   oscuros pero seguía constando contra fondos medios/ruidosos-, así que ahora es un
+   "contorno" en las dos direcciones (halo claro + sombra oscura apretada al trazo) para que
+   la letra se despegue sin importar qué tan clara u oscura sea la zona de la foto debajo. Se
+   saca apenas el navbar pasa a blanco (hover/abierto) o en las páginas de modelo (fondo
+   blanco fijo, ahí no hace falta). */
+.navbar:not(:hover):not(.navbar--active):not(.navbar--force-dark) .ui-navlink,
+.navbar:not(:hover):not(.navbar--active):not(.navbar--force-dark) .navbar__models-trigger{
+  text-shadow:0 0 7px rgba(255,255,255,.95),0 0 16px rgba(255,255,255,.7),0 1px 3px rgba(0,0,0,.5),0 0 1px rgba(0,0,0,.9);
+}
 .ui-logo{display:inline-flex;align-items:center;}
+.navbar .ui-logo{margin-left:100px;}
 /* El logo nuevo (BAIC + ARCFOX + PACHECO apilados) es un cuadrado -mucho más alto en
    proporción que el anterior (BAIC + PACHECO en 2 líneas cortas). A 40px de alto quedaba
    un cuadradito ilegible; lo agrandamos para que se lean las 3 líneas sin salirse del
@@ -500,7 +513,7 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
 .vehicle-section__inner{position:relative;z-index:1;max-width:620px;padding:70px 8%;}
 .vehicle-section.is-right .vehicle-section__inner{margin-left:auto;text-align:right;}
 .vehicle-section h2{font-size:1.7rem;font-weight:800;text-transform:uppercase;margin:0 0 16px;line-height:1.2;text-shadow:0 2px 10px rgba(0,0,0,.55);}
-.vehicle-section h2::after{content:'';display:block;width:70px;height:3px;background:var(--baic-rojo);margin-top:14px;}
+.vehicle-section h2:not(.vehicle-spectable__title)::after{content:'';display:block;width:70px;height:3px;background:var(--baic-rojo);margin-top:14px;}
 .vehicle-section.is-right h2::after{margin-left:auto;}
 .vehicle-section p{font-size:1.05rem;line-height:1.6;margin:0 0 10px;color:#f1f1f1;text-shadow:0 1px 6px rgba(0,0,0,.5);}
 
@@ -520,17 +533,39 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
    normal por debajo, sin que la foto se recorte/zoom-e contra la altura total. */
 .vehicle-stats-section--tall{height:auto;overflow:visible;}
 .vehicle-stats-section__frame{position:relative;width:100%;height:100vh;overflow:hidden;flex:none;}
-.vehicle-stats-section__photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;}
+.vehicle-stats-section__photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--stats-photo-pos, center);z-index:0;background-color:#e7e7e8;}
+/* Para fotos "producto" (auto aislado, con mucho aire alrededor -como la de las medidas-)
+   forzar cover corta la parte de arriba del auto. Con esta variante se ve la foto entera
+   (sin recortar) en desktop; en mobile la media query de abajo la vuelve a poner en cover
+   a propósito, iguel que el resto. */
+.vehicle-stats-section__photo--contain{object-fit:contain;object-position:85% center;}
 .vehicle-stats-section__logo{position:absolute;top:36px;left:50%;transform:translateX(-50%);height:56px;width:auto;z-index:1;filter:drop-shadow(0 2px 10px rgba(0,0,0,.55));}
-.vehicle-stats--center{position:absolute;left:0;right:0;bottom:36px;z-index:1;justify-content:center;gap:24px 56px;padding:0 5%;text-shadow:0 2px 10px rgba(0,0,0,.7);}
+/* Degradé oscuro en la franja inferior (donde caen los números) para que el texto se
+   lea bien incluso sobre fotos claras/blancas de producto, igual que ya se hacía en mobile. */
+.vehicle-stats-section__frame::after{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;background:linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 22%, rgba(0,0,0,.7) 50%, rgba(0,0,0,.2) 78%, rgba(0,0,0,0) 100%);z-index:1;pointer-events:none;}
+.vehicle-stats--center{position:absolute;left:0;right:0;bottom:36px;z-index:2;justify-content:center;gap:24px 56px;padding:0 5%;text-shadow:0 1px 2px rgba(0,0,0,.9),0 2px 14px rgba(0,0,0,.85);}
+.vehicle-stats--center .vehicle-stats__value{color:#fff;}
+.vehicle-stats--center .vehicle-stats__value strong{color:#fff;}
+.vehicle-stats--center .vehicle-stats__label{color:#e2e2e2;}
 
 .vehicle-photogrid{height:100vh;display:grid;align-items:stretch;gap:10px;padding:10px;box-sizing:border-box;background:var(--baic-negro);}
-.vehicle-photogrid__item{position:relative;overflow:hidden;background-size:cover;background-position:center;border-radius:4px;cursor:pointer;transition:filter .35s ease;}
+.vehicle-photogrid__item{position:relative;overflow:hidden;background-size:cover;background-position:center;border-radius:4px;cursor:pointer;transition:filter .35s ease;touch-action:manipulation;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;}
+/* La imagen de fondo (fullPhoto) y el scrim quedan "transparentes" al tacto -así el tap
+   en CUALQUIER punto de la foto (no solo donde no hay <img>) llega directo al div padre,
+   que es el que abre/cierra el texto. Sin esto, en algunos celulares el navegador
+   intercepta el toque sobre la <img> (menú de guardar imagen, arrastre) y el tap no
+   siempre "prende". */
+.vehicle-photogrid__full-img{pointer-events:none;-webkit-user-drag:none;-webkit-touch-callout:none;}
+.vehicle-photogrid__scrim{pointer-events:none;}
 .vehicle-photogrid__item:hover,.vehicle-photogrid__item.is-open{filter:saturate(.3) brightness(.75);}
 .vehicle-photogrid__item::after{content:'';position:absolute;inset:0;background:rgba(8,8,10,0);transition:background .35s ease;pointer-events:none;}
 .vehicle-photogrid__item:hover::after,.vehicle-photogrid__item.is-open::after{background:rgba(8,8,10,.4);}
 .vehicle-photogrid__scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55),transparent 45%);}
-.vehicle-photogrid__caption{position:absolute;left:20px;right:20px;bottom:16px;z-index:1;}
+.vehicle-photogrid__caption{position:absolute;left:20px;right:20px;bottom:16px;z-index:1;touch-action:manipulation;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;}
+/* El texto (título/párrafo/lista) también tiene que "dejar pasar" el tap hacia el
+   div padre -si no, tocar justo arriba de una letra puede intentar seleccionar texto
+   en vez de disparar el toggle abrir/cerrar. */
+.vehicle-photogrid__caption *{pointer-events:none;}
 .vehicle-photogrid__title{display:block;color:#fff;font-weight:700;font-size:1.1rem;}
 .vehicle-photogrid__text{max-height:0;opacity:0;overflow:hidden;margin:0;color:#e8e8e8;font-size:.85rem;line-height:1.5;transition:max-height .35s ease,opacity .3s ease .05s,margin-top .35s ease;}
 .vehicle-photogrid__item:hover .vehicle-photogrid__text,.vehicle-photogrid__item.is-open .vehicle-photogrid__text{max-height:160px;opacity:1;margin-top:8px;}
@@ -595,6 +630,15 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
 .vehicle-photogrid--single .vehicle-photogrid__item.is-open::after{background:rgba(8,8,10,.4);}
 .vehicle-photogrid--single .vehicle-photogrid__item:has(.vehicle-photogrid__caption:hover) .vehicle-photogrid__text,
 .vehicle-photogrid--single .vehicle-photogrid__item.is-open .vehicle-photogrid__text{max-height:220px;opacity:1;margin-top:8px;}
+/* Mismo criterio para las secciones tipo 'list'/'stats' (ESPACIO FLEXIBLE, SMART ASSISTS,
+   etc.): el .item:hover general de más abajo las despliega con solo pasar el mouse por
+   toda la foto -acá se anula y se reemplaza por hover sobre el título/caption únicamente. */
+.vehicle-photogrid--single .vehicle-photogrid__item:hover .vehicle-photogrid__list,
+.vehicle-photogrid--single .vehicle-photogrid__item:hover .vehicle-photogrid__stats{max-height:0;opacity:0;margin-top:0;}
+.vehicle-photogrid--single .vehicle-photogrid__item:has(.vehicle-photogrid__caption:hover) .vehicle-photogrid__list,
+.vehicle-photogrid--single .vehicle-photogrid__item.is-open .vehicle-photogrid__list{max-height:600px;opacity:1;margin-top:10px;}
+.vehicle-photogrid--single .vehicle-photogrid__item:has(.vehicle-photogrid__caption:hover) .vehicle-photogrid__stats,
+.vehicle-photogrid--single .vehicle-photogrid__item.is-open .vehicle-photogrid__stats{max-height:600px;opacity:1;margin-top:10px;}
 
 /* "CONECTÁ CON TU ESTILO": logo BJ40 PLUS arriba a la izquierda en vez del
    título centrado abajo, calcado del sitio real. */
@@ -890,6 +934,12 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
 .downloads-hero{background:var(--baic-navy);color:#fff;text-align:center;padding:160px 20px 54px;}
 .downloads-hero h1{margin:0;font-size:2.3rem;font-weight:700;}
 .downloads-page{padding:70px 0;max-width:1440px;}
+/* Agrupamos las cards por marca (BAIC / ARCFOX) para que se note claramente cuáles son
+   de cada una, en vez de un único grid mezclado. */
+.downloads-page__group{margin-bottom:64px;}
+.downloads-page__group:last-child{margin-bottom:0;}
+.downloads-page__group-heading{margin:0 0 10px;font-size:1.1rem;font-weight:800;letter-spacing:1.5px;color:var(--baic-negro);}
+.downloads-page__group-rule{display:block;width:56px;height:3px;background:var(--baic-rojo);margin-bottom:32px;}
 /* Grid stretch (default de CSS Grid) hace que cada card mida el alto de la fila más alta;
    con la card en flex-column y la foto en flex:1, el auto queda centrado arriba pero el
    botón cae siempre a la misma altura en toda la fila, sin importar cuánto "ocupe" cada
@@ -901,6 +951,9 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
 .download-card__btn{display:inline-flex;align-items:center;gap:8px;background:var(--baic-negro);color:#fff;border-radius:24px;padding:13px 22px;font-size:.78rem;font-weight:600;letter-spacing:.3px;text-transform:uppercase;white-space:nowrap;transition:background .2s ease;}
 .download-card__btn:hover{background:var(--baic-rojo);}
 .download-card__btn svg{width:14px;height:14px;}
+/* Botón sin link real todavía (ARCFOX): queda visible pero apagado y no clickeable,
+   como placeholder hasta cargar la carpeta de Drive definitiva. */
+.download-card__btn--disabled{background:#d8d8da;color:#8a8a8d;cursor:not-allowed;pointer-events:none;}
 @media(max-width:900px){
   /* El navbar mobile es sólido y sin overlap (ver comentario en la sección del navbar), así
      que acá no hace falta compensar los 160px que sí necesita desktop contra el navbar
@@ -908,6 +961,9 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
   .downloads-hero{padding:28px 24px 26px;}
   .downloads-hero h1{font-size:1.5rem;line-height:1.3;}
   .downloads-page{padding:36px 0 40px;max-width:none;}
+  .downloads-page__group{margin-bottom:40px;}
+  .downloads-page__group-heading{font-size:.95rem;}
+  .downloads-page__group-rule{margin-bottom:24px;}
   .downloads-grid{grid-template-columns:1fr;gap:36px;}
   .download-card{height:auto;}
   .download-card h4{font-size:1.15rem;margin:0 0 18px;}
@@ -929,6 +985,8 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
   .navbar{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.08);margin-bottom:0;}
   .navbar__inner{padding:0 16px;height:78px;}
   .ui-logo__img{height:68px;}
+  /* El corrimiento a la derecha del logo es solo para desktop -en mobile queda como estaba. */
+  .navbar .ui-logo{margin-left:0;}
   /* En mobile el navbar ya es blanco fijo (sin hover), así que el logo siempre tiene que
      mostrar la versión de texto oscuro -el crossfade de desktop no aplica acá. */
   .ui-logo__stack .ui-logo__img--dark{opacity:1;}
@@ -1063,6 +1121,21 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
   .vehicle-photogrid__item.is-open .vehicle-photogrid__list{max-height:600px;opacity:1;margin-top:10px;}
   .vehicle-photogrid__item.is-open .vehicle-photogrid__stats{max-height:600px;opacity:1;margin-top:10px;}
   .vehicle-photogrid__item.is-open .vehicle-photogrid__text{opacity:1;margin-top:8px;}
+  /* Mismo problema que arriba, pero para la variante --single (hoverReveal): esa
+     usa sus PROPIAS reglas de hover/:has(caption:hover) -no las genéricas de arriba-
+     así que había que anularlas acá también. Sin esto, tocar el título/texto para
+     cerrar dejaba el simulado ":hover" del navegador "pegado" en la caption, y la
+     foto se seguía viendo abierta aunque el estado real (is-open) ya hubiera
+     cambiado a cerrado -por eso cerraba tocando el texto pero no tocando el resto
+     de la foto. Ahora todo depende solo de is-open, nunca del hover simulado. */
+  .vehicle-photogrid--single .vehicle-photogrid__item:hover:not(.is-open){filter:none;}
+  .vehicle-photogrid--single .vehicle-photogrid__item:hover:not(.is-open)::after{background:rgba(8,8,10,0);}
+  .vehicle-photogrid--single .vehicle-photogrid__item:hover:not(.is-open) .vehicle-photogrid__text{max-height:0;opacity:0;margin-top:0;}
+  .vehicle-photogrid--single .vehicle-photogrid__item:has(.vehicle-photogrid__caption:hover):not(.is-open){filter:none;}
+  .vehicle-photogrid--single .vehicle-photogrid__item:has(.vehicle-photogrid__caption:hover):not(.is-open)::after{background:rgba(8,8,10,0);}
+  .vehicle-photogrid--single .vehicle-photogrid__item:has(.vehicle-photogrid__caption:hover):not(.is-open) .vehicle-photogrid__text{max-height:0;opacity:0;margin-top:0;}
+  .vehicle-photogrid--single .vehicle-photogrid__item:has(.vehicle-photogrid__caption:hover):not(.is-open) .vehicle-photogrid__list{max-height:0;opacity:0;margin-top:0;}
+  .vehicle-photogrid--single .vehicle-photogrid__item:has(.vehicle-photogrid__caption:hover):not(.is-open) .vehicle-photogrid__stats{max-height:0;opacity:0;margin-top:0;}
   .vehicle-photogrid--big-left-2top-1bottom .vehicle-photogrid__item,
   .vehicle-photogrid--big-left-2-stack .vehicle-photogrid__item,
   .vehicle-photogrid--2stack-big-right .vehicle-photogrid__item,
@@ -1138,7 +1211,52 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
   .vehicle-stats-section{height:auto;overflow:hidden;padding:0;}
   .vehicle-section.vehicle-stats-section{min-height:0;}
   .vehicle-stats-section__frame{position:relative;width:100%;height:auto;min-height:520px;}
-  .vehicle-stats-section__photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;}
+  /* Cuando pedimos que la foto se vea completa (auto entero, sin recortar los costados),
+     el frame toma la proporción real de la foto en vez de una altura fija -así "cover"
+     no tiene nada para recortar, porque el marco ya tiene la misma forma que la imagen. */
+  .vehicle-stats-section__frame--fit-m{height:calc(100vw / var(--stats-frame-ratio-m, 1.7778));min-height:0;}
+  .vehicle-stats-section__photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--stats-photo-pos-m, center);z-index:0;background-color:#e7e7e8;}
+  /* Cuando la foto es panorámica y pedimos que se vea completa en mobile (sin recortar),
+     la sacamos del position:absolute (deja de superponerse a los números, que ahí no se
+     leían) y queda en flujo normal arriba, con los números en una franja blanca aparte
+     debajo (sólo en mobile). */
+  .vehicle-stats-section__frame:has(.vehicle-stats-section__photo--contain-m){display:flex;flex-direction:column;height:auto;min-height:0;}
+  .vehicle-stats-section__photo--contain-m{position:static;width:100%;height:280px;object-fit:cover;object-position:center;display:block;background:#fff;}
+  .vehicle-stats-section__frame:has(.vehicle-stats-section__photo--contain-m)::after{content:none;}
+  .vehicle-stats-section__frame:has(.vehicle-stats-section__photo--contain-m) .vehicle-stats--center{position:static;background:#fff;padding:16px 4% 22px;margin:0;text-shadow:none;justify-content:center;}
+  .vehicle-stats-section__frame:has(.vehicle-stats-section__photo--contain-m) .vehicle-stats--center .vehicle-stats__value,
+  .vehicle-stats-section__frame:has(.vehicle-stats-section__photo--contain-m) .vehicle-stats--center .vehicle-stats__value strong{color:#111;}
+  .vehicle-stats-section__frame:has(.vehicle-stats-section__photo--contain-m) .vehicle-stats--center .vehicle-stats__label{color:#555;}
+  /* Variante "columna a la izquierda" (opt-in, sólo para el hero de ARCFOX S5): los
+     números van en columna a la izquierda con un degradé lateral, en vez del overlay
+     abajo-centro default. El default de --fit-m (sin este modificador) queda con el
+     comportamiento normal: números centrados abajo, sobre el degradé de siempre. */
+  .vehicle-stats-section__frame--textleft-m::after{background:linear-gradient(to right, rgba(0,0,0,.62) 0%, rgba(0,0,0,.28) 42%, rgba(0,0,0,0) 68%);height:100%;}
+  .vehicle-stats-section__frame--textleft-m .vehicle-stats--center{left:0;right:auto;top:0;bottom:0;width:auto;max-width:56%;flex-direction:column;flex-wrap:nowrap;align-items:flex-start;justify-content:center;text-align:left;gap:14px;padding:0 0 0 6%;}
+  .vehicle-stats-section__frame--textleft-m .vehicle-stats--center .vehicle-stats__label{white-space:normal;}
+  .vehicle-stats-section__frame--textleft-m .vehicle-stats--center .vehicle-stats__value{white-space:normal;}
+  /* Variante "texto abajo": misma foto completa (sin recortar) que --fit-m, pero en vez
+     de superponer los números sobre la foto (columna a la izquierda, como en --fit-m
+     solo), la foto pasa a flujo normal (ya no absolute) y los números quedan en su
+     propia franja blanca debajo -mismo criterio que ya usamos para fotos panorámicas
+     con .contain-m, sólo que acá no hay recorte de la foto. Va DESPUÉS de las reglas
+     de --fit-m de arriba para pisarlas (misma especificidad, gana el que está último). */
+  .vehicle-stats-section__frame--textbelow-m{display:flex;flex-direction:column;height:auto;min-height:0;}
+  .vehicle-stats-section__frame--textbelow-m .vehicle-stats-section__photo{position:static;width:100%;height:auto;aspect-ratio:var(--stats-frame-ratio-m, 16/9);inset:auto;display:block;}
+  .vehicle-stats-section__frame--textbelow-m::after{content:none;}
+  .vehicle-stats-section__frame--textbelow-m .vehicle-stats--center{position:static;left:auto;right:auto;top:auto;bottom:auto;width:auto;max-width:none;background:var(--baic-negro);padding:16px 4% 22px;margin:0;text-shadow:none;flex-direction:row;flex-wrap:wrap;align-items:flex-start;justify-content:center;text-align:center;gap:10px 8px;}
+  .vehicle-stats-section__frame--textbelow-m .vehicle-stats--center .vehicle-stats__value,
+  .vehicle-stats-section__frame--textbelow-m .vehicle-stats--center .vehicle-stats__value strong{color:#fff;}
+  .vehicle-stats-section__frame--textbelow-m .vehicle-stats--center .vehicle-stats__label{color:#bbb;}
+  /* Variante "tap para revelar" (opt-in): en vez de mostrar los números siempre encima
+     de la foto, quedan ocultos hasta que se toca la foto -igual que el resto de las
+     secciones (hoverReveal), donde el tap muestra/oculta la descripción en vez de
+     taparla todo el tiempo. */
+  .vehicle-stats-section__frame--taprev-m{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
+  .vehicle-stats-section__frame--taprev-m .vehicle-stats--center{opacity:0;transition:opacity .25s ease;pointer-events:none;}
+  .vehicle-stats-section__frame--taprev-m.is-open .vehicle-stats--center{opacity:1;}
+  .vehicle-stats-section__frame--taprev-m::after{opacity:0;transition:opacity .25s ease;}
+  .vehicle-stats-section__frame--taprev-m.is-open::after{opacity:1;}
   /* Degradé oscuro sólo en la franja inferior (donde caen los números), no en toda la
      foto, para no oscurecerla de más arriba. */
   .vehicle-stats-section__frame::after{content:"";position:absolute;left:0;right:0;bottom:0;height:45%;background:linear-gradient(to top, rgba(0,0,0,.78) 0%, rgba(0,0,0,.42) 55%, rgba(0,0,0,0) 100%);z-index:1;pointer-events:none;}
@@ -1149,7 +1267,7 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
      los items para que entren 3 por fila como en el sitio real, en vez de 2. */
   /* Anclado al fondo (no a un "top" fijo en px) para que quede siempre pegado abajo del
      todo de la foto, sin importar el alto real de cada frame/modelo. */
-  .vehicle-stats--center{position:absolute;left:0;right:0;bottom:45px;top:auto;z-index:2;display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:10px 8px;padding:0 4%;margin-top:0;background:none;text-shadow:0 2px 10px rgba(0,0,0,.8);}
+  .vehicle-stats--center{position:absolute;left:0;right:0;bottom:20px;top:auto;z-index:2;display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:10px 8px;padding:0 4%;margin-top:0;background:none;text-shadow:0 2px 10px rgba(0,0,0,.8);}
   .vehicle-stats--center.vehicle-stats--has-logo{padding:0 4% 20px 18%;}
   /* El label más largo ("TRANSMISIÓN") era el que fijaba el ancho de CADA item -al no
      entrar 3 en una fila, "2 DHT" quedaba solo, empujado a la fila de abajo. Achicando

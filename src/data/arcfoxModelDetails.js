@@ -3,6 +3,7 @@
 // Mismo esquema que src/data/modelDetails.js (BAIC) para poder reusar el mismo
 // VehicleDetailPage.jsx sin duplicar el template.
 import t1Nav from '../assets/images/arcfox/arcfox-t1.png'
+import t1EspacioFlexibleHd from '../assets/images/arcfox/t1-espacio-flexible-hd-v2.png'
 import s5Nav from '../assets/images/arcfox/arcfox-s5.png'
 import t5Nav from '../assets/images/arcfox/arcfox-t5.png'
 import kaolaSNav from '../assets/images/arcfox/arcfox-kaola-s.png'
@@ -28,25 +29,25 @@ export const arcfoxModelDetails = {
     sections: [
       { type: 'text', heading: 'IMPACTANTE EXTERIOR', hoverReveal: true, body: ['Estética de vanguardia con líneas limpias y minimalistas.'], bg: `${CDN}/2026/02/Arcfox_KaolaT1-21-scaled-e1771787035584.jpg` },
       { type: 'text', heading: 'FAROS DELANTEROS TIPO PASANTE', hoverReveal: true, body: ['Dynamic Ice Brilliance: firma lumínica continua de un extremo al otro del frente.'], bg: `${CDN}/2026/02/Arcfox_KaolaT1-22-scaled.jpg` },
-      { type: 'text', heading: 'LLANTAS DE ALEACIÓN DE 18"', hoverReveal: true, body: ['Mecanizadas con precisión, en línea con el diseño minimalista de la carrocería.'], bg: `${CDN}/2026/02/Arcfox_KaolaT1-24.jpg` },
+      { type: 'text', heading: 'LLANTAS DE ALEACIÓN DE 18"', hoverReveal: true, body: ['Mecanizadas con precisión, en línea con el diseño minimalista de la carrocería.'], bg: `${CDN}/2026/02/Arcfox_KaolaT1-4.png` },
       { type: 'stats', counters: true, items: [
         { label: 'LONGITUD', value: '4337', suffix: 'MM' },
         { label: 'ANCHO', value: '1860', suffix: 'MM' },
         { label: 'ALTO', value: '1572', suffix: 'MM' },
         { label: 'DISTANCIA ENTRE EJES', value: '2770', suffix: 'MM' }
-      ], bg: `${CDN}/2026/02/Arcfox_KaolaT1-1.png` },
-      { type: 'text', heading: 'ASIENTOS DELANTEROS "LIE-FLAT"', hoverReveal: true, body: ['Modo de reclinado plano con un solo botón, ángulo de reclinación de 180° y pista ajustable de 260 mm.'], bg: `${CDN}/2026/02/Arcfox_KaolaT1-5-scaled.jpg` },
+      ], bg: `${CDN}/2026/02/Arcfox_KaolaT1-1.png`, contain: true },
+      { type: 'text', heading: 'ASIENTOS DELANTEROS "LIE-FLAT"', hoverReveal: true, body: ['Modo de reclinado plano con un solo botón, ángulo de reclinación de 180° y pista ajustable de 260 mm.'], bg: `${CDN}/2026/02/Arcfox_KaolaT1-3-scaled.jpg` },
       { type: 'list', heading: 'ESPACIO FLEXIBLE DE 459 A 1352 L', hoverReveal: true, items: [
         'Asientos de la segunda fila plegables en segundos',
         'Compartimento oculto hundido de 74 litros',
         'Configuración plegable dividida 4/6',
         '32 soluciones de almacenamiento inteligentes'
-      ], bg: `${CDN}/2026/02/Arcfox_KaolaT1-6.jpg` },
+      ], bg: t1EspacioFlexibleHd },
       { type: 'stats', counters: true, items: [
         { label: 'CARGA RÁPIDA 30-80%', value: '25', suffix: 'MINUTOS' },
         { label: 'AUTONOMÍA NEDC', value: '375', suffix: 'KM' },
         { label: 'CONSUMO', value: '11.2', suffix: 'KWH/100KM' }
-      ], bg: `${CDN}/2026/02/Arcfox_KaolaT1-25-scaled.jpg` },
+      ], bg: `${CDN}/2026/02/Arcfox_KaolaT1-14-scaled.jpg`, mobilePhotoPosition: '0% center' },
       { type: 'list', heading: 'SMART ASSISTS', hoverReveal: true, items: [
         '360° vista panorámica + 180° chasis transparente',
         'Asistente de estacionamiento inteligente',
@@ -59,6 +60,7 @@ export const arcfoxModelDetails = {
         { label: 'PAR MÁXIMO', value: '176', suffix: 'NM' },
         { label: 'VELOCIDAD MÁXIMA', value: '140', suffix: 'KM/H' }
       ], bg: `${CDN}/2026/02/Arcfox_KaolaT1-48-scaled-e1772219316663.jpg`,
+        mobileContain: true,
         specTable: {
           heading: 'FICHA TÉCNICA ARCFOX T1',
           sections: [
@@ -115,35 +117,35 @@ export const arcfoxModelDetails = {
     sections: [
       { type: 'stats', counters: true, items: [
         { label: 'AUTONOMÍA NEDC', value: '530', suffix: 'KM' },
-        { label: 'ADAS', value: '', suffix: 'Nivel 2+' },
+        { label: 'ADAS', value: 'Nivel 2+', suffix: '' },
         { label: 'SONIDO', value: '15', suffix: 'PARLANTES + SUBWOOFER' }
-      ], bg: `${CDN}/2026/02/S5_Banner_1_web.jpg` },
-      { type: 'text', heading: 'DISEÑO DE CARROCERÍA AERODINÁMICO', hoverReveal: true, body: ['El coeficiente de resistencia (Cd) más bajo entre los automóviles producidos en masa.'], bg: `${CDN}/2026/02/Arcfox_S5-2.jpg` },
-      { type: 'text', heading: 'LUJO E INTERIOR DINÁMICO', hoverReveal: true, body: ['Cobertura de material suave al tacto del 80%. Volante de microfibra, casi cero formaldehído y benceno.'], bg: `${CDN}/2026/02/Arcfox_S5-12.jpg` },
+      ], bg: `${CDN}/2026/02/S5_Banner_1_web.jpg`, mobileFullPhoto: '1920/1080', mobileTextLeft: true },
+      { type: 'text', heading: 'DISEÑO DE CARROCERÍA AERODINÁMICO', hoverReveal: true, body: ['El coeficiente de resistencia (Cd) más bajo entre los automóviles producidos en masa.'], bg: `${CDN}/2026/02/Arcfox_S5-1.jpg` },
+      { type: 'text', heading: 'LUJO E INTERIOR DINÁMICO', hoverReveal: true, body: ['Cobertura de material suave al tacto del 80%. Volante de microfibra, casi cero formaldehído y benceno.'], bg: `${CDN}/2026/02/Arcfox_S5-29.jpg` },
       { type: 'stats', counters: true, items: [
         { label: 'AISLAMIENTO TÉRMICO', value: '99', suffix: '%' },
         { label: 'PROTECCIÓN UV', value: '99', suffix: '%' },
         { label: 'TRANSMISIÓN DE LUZ', value: '78.7', suffix: '%' }
-      ], bg: `${CDN}/2026/02/Arcfox_S5-13.jpg` },
+      ], bg: `${CDN}/2026/02/Arcfox_S5-11.jpg` },
       { type: 'list', heading: 'ASIENTOS SUAVES Y CÓMODOS', hoverReveal: true, items: [
         'Asiento apilado de 8 capas',
         'Ventilación y calefacción estándar',
         'Memoria del asiento',
         'Aire acondicionado automático independiente de doble zona',
         'Cuatro lámparas esterilizadoras UV-C (99,99% desinfección)'
-      ], bg: `${CDN}/2026/02/Arcfox_S5-14.jpg` },
-      { type: 'text', heading: 'CINE EN CASA INMERSIVO', hoverReveal: true, body: ['Pantalla táctil HD de 15,6" y AR-HUD HD de 68", con sistema de sonido de 7.1 canales y 15 altavoces.'], bg: `${CDN}/2026/02/Arcfox_S5-19.jpg` },
+      ], bg: `${CDN}/2026/02/Arcfox_S5-34.jpg` },
+      { type: 'text', heading: 'CINE EN CASA INMERSIVO', hoverReveal: true, body: ['Pantalla táctil HD de 15,6" y AR-HUD HD de 68", con sistema de sonido de 7.1 canales y 15 altavoces.'], bg: `${CDN}/2026/02/Arcfox_S5-18.jpg` },
       { type: 'stats', counters: true, items: [
         { label: '0-100 KM/H', value: '3.7', suffix: 'S' },
         { label: 'POTENCIA MÁXIMA', value: '250', suffix: 'KW' },
         { label: 'PAR MÁXIMO', value: '360', suffix: 'NM' }
-      ], bg: `${CDN}/2026/02/Arcfox_S5-21.jpg` },
+      ], bg: `${CDN}/2026/02/Arcfox_S5-20.jpg` },
       { type: 'list', heading: 'SISTEMAS AVANZADOS DE ASISTENCIA AL CONDUCTOR L2+', hoverReveal: true, items: [
         '20 sensores de percepción del entorno',
         'Chip de estacionamiento inteligente TDA',
         'Cámara HD de 3 megapíxeles',
         'Radar ultrasónico AK2'
-      ], bg: `${CDN}/2026/02/Arcfox_S5-25.jpg` },
+      ], bg: `${CDN}/2026/02/Arcfox_S5-28.jpg` },
       { type: 'stats', counters: true, items: [
         { label: 'CARGA RÁPIDA 30-80%', value: '30', suffix: 'MINUTOS' },
         { label: 'PLATAFORMA', value: '400', suffix: 'V' },
@@ -208,33 +210,33 @@ export const arcfoxModelDetails = {
         'Tapa eléctrica en puerto de carga',
         'Puerta del baúl eléctrica',
         'Espejos exteriores con memoria y plegado automático'
-      ], bg: `${ICARS_CDN}/2026/04/Costado-1-1024x388.png` },
+      ], bg: `${CDN}/2026/01/Arcfox_Argentina_T5-16.png`, bgPosition: 'center 78%' },
       { type: 'stats', counters: true, items: [
         { label: 'AISLAMIENTO TÉRMICO', value: '99', suffix: '%' },
         { label: 'COEFICIENTE AERODINÁMICO', value: '0.245', suffix: 'CD' }
-      ], bg: `${ICARS_CDN}/2026/04/Frente-1.png` },
+      ], bg: `${CDN}/2026/01/Arcfox_Argentina_T5-17.png`, photoPosition: 'center 15%', mobileFullPhoto: '1226/672' },
       { type: 'stats', counters: true, items: [
         { label: 'ESPACIO INTERIOR', value: '69', suffix: '% aprovechamiento' },
         { label: 'CAPACIDAD DE CARGA', value: '1546', suffix: 'L (asientos abatidos)' },
         { label: 'ALMACENAMIENTO', value: '21', suffix: 'espacios' }
-      ], bg: `${ICARS_CDN}/2026/04/Negro-768x512.webp` },
+      ], bg: `${CDN}/2026/01/Arcfox_Argentina_T5-20.png` },
       { type: 'list', heading: 'CONFORT EN CAPAS', hoverReveal: true, items: [
         '8 capas de confort con tapizados de Alcantara',
         'Inclinación de descanso de 129° con memoria',
         'Asientos delanteros calefaccionados',
         'Inclinación adaptable de 30° en asientos traseros'
-      ], bg: `${ICARS_CDN}/2026/04/Blanco-1-768x512.webp` },
+      ], bg: `${CDN}/2026/01/Arcfox_Argentina_T5-19.png` },
       { type: 'stats', counters: true, items: [
         { label: 'AUTONOMÍA NEDC', value: '475', suffix: 'KM' },
         { label: 'CONSUMO', value: '12.5', suffix: 'KWH/100KM' },
         { label: 'PLATAFORMA DE CARGA', value: '400', suffix: 'V' }
-      ], bg: `${ICARS_CDN}/2026/04/Costado-1-1024x388.png` },
-      { type: 'text', heading: 'MANEJO ÁGIL Y FLUIDO', hoverReveal: true, body: ['Sistema de frenado inteligente ONEBOX: frenado en menos de 0,15 segundos y distancia de frenado desde 100 km/h en solo 35,7 mts.'], bg: `${ICARS_CDN}/2026/04/Frente-1.png` },
+      ], bg: `${CDN}/2026/01/Arcfox_Argentina_T5-28.png`, photoPosition: 'center 8%', mobileFullPhoto: '1230/638', mobileTapReveal: true },
+      { type: 'text', heading: 'MANEJO ÁGIL Y FLUIDO', hoverReveal: true, body: ['Sistema de frenado inteligente ONEBOX: frenado en menos de 0,15 segundos y distancia de frenado desde 100 km/h en solo 35,7 mts.'], bg: `${CDN}/2026/01/Arcfox_Argentina_T5-27.png` },
       { type: 'stats', counters: true, items: [
         { label: '0-100 KM/H', value: '7.5', suffix: 'S' },
         { label: 'POTENCIA MÁXIMA', value: '250', suffix: 'CV' },
         { label: 'PAR MÁXIMO', value: '360', suffix: 'NM' }
-      ], bg: `${CDN}/2026/01/Arcfox_Argentina_T5-3.png`,
+      ], bg: `${CDN}/2026/01/Arcfox_Argentina_T5-25.png`, mobilePhotoPosition: '78% center',
         specTable: {
           heading: 'FICHA TÉCNICA ARCFOX T5',
           sections: [
@@ -287,29 +289,29 @@ export const arcfoxModelDetails = {
       { hex: '#f2f2f2', image: `${ICARS_CDN}/2026/04/Blanco-2-768x512.webp` }
     ],
     sections: [
-      { type: 'text', heading: 'EQUIPADO CON BATERÍA CATL', hoverReveal: true, body: ['Doble seguridad con el fabricante líder. Batería segura en la nube a tiempo completo, con detección temprana de riesgos.'], bg: `${CDN}/2026/02/Arcfox_KaolaS-3.jpg` },
+      { type: 'text', heading: 'EQUIPADO CON BATERÍA CATL', hoverReveal: true, body: ['Doble seguridad con el fabricante líder. Batería segura en la nube a tiempo completo, con detección temprana de riesgos.'], bg: `${CDN}/2026/02/Arcfox_KaolaS-6.jpg` },
       { type: 'stats', counters: true, items: [
         { label: 'AUTONOMÍA NEDC', value: '470', suffix: 'KM' },
         { label: 'CARGA RÁPIDA 30-80%', value: '26', suffix: 'MINUTOS' }
-      ], bg: `${CDN}/2026/02/Arcfox_KaolaS-4.png` },
+      ], bg: `${CDN}/2026/02/Arcfox_KaolaS-1.jpg`, mobileFullPhoto: '1920/1080' },
       { type: 'list', heading: 'ESPACIO INTERIOR AMPLIO Y VERSÁTIL', hoverReveal: true, items: [
         '4500 mm de longitud, 1870 mm de ancho, 2820 mm entre ejes',
         'Piso completamente plano',
         'Asiento rebatible 4/6',
         '1025 mm de distancia entre filas'
       ], bg: `${CDN}/2026/02/Arcfox_KaolaS-7.jpg` },
-      { type: 'text', heading: '29 ESPACIOS DE ALMACENAMIENTO', hoverReveal: true, body: ['Percha para abrigos, bolsillo para mapas, gancho oculto, estuche para gafas y gran volumen de carga.'], bg: `${CDN}/2026/02/Arcfox_KaolaS-15.png` },
-      { type: 'text', heading: 'SUV DE GRAN ESPACIO CON PUERTAS CORREDIZAS', hoverReveal: true, body: ['Puerta deslizante eléctrica del lado derecho, con control de iluminación elegante y paso bajo de 340 mm.'], bg: `${CDN}/2026/02/Arcfox_KaolaS-11.jpg` },
+      { type: 'text', heading: '29 ESPACIOS DE ALMACENAMIENTO', hoverReveal: true, body: ['Percha para abrigos, bolsillo para mapas, gancho oculto, estuche para gafas y gran volumen de carga.'], bg: `${CDN}/2026/02/Arcfox_KaolaS-9.jpg` },
+      { type: 'text', heading: 'SUV DE GRAN ESPACIO CON PUERTAS CORREDIZAS', hoverReveal: true, body: ['Puerta deslizante eléctrica del lado derecho, con control de iluminación elegante y paso bajo de 340 mm.'], bg: `${CDN}/2026/02/Arcfox_KaolaS-12.jpg` },
       { type: 'stats', counters: true, items: [
         { label: 'RIGIDEZ TORSIONAL', value: '37400', suffix: 'NM/GRADO' }
-      ], bg: `${CDN}/2026/02/Arcfox_KaolaS-14.jpg` },
+      ], bg: `${CDN}/2026/02/Arcfox_KaolaS-13.jpg` },
       { type: 'list', heading: 'TECNOLOGÍA DE SEGURIDAD INTELIGENTE', hoverReveal: true, items: [
         'FCW: advertencia de colisión frontal con detección de peatones',
         'AEB: sistema de frenado autónomo de emergencia',
         'LDW: alerta de cambio de carril',
         'Acero de alta resistencia + acero conformado en caliente'
-      ], bg: `${CDN}/2026/02/Arcfox_KaolaS-15.jpg` },
-      { type: 'text', heading: 'ASIENTOS DE CUERO VEGANO', hoverReveal: true, body: ['Calidad premium: asiento del conductor con ajuste eléctrico de 6 posiciones y asiento del acompañante plegable hacia adelante.'], bg: `${CDN}/2026/02/Arcfox_KaolaS-18.jpg`,
+      ], bg: `${CDN}/2026/02/Arcfox_KaolaS-16.jpg` },
+      { type: 'text', heading: 'ASIENTOS DE CUERO VEGANO', hoverReveal: true, body: ['Calidad premium: asiento del conductor con ajuste eléctrico de 6 posiciones y asiento del acompañante plegable hacia adelante.'], bg: `${CDN}/2026/02/Arcfox_KaolaS-8.jpg`,
         specTable: {
           heading: 'FICHA TÉCNICA ARCFOX KAOLA S',
           sections: [

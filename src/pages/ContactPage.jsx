@@ -2,14 +2,13 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { submitContact, selectContactStatus } from '../features/contact/index.js'
 import { useToast } from '../toast/ToastContext.jsx'
-import { dealers } from '../data/dealers.js'
 import { contactBg } from '../data/contactBg.js'
 
 export default function ContactPage() {
   const dispatch = useDispatch()
   const status = useSelector(selectContactStatus)
   const { showToast } = useToast()
-  const [form, setForm] = useState({ name: '', phone: '', email: '', dealerId: '', message: '' })
+  const [form, setForm] = useState({ name: '', phone: '', email: '', message: '' })
 
   const set = (field) => (e) => setForm((prev) => ({ ...prev, [field]: e.target.value }))
 
@@ -18,7 +17,7 @@ export default function ContactPage() {
     try {
       await dispatch(submitContact(form)).unwrap()
       showToast('Consulta enviada', 'success')
-      setForm({ name: '', phone: '', email: '', dealerId: '', message: '' })
+      setForm({ name: '', phone: '', email: '', message: '' })
     } catch {
       showToast('No pudimos enviar tu consulta (el backend todavía no está disponible)', 'error')
     }
@@ -35,12 +34,6 @@ export default function ContactPage() {
           <input type="text" placeholder="Nombre" value={form.name} onChange={set('name')} required />
           <input type="tel" placeholder="Teléfono" value={form.phone} onChange={set('phone')} required />
           <input type="email" placeholder="Email" value={form.email} onChange={set('email')} required />
-          <select value={form.dealerId} onChange={set('dealerId')}>
-            <option value="">Seleccione un concesionario</option>
-            {dealers.map((d) => (
-              <option key={d.id} value={d.id}>{d.name} - {d.province.toUpperCase()}</option>
-            ))}
-          </select>
           <textarea placeholder="Mensaje" rows={5} value={form.message} onChange={set('message')} required />
           <button type="submit" disabled={status === 'loading'}>
             {status === 'loading' ? 'Enviando...' : 'ENVIAR'}

@@ -64,9 +64,30 @@ function Section({ section, index }) {
   if (isWideStats) {
     return (
       <section className={`vehicle-section vehicle-stats-section ${section.specTable ? 'vehicle-section--tall vehicle-stats-section--tall' : ''}`} ref={sectionRef}>
-        <div className="vehicle-stats-section__frame">
+        <div
+          className={`vehicle-stats-section__frame ${section.mobileFullPhoto ? 'vehicle-stats-section__frame--fit-m' : ''} ${section.mobileTextBelow ? 'vehicle-stats-section__frame--textbelow-m' : ''} ${section.mobileTextLeft ? 'vehicle-stats-section__frame--textleft-m' : ''} ${section.mobileTapReveal ? 'vehicle-stats-section__frame--taprev-m' : ''} ${section.mobileTapReveal && openIndex === 0 ? 'is-open' : ''}`}
+          style={section.mobileFullPhoto ? { '--stats-frame-ratio-m': section.mobileFullPhoto.split('/').reduce((w, h) => Number(w) / Number(h)) } : undefined}
+          onClick={() => {
+            // Igual que en las secciones hoverReveal: en mobile no hay hover real, así que
+            // el tap muestra/oculta la descripción (acá, los números) en vez de taparla
+            // siempre encima de la foto.
+            if (section.mobileTapReveal && window.matchMedia('(max-width: 900px)').matches) {
+              setOpenIndex((cur) => (cur === 0 ? null : 0))
+            }
+          }}
+        >
           {section.logo && <img src={section.logo} alt="" className="vehicle-stats-section__logo" />}
-          {section.bg && <img src={section.bg} alt="" className="vehicle-stats-section__photo" />}
+          {section.bg && (
+            <img
+              src={section.bg}
+              alt=""
+              className={`vehicle-stats-section__photo ${section.contain ? 'vehicle-stats-section__photo--contain' : ''} ${section.mobileContain ? 'vehicle-stats-section__photo--contain-m' : ''}`}
+              style={(section.mobilePhotoPosition || section.photoPosition) ? {
+                ...(section.mobilePhotoPosition ? { '--stats-photo-pos-m': section.mobilePhotoPosition } : null),
+                ...(section.photoPosition ? { '--stats-photo-pos': section.photoPosition } : null),
+              } : undefined}
+            />
+          )}
           <div className={`vehicle-stats vehicle-stats--center ${section.logo ? 'vehicle-stats--has-logo' : ''}`}>
             {section.items.map((s, i) => (
               <div className="vehicle-stats__item" key={i}>
