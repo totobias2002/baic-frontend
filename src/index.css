@@ -323,7 +323,8 @@ img{max-width:100%;display:block;}
 /* Noticias */
 .section{padding:70px 0;}
 .section--dark{background:var(--baic-navy);color:#fff;}
-.section-title{text-align:center;font-size:1.7rem;font-weight:700;letter-spacing:1px;margin-bottom:30px;}
+.section-title{position:relative;text-align:center;font-size:1.7rem;font-weight:700;letter-spacing:1px;margin-bottom:30px;padding-bottom:18px;}
+.section-title::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:56px;height:3px;background:var(--baic-rojo);}
 .section--dark .section-title{color:#fff;}
 .section-title span{color:var(--baic-rojo);}
 /* Novedades: hero con foto + badge oscuro, grid de 3 columnas sin bordes/sombras */
@@ -331,19 +332,27 @@ img{max-width:100%;display:block;}
 .news-hero__badge{position:relative;z-index:2;background:rgba(0,0,0,.54);padding:10px;max-width:381px;}
 .news-hero__badge h2{margin:0;font-size:1.25rem;font-weight:600;color:#fff;}
 .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
-.news-card{position:relative;display:block;background:#fff;color:var(--color-text);}
-.news-card .read__arrow{display:none;}
+/* Cards con volumen real (sombra + borde redondeado + zoom de foto al hover) en vez del
+   bloque plano blanco de antes -mismo contenido, look menos "genérico". */
+.news-card{position:relative;display:block;background:#fff;color:var(--color-text);border-radius:14px;overflow:hidden;box-shadow:0 4px 18px rgba(15,17,20,.09);transition:transform .28s cubic-bezier(.25,.1,.25,1),box-shadow .28s cubic-bezier(.25,.1,.25,1);}
+.news-card:hover{transform:translateY(-6px);box-shadow:0 16px 34px rgba(15,17,20,.16);}
 .news-card .ph{aspect-ratio:3/2;border-radius:0;margin-bottom:0;}
-.news-card__img{position:relative;aspect-ratio:3/2;background-size:cover;background-position:50% 50%;width:100%;display:block;overflow:hidden;}
+.news-card__img{position:relative;aspect-ratio:3/2;background-size:cover;background-position:50% 50%;width:100%;display:block;overflow:hidden;transition:transform .5s cubic-bezier(.25,.1,.25,1);}
+.news-card:hover .news-card__img{transform:scale(1.06);}
 .news-card__img-inner{width:100%;height:100%;background-size:cover;background-position:50% 50%;}
 .news-card__img-overlay{position:absolute;inset:0;background:rgba(0,0,0,.25);opacity:0;transition:opacity .3s cubic-bezier(.25,.1,.25,1);}
-.news-card__img:hover .news-card__img-overlay{opacity:1;}
-.news-card h4{font-size:1.05rem;font-weight:700;margin:0;padding:16px 0 0;}
+.news-card:hover .news-card__img-overlay{opacity:1;}
+.news-card h4{font-size:1.05rem;font-weight:700;margin:0;padding:20px 20px 0;line-height:1.35;}
 .news-card h4 a{color:var(--baic-negro);}
 .news-card h4 a:hover{color:#a81608;}
-.news-card p{font-size:.85rem;color:var(--baic-gris);padding:8px 0 0;margin:0;}
+.news-card p{font-size:.85rem;color:var(--baic-gris);padding:8px 20px 0;margin:0;line-height:1.55;}
 .news-card__read{font-size:.8125rem;font-weight:400;color:#000;display:inline-block;margin:14px 0 0;padding:7px 14px;border:1px solid #000;border-radius:4px;transition:color .1s,border-color .1s;}
 .news-card__read:hover{color:#a81608;border-color:#a81608;}
+/* Link "Leer más »" del NewsSection (home): antes era texto suelto sin estilo -ahora es
+   un renglón con color de marca, flecha visible que se corre al hover, y separador arriba. */
+.news-card .read{display:flex;align-items:center;gap:6px;margin:16px 20px 20px;padding-top:14px;border-top:1px solid #eee;font-size:.78rem;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--baic-rojo);}
+.news-card .read__arrow{display:inline-flex;transition:transform .25s ease;}
+.news-card:hover .read__arrow{transform:translateX(4px);}
 .news-detail{max-width:100%;}
 .news-detail__img{aspect-ratio:16/9;background-size:cover;background-position:50% 50%;margin-bottom:24px;}
 .news-detail p{color:var(--baic-gris);line-height:1.7;}
@@ -1761,8 +1770,8 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
   .news-grid{gap:20px;}
   /* Título bien marcado (bold+oscuro) y la bajada claramente diferenciada: más chica, gris,
      con más aire respecto del título -sin el botón de flecha, que ya no hace falta. */
-  .news-card h4{font-size:1rem;font-weight:800;line-height:1.3;padding:14px 0 0;}
-  .news-card p{font-size:.78rem;line-height:1.5;letter-spacing:.1px;padding:10px 0 0;}
+  .news-card h4{font-size:1rem;font-weight:800;line-height:1.3;padding:14px 16px 0;}
+  .news-card p{font-size:.78rem;line-height:1.5;letter-spacing:.1px;padding:10px 16px 0;}
   .news-card{padding-bottom:18px;}
   .news-card .read{display:none;}
   .news-card:active{opacity:.85;}

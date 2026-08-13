@@ -30,7 +30,7 @@ export default function NewsSection() {
               <h4>{item.title}</h4>
               <p>{truncateText(item.excerpt, 110)}</p>
               <span className="read">
-                <span className="read__label">Leer más »</span>
+                <span className="read__label">Leer más</span>
                 <span className="read__arrow"><ChevronRightIcon size={16} /></span>
               </span>
             </AppLink>
