@@ -8,8 +8,8 @@ import s5Nav from '../assets/images/arcfox/arcfox-s5.png'
 import t5Nav from '../assets/images/arcfox/arcfox-t5.png'
 import kaolaSNav from '../assets/images/arcfox/arcfox-kaola-s.png'
 
-const CDN = 'https://arcfox.com.ar/wp-content/uploads'
-const ICARS_CDN = 'https://baic.icars.com.ar/wp-content/uploads'
+const CDN = '/media/arcfox/wp-content/uploads'
+const ICARS_CDN = '/media/icars/wp-content/uploads'
 
 export const arcfoxModelDetails = {
   'arcfox-t1': {
