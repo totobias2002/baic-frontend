@@ -15,7 +15,12 @@ const browserGlobals = {
   clearInterval: 'readonly',
   fetch: 'readonly',
   URL: 'readonly',
-  Intl: 'readonly'
+  Intl: 'readonly',
+  performance: 'readonly',
+  requestAnimationFrame: 'readonly',
+  cancelAnimationFrame: 'readonly',
+  IntersectionObserver: 'readonly',
+  Image: 'readonly'
 }
 
 export default [
@@ -41,6 +46,8 @@ export default [
       ...react.configs.recommended.rules,
       'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',
+      // Atributos que lee el plugin dflip (visor de folleto), no son errores.
+      'react/no-unknown-property': ['error', { ignore: ['_slug', 'wpoptions', 'thumbtype'] }],
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn'
     }
