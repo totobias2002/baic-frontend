@@ -11,7 +11,7 @@ import bj60 from '../assets/images/models/bj60.webp'
 import u5plus from '../assets/images/models/u5-plus.png'
 import eu5 from '../assets/images/models/eu5.png'
 
-const CDN = 'https://baic.com.ar/wp-content/uploads'
+const CDN = '/media/baic/wp-content/uploads'
 
 export const modelDetails = {
   'x35': {
@@ -162,7 +162,7 @@ export const modelDetails = {
       images: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37]
         .map((n) => {
           const ext = (n >= 1 && n <= 3) || (n >= 17 && n <= 21) || (n >= 35 && n <= 37) ? 'webp' : 'png'
-          return `https://baic.com.ar/wp-content/uploads/2025/01/X55-Plus_BAIC-Argentina-360-${n}.${ext}`
+          return `/media/baic/wp-content/uploads/2025/01/X55-Plus_BAIC-Argentina-360-${n}.${ext}`
         }),
       bgText: 'YOUR           BAIC'
     },
@@ -286,7 +286,7 @@ export const modelDetails = {
   },
 
   'bj40-pro': {
-    heroImage: 'https://baic.com.ar/bj40pro/static/bj40/bg1.webp',
+    heroImage: '/media/baic/bj40pro/static/bj40/bg1.webp',
     hero: {
       title: 'BJ40 PRO',
       tagline: ['Elegancia se encuentra con expedición.']
@@ -297,41 +297,41 @@ export const modelDetails = {
         { label: 'PAR', value: '386', suffix: 'N·M' },
         { label: 'MOTOR', value: '2.0 T', suffix: '' },
         { label: 'MODOS DE CONDUCCIÓN', value: '11', suffix: '' }
-      ], bg: 'https://baic.com.ar/bj40pro/_nuxt/esargument-img.BbaYZZVg.webp' },
-      { type: 'text', heading: 'SISTEMA DE 4WD A TIEMPO PARCIAL', hoverReveal: true, body: ['Equipado con un sistema de tracción integral inteligente, soporta el cambio de cuatro modos de 2H, 4H, 4L, 4A mediante un selector electrónico, adaptándose a las diferentes necesidades de conducción.'], bg: 'https://baic.com.ar/bj40pro/_nuxt/page2_cover.Cs_lHSfs.webp' },
-      { type: 'text', heading: 'SISTEMA DE ATS', hoverReveal: true, body: ['El sistema de control todo terreno de ATS soporta hasta 11 modos de conducción. Mediante un cambio inteligente, el sistema ofrece la mejor distribución de potencia al vehículo.'], bg: 'https://baic.com.ar/bj40pro/_nuxt/page3_cover.EcHOjjTm.webp' },
+      ], bg: '/media/baic/bj40pro/_nuxt/esargument-img.BbaYZZVg.webp' },
+      { type: 'text', heading: 'SISTEMA DE 4WD A TIEMPO PARCIAL', hoverReveal: true, body: ['Equipado con un sistema de tracción integral inteligente, soporta el cambio de cuatro modos de 2H, 4H, 4L, 4A mediante un selector electrónico, adaptándose a las diferentes necesidades de conducción.'], bg: '/media/baic/bj40pro/_nuxt/page2_cover.Cs_lHSfs.webp' },
+      { type: 'text', heading: 'SISTEMA DE ATS', hoverReveal: true, body: ['El sistema de control todo terreno de ATS soporta hasta 11 modos de conducción. Mediante un cambio inteligente, el sistema ofrece la mejor distribución de potencia al vehículo.'], bg: '/media/baic/bj40pro/_nuxt/page3_cover.EcHOjjTm.webp' },
       { type: 'photo-grid', layout: 'equal', items: [
-        { title: 'Rocoso', image: 'https://baic.com.ar/bj40pro/static/bj40/ats/yanshi_orange.webp' },
-        { title: 'Nevado', image: 'https://baic.com.ar/bj40pro/static/bj40/ats/xuehua_orange.webp' },
-        { title: 'Desierto', image: 'https://baic.com.ar/bj40pro/static/bj40/ats/shamo_orange.webp' }
+        { title: 'Rocoso', image: '/media/baic/bj40pro/static/bj40/ats/yanshi_orange.webp' },
+        { title: 'Nevado', image: '/media/baic/bj40pro/static/bj40/ats/xuehua_orange.webp' },
+        { title: 'Desierto', image: '/media/baic/bj40pro/static/bj40/ats/shamo_orange.webp' }
       ] },
       { type: 'stats', counters: true, items: [
         { label: 'ÁNGULO DE APROXIMACIÓN', value: '37', suffix: '°' },
         { label: 'ÁNGULO DE SALIDA', value: '31', suffix: '°' },
         { label: 'ALTURA AL SUELO', value: '220', suffix: 'MM' },
         { label: 'PROFUNDIDAD DE VADEO', value: '750', suffix: 'MM' }
-      ], bg: 'https://baic.com.ar/bj40pro/_nuxt/esargument-img.BbaYZZVg.webp' },
-      { type: 'text', heading: 'ESTRUCTURA TUBULAR DE ALTA RESISTENCIA', hoverReveal: true, body: ['Estructura de la jaula diseñada con exigencia militar, reduciendo eficazmente las deformaciones por colisión. Proporción de acero de alta resistencia conformado en caliente: 79.8%. Coeficiente de ligereza: 4.34.'], bg: 'https://baic.com.ar/bj40pro/_nuxt/page5_cover.DXzACCtP.webp' },
-      { type: 'text', heading: 'CHASIS TODOTERRENO DE GRADO MILITAR', hoverReveal: true, body: ['Diseño de chasis con viga integral de dos vigas longitudinales y ocho transversales, combinando acero de alta resistencia y acero ultra alto. Proporción de acero de hasta el 52% que asegura estabilidad incluso en condiciones extremas de conducción off-road.'], bg: 'https://baic.com.ar/bj40pro/_nuxt/page6_cover.CQYV3Jlp.webp' },
-      { type: 'text', heading: 'TECNOLOGÍA LUMÍNICA DE ALTA INTENSIDAD: VISIBILIDAD TOTAL', hoverReveal: true, body: ['Parrilla LED de cinco orificios integra un sistema de iluminación envolvente de última generación. Proyecta una potencia lumínica superior para enfrentar terrenos nocturnos con total confianza, mientras que optimiza la refrigeración del motor.'], bg: 'https://baic.com.ar/bj40pro/_nuxt/page7_cover.CvuK3ecd.webp' },
-      { type: 'text', heading: 'SENSACIÓN DE LIBERTAD TOTAL', hoverReveal: true, body: ['La ausencia de marcos superiores te regala una vista lateral más amplia y despejada para dominar cada sendero, combinada con una estructura robusta garantizando seguridad y aventura.'], bg: 'https://baic.com.ar/bj40pro/_nuxt/page8_cover.CynH4R7H.webp' },
-      { type: 'text', heading: 'PUERTA TRASERA DIVIDIDA', hoverReveal: true, body: ['La puerta trasera dividida ofrece dos formas de acceder a tu mundo. Este sistema maximiza la funcionalidad en cada situación, demostrando que la verdadera belleza del off-road está en la versatilidad.'], bg: 'https://baic.com.ar/bj40pro/_nuxt/page9_cover.CXQUpRUY.webp' },
+      ], bg: '/media/baic/bj40pro/_nuxt/esargument-img.BbaYZZVg.webp' },
+      { type: 'text', heading: 'ESTRUCTURA TUBULAR DE ALTA RESISTENCIA', hoverReveal: true, body: ['Estructura de la jaula diseñada con exigencia militar, reduciendo eficazmente las deformaciones por colisión. Proporción de acero de alta resistencia conformado en caliente: 79.8%. Coeficiente de ligereza: 4.34.'], bg: '/media/baic/bj40pro/_nuxt/page5_cover.DXzACCtP.webp' },
+      { type: 'text', heading: 'CHASIS TODOTERRENO DE GRADO MILITAR', hoverReveal: true, body: ['Diseño de chasis con viga integral de dos vigas longitudinales y ocho transversales, combinando acero de alta resistencia y acero ultra alto. Proporción de acero de hasta el 52% que asegura estabilidad incluso en condiciones extremas de conducción off-road.'], bg: '/media/baic/bj40pro/_nuxt/page6_cover.CQYV3Jlp.webp' },
+      { type: 'text', heading: 'TECNOLOGÍA LUMÍNICA DE ALTA INTENSIDAD: VISIBILIDAD TOTAL', hoverReveal: true, body: ['Parrilla LED de cinco orificios integra un sistema de iluminación envolvente de última generación. Proyecta una potencia lumínica superior para enfrentar terrenos nocturnos con total confianza, mientras que optimiza la refrigeración del motor.'], bg: '/media/baic/bj40pro/_nuxt/page7_cover.CvuK3ecd.webp' },
+      { type: 'text', heading: 'SENSACIÓN DE LIBERTAD TOTAL', hoverReveal: true, body: ['La ausencia de marcos superiores te regala una vista lateral más amplia y despejada para dominar cada sendero, combinada con una estructura robusta garantizando seguridad y aventura.'], bg: '/media/baic/bj40pro/_nuxt/page8_cover.CynH4R7H.webp' },
+      { type: 'text', heading: 'PUERTA TRASERA DIVIDIDA', hoverReveal: true, body: ['La puerta trasera dividida ofrece dos formas de acceder a tu mundo. Este sistema maximiza la funcionalidad en cada situación, demostrando que la verdadera belleza del off-road está en la versatilidad.'], bg: '/media/baic/bj40pro/_nuxt/page9_cover.CXQUpRUY.webp' },
       { type: 'grid', heading: 'DISEÑO DE INTERIORES', items: [
-        { title: 'Habitáculo Panorámico, Tecnología y Visión', image: 'https://baic.com.ar/bj40pro/static/bj40/trim/img1.webp', text: 'Interior diseñado para ofrecer una visibilidad panorámica excepcional, además de un espacio amplio y cómodo.' },
-        { title: 'Central de Mando Digital: Primera Configuración Quíntuple del Off-Road', image: 'https://baic.com.ar/bj40pro/static/bj40/trim/img2.webp', text: 'Sistema de cinco pantallas integradas, con una distribución pensada para que cada ocupante tenga el control que necesita. Equipado con el procesador más avanzado de la industria, el SD 8155 garantiza una fluidez absoluta incluso en las condiciones más extremas.' },
-        { title: 'Techo Panorámico con Mandos Inteligentes', image: 'https://baic.com.ar/bj40pro/static/bj40/trim/img3.webp', text: 'Techo panorámico ultra amplio con interruptores inteligentes permiten su operación con movimientos precisos e intuitivos, sin apartar la vista del camino.' },
-        { title: 'Infinity: El Audio que Evoluciona con la Velocidad', image: 'https://baic.com.ar/bj40pro/static/bj40/trim/img4.webp', text: 'Equipado con un sistema de 12 altavoces de alta eficiencia más un amplificador externo que entrega la potencia necesaria para llenar el amplio habitáculo sin distorsión, marcando la diferencia con una ecualización dinámica por velocidad.' },
-        { title: 'Asientos con Abatimiento: Baúl con Gran Capacidad', image: 'https://baic.com.ar/bj40pro/static/bj40/trim/img5.webp', text: 'Con un único botón, los asientos traseros se abaten completamente, transformando el área de carga en un piso perfectamente plano. Versatilidad para ampliar la capacidad de guardado o facilitar un espacio de acampe.' },
-        { title: 'Central de Energía: Carga Rápida de 50W y 10 Puertos a Bordo', image: 'https://baic.com.ar/bj40pro/static/bj40/trim/img6.webp', text: 'El cargador inalámbrico integrado de 50W es de los más potentes del mercado, compatible con carga rápida para los últimos modelos de smartphones. Además, 10 puertos de carga distribuidos por el interior.' }
+        { title: 'Habitáculo Panorámico, Tecnología y Visión', image: '/media/baic/bj40pro/static/bj40/trim/img1.webp', text: 'Interior diseñado para ofrecer una visibilidad panorámica excepcional, además de un espacio amplio y cómodo.' },
+        { title: 'Central de Mando Digital: Primera Configuración Quíntuple del Off-Road', image: '/media/baic/bj40pro/static/bj40/trim/img2.webp', text: 'Sistema de cinco pantallas integradas, con una distribución pensada para que cada ocupante tenga el control que necesita. Equipado con el procesador más avanzado de la industria, el SD 8155 garantiza una fluidez absoluta incluso en las condiciones más extremas.' },
+        { title: 'Techo Panorámico con Mandos Inteligentes', image: '/media/baic/bj40pro/static/bj40/trim/img3.webp', text: 'Techo panorámico ultra amplio con interruptores inteligentes permiten su operación con movimientos precisos e intuitivos, sin apartar la vista del camino.' },
+        { title: 'Infinity: El Audio que Evoluciona con la Velocidad', image: '/media/baic/bj40pro/static/bj40/trim/img4.webp', text: 'Equipado con un sistema de 12 altavoces de alta eficiencia más un amplificador externo que entrega la potencia necesaria para llenar el amplio habitáculo sin distorsión, marcando la diferencia con una ecualización dinámica por velocidad.' },
+        { title: 'Asientos con Abatimiento: Baúl con Gran Capacidad', image: '/media/baic/bj40pro/static/bj40/trim/img5.webp', text: 'Con un único botón, los asientos traseros se abaten completamente, transformando el área de carga en un piso perfectamente plano. Versatilidad para ampliar la capacidad de guardado o facilitar un espacio de acampe.' },
+        { title: 'Central de Energía: Carga Rápida de 50W y 10 Puertos a Bordo', image: '/media/baic/bj40pro/static/bj40/trim/img6.webp', text: 'El cargador inalámbrico integrado de 50W es de los más potentes del mercado, compatible con carga rápida para los últimos modelos de smartphones. Además, 10 puertos de carga distribuidos por el interior.' }
       ] },
       { type: 'grid', heading: 'EXPERIENCIA DE CONDUCCIÓN', items: [
-        { title: 'Volante Multifunción: Tres Modos, Cuatro Movimientos', image: 'https://baic.com.ar/bj40pro/static/bj40/driving/img1.webp', text: 'Seleccioná entre tres modos de asistencia: Ligero, Estándar y Deportivo. Para que cada conductor encuentre su posición ideal, el volante cuenta con ajuste eléctrico en 4 direcciones (arriba, abajo, adentro, afuera) memorizando tu preferencia.' },
-        { title: 'Giro Asistido con Radio Reducido', image: 'https://baic.com.ar/bj40pro/static/bj40/driving/img2.webp', text: 'Al activarlo, el vehículo bloquea electrónicamente la rueda trasera interna, generando un punto de giro sobre sí misma mientras las demás ruedas siguen avanzando. El resultado: un radio de giro reducido que te permite rotar sobre terreno complicado con una facilidad asombrosa.' },
-        { title: '2.5 T de Capacidad de Remolque', image: 'https://baic.com.ar/bj40pro/static/bj40/driving/img3.webp', text: 'Incorpora una toma de remolque reforzada y una toma de electricidad dedicada (para luces y freno del trailer). La capacidad máxima de tracción es de 2.5 toneladas (2.500 kg).' }
+        { title: 'Volante Multifunción: Tres Modos, Cuatro Movimientos', image: '/media/baic/bj40pro/static/bj40/driving/img1.webp', text: 'Seleccioná entre tres modos de asistencia: Ligero, Estándar y Deportivo. Para que cada conductor encuentre su posición ideal, el volante cuenta con ajuste eléctrico en 4 direcciones (arriba, abajo, adentro, afuera) memorizando tu preferencia.' },
+        { title: 'Giro Asistido con Radio Reducido', image: '/media/baic/bj40pro/static/bj40/driving/img2.webp', text: 'Al activarlo, el vehículo bloquea electrónicamente la rueda trasera interna, generando un punto de giro sobre sí misma mientras las demás ruedas siguen avanzando. El resultado: un radio de giro reducido que te permite rotar sobre terreno complicado con una facilidad asombrosa.' },
+        { title: '2.5 T de Capacidad de Remolque', image: '/media/baic/bj40pro/static/bj40/driving/img3.webp', text: 'Incorpora una toma de remolque reforzada y una toma de electricidad dedicada (para luces y freno del trailer). La capacidad máxima de tracción es de 2.5 toneladas (2.500 kg).' }
       ] }
     ],
     view360: {
-      images: Array.from({ length: 43 }, (_, i) => `https://baic.com.ar/bj40pro/static/bj40/frame/${String(i).padStart(4, '0')}.webp`),
+      images: Array.from({ length: 43 }, (_, i) => `/media/baic/bj40pro/static/bj40/frame/${String(i).padStart(4, '0')}.webp`),
       bgText: 'YOUR           BAIC'
     }
   },
@@ -339,8 +339,8 @@ export const modelDetails = {
   'bj40-plus': {
     heroImage: bj40plus,
     colors: [
-      { hex: '#404544', image: 'https://baic.com.ar/wp-content/uploads/2023/10/BJ40Plus.png' },
-      { hex: '#000000', image: 'https://baic.com.ar/wp-content/uploads/2023/11/Bj40-negra.png' }
+      { hex: '#404544', image: '/media/baic/wp-content/uploads/2023/10/BJ40Plus.png' },
+      { hex: '#000000', image: '/media/baic/wp-content/uploads/2023/11/Bj40-negra.png' }
     ],
     hero: {
       title: 'BJ40 PLUS',

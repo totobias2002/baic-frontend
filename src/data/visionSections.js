@@ -1,6 +1,6 @@
 // Fotos de fondo de la página "Visión BAIC" (baic.com.ar/vision-2/).
 // Se referencian directo desde el CDN de BAIC, igual que las fotos de modelDetails.js.
-const CDN = 'https://baic.com.ar/wp-content/uploads/2024/02'
+const CDN = '/media/baic/wp-content/uploads/2024/02'
 
 export const visionSections = [
   { id: 'marca', title: 'Visión de Marca', subtitle: 'Contribución BAIC de larga tradición a una vida maravillosa', align: 'left', image: `${CDN}/BAIC-Vision-1.jpg` },

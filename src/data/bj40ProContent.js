@@ -5,8 +5,8 @@
 // Por eso este modelo tiene su propio componente (Bj40ProPage.jsx) en vez de reusar el
 // VehicleDetailPage genérico.
 
-const NUXT = 'https://baic.com.ar/bj40pro/_nuxt'
-const STATIC = 'https://baic.com.ar/bj40pro/static/bj40'
+const NUXT = '/media/baic/bj40pro/_nuxt'
+const STATIC = '/media/baic/bj40pro/static/bj40'
 
 // Secuencia de estudio (auto girando 360°) que en el sitio real se controla con el scroll.
 // Ojo: son 271 fotos en total (0000-0270), no 43 -las primeras ~150 frenan casi todas en el

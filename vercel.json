@@ -1,10 +1,6 @@
 {
   "rewrites": [
     {
-      "source": "/dflip-vendor/:path*",
-      "destination": "https://baic.com.ar/wp-content/plugins/3d-flipbook-dflip-lite/:path*"
-    },
-    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

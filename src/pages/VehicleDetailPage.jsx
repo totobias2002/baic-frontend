@@ -612,19 +612,19 @@ function ThreeSixtyViewer({ images }) {
   )
 }
 
-const DFLIP_CSS = 'https://baic.com.ar/wp-content/plugins/3d-flipbook-dflip-lite/assets/css/dflip.min.css'
-const DFLIP_JQUERY = 'https://baic.com.ar/wp-includes/js/jquery/jquery.min.js'
-// pdf.min.js / pdf.worker.min.js / three.min.js van vía el proxy /dflip-vendor
-// (mismo origen que la app) en vez de baic.com.ar directo: un navegador NUNCA
-// permite crear un Web Worker con una URL cross-origin (tira SecurityError pase
-// lo que pase con los headers CORS). Sin esto, pdf.js no puede levantar su hilo
+const DFLIP_CSS = '/media/baic/wp-content/plugins/3d-flipbook-dflip-lite/assets/css/dflip.min.css'
+const DFLIP_JQUERY = '/media/baic/wp-includes/js/jquery/jquery.min.js'
+// Todos los archivos de dflip se sirven desde nuestro propio origen (public/media/baic):
+// un navegador NUNCA permite crear un Web Worker con una URL cross-origin (tira
+// SecurityError pase lo que pase con los headers CORS), así que pdf.worker.min.js
+// tiene que ser del mismo origen que la app. Sin esto, pdf.js no puede levantar su hilo
 // de render y el libro se queda con la tapa fija: el contador de página avanza
 // pero la hoja nunca cambia, y tirar "Cannot set properties of undefined
 // (setting 'skipFlip')" al pasar de página.
-const DFLIP_PDF = '/dflip-vendor/assets/js/libs/pdf.min.js'
-const DFLIP_PDF_WORKER = '/dflip-vendor/assets/js/libs/pdf.worker.min.js'
-const DFLIP_THREE = '/dflip-vendor/assets/js/libs/three.min.js'
-const DFLIP_JS = 'https://baic.com.ar/wp-content/plugins/3d-flipbook-dflip-lite/assets/js/dflip.min.js'
+const DFLIP_PDF = '/media/baic/wp-content/plugins/3d-flipbook-dflip-lite/assets/js/libs/pdf.min.js'
+const DFLIP_PDF_WORKER = '/media/baic/wp-content/plugins/3d-flipbook-dflip-lite/assets/js/libs/pdf.worker.min.js'
+const DFLIP_THREE = '/media/baic/wp-content/plugins/3d-flipbook-dflip-lite/assets/js/libs/three.min.js'
+const DFLIP_JS = '/media/baic/wp-content/plugins/3d-flipbook-dflip-lite/assets/js/dflip.min.js'
 
 function loadAsset(tag, attrs, testSelector) {
   return new Promise((resolve, reject) => {
