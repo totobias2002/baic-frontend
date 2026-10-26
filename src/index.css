@@ -267,11 +267,15 @@ img{max-width:100%;display:block;}
   .slide-x55hybrid .slide-logo{max-width:380px;margin-bottom:20px;}
   .slide-x55hybrid .slide-cta{padding:.9em 2.8em;font-size:clamp(0.75rem,1.1vw,1.1rem);}
   /* Fotos de perfil (auto ocupando casi todo el ancho): el logo/botón se fijan arriba del
-     techo del auto, que es la única franja libre en todo el ancho de la imagen. */
-  .slide-topband .slide-content{top:9%;transform:none;}
+     techo del auto, que es la única franja libre en todo el ancho de la imagen.
+     Antes era top:9% del hero -en ventanas bajas (poca altura, ej. notebook con zoom o
+     devtools responsive ~844px) ese 9% da muy pocos px y el texto termina pisando el navbar
+     (86px de alto) que flota transparente encima. clamp() con piso en px asegura que nunca
+     quede más arriba de esos ~86px del navbar, sin importar la altura de la ventana. */
+  .slide-topband .slide-content{top:clamp(120px,9vh,170px);transform:none;}
   /* Variante con más margen abajo del techo (u5-plus): a la izquierda pisaba el logo del
      navbar con el top:9% de arriba, así que baja más -esta foto tiene margen de sobra. */
-  .slide-topband-low .slide-content{top:19%;transform:none;}
+  .slide-topband-low .slide-content{top:clamp(160px,19vh,230px);transform:none;}
   /* x55-ii: el auto (3/4 trasero) llega bastante a la izquierda de la foto y el logo "X55 II"
      quedaba casi tocando la rueda trasera con el left:8% default -unos puntos más a la
      izquierda alcanza para separarlo del auto sin salirse de la franja oscura del overlay. */
@@ -288,6 +292,17 @@ img{max-width:100%;display:block;}
   .slide-x55hybrid .slide-logo{max-width:90px;margin-bottom:6px;}
   .slide-x55hybrid .slide-cta{padding:.3em 1em;font-size:.6rem;}
   .slide-arrow{display:none;}
+}
+/* Zona "intermedia" (901px a 1024px): el navbar todavía muestra la versión de escritorio
+   completa (86px de alto, sin hamburguesa -eso recién pasa en max-width:900px), pero el hero
+   ya usa el top:12%/10% genérico de las reglas de arriba -ese % da muy poca luz en esta franja
+   y el título termina pisando el navbar, y le pasa a las 8 fotos del carrusel, no solo a las
+   que tienen variant topband/topband-low. Acá se sube el piso (en px) para todas. */
+@media (min-width:901px) and (max-width:1024px){
+  .slide-content{top:clamp(140px,15vh,180px);}
+  .slide-x55hybrid .slide-content{top:clamp(138px,13vh,160px);}
+  .slide-topband .slide-content{top:clamp(140px,14vh,180px);}
+  .slide-topband-low .slide-content{top:clamp(160px,16vh,200px);}
 }
 @media (max-width:480px){
   .slide-logo{max-width:120px;}
@@ -349,12 +364,41 @@ img{max-width:100%;display:block;}
 .news-hero__badge{position:relative;z-index:2;background:rgba(0,0,0,.54);padding:10px;max-width:381px;}
 .news-hero__badge h2{margin:0;font-size:1.25rem;font-weight:600;color:#fff;}
 .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
+/* Novedades (nota individual): encabezado grande con barra roja, portada destacada,
+   texto en una columna angosta (se lee mejor que justificado a todo el ancho) y
+   "seguir leyendo" al final. */
+.news-article{padding:150px 20px 80px;background:linear-gradient(180deg,#eef0f3 0,#fff 420px);}
+.news-article__head{max-width:900px;margin:0 auto;text-align:center;}
+.news-article__eyebrow{display:inline-block;font-size:.8rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--baic-rojo);margin-bottom:18px;}
+.news-article__eyebrow:hover{color:var(--baic-negro);}
+.news-article__head h1{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:800;line-height:1.12;color:var(--baic-negro);margin:0;text-wrap:balance;}
+.news-article__bar{display:block;width:70px;height:4px;background:var(--baic-rojo);margin:26px auto 0;}
+.news-article__cover{margin:44px auto 0;width:100%;max-width:1040px;border-radius:14px;overflow:hidden;box-shadow:0 24px 60px rgba(15,17,20,.2);background:#111;}
+.news-article__cover img{display:block;width:100%;height:100%;object-fit:cover;}
+.news-article__body{max-width:760px;margin:56px auto 0;}
+.news-article__badge{display:block;margin:0 auto 36px;max-width:240px;height:auto;border-radius:10px;box-shadow:0 8px 28px rgba(15,17,20,.12);}
+.news-article__body p{font-size:1.15rem;line-height:1.85;color:#26282c;margin:0 0 1.4em;text-align:left;}
+.news-article__body > p:first-of-type{font-size:1.35rem;line-height:1.65;color:var(--baic-negro);font-weight:500;}
+.news-article__body p.is-italic{font-style:italic;}
+.news-article__body p strong{font-weight:700;color:var(--baic-negro);}
+.news-article__body p em{font-style:italic;}
+.news-article__body a{color:var(--baic-rojo);text-decoration:underline;text-underline-offset:3px;}
+.news-article__list{list-style:none;padding:0;margin:0 0 1.6em;}
+.news-article__list li{position:relative;padding-left:28px;margin-bottom:.7em;font-size:1.15rem;line-height:1.7;color:#26282c;}
+.news-article__list li::before{content:'';position:absolute;left:2px;top:.72em;width:9px;height:9px;border-radius:50%;background:var(--baic-rojo);}
+.news-article__divider{border:none;border-top:1px solid #d9dbe0;margin:2.2em 0;}
+.news-article__inline{display:block;width:100%;height:auto;object-fit:cover;margin:2.2em auto;border-radius:12px;box-shadow:0 14px 40px rgba(15,17,20,.14);}
+.news-article__body p.news-article__footnote{font-size:.9rem;line-height:1.6;font-style:italic;color:var(--baic-gris);border-top:1px solid #e3e5e8;padding-top:1.2em;margin-top:2.2em;}
+.news-article__more{max-width:1100px;margin:90px auto 0;padding-top:56px;border-top:1px solid #e3e5e8;}
+.news-article__more h2{font-size:.85rem;font-weight:800;letter-spacing:.32em;text-transform:uppercase;color:var(--baic-negro);text-align:center;margin:0 0 32px;}
+.news-article__all{display:table;margin:40px auto 0;padding:14px 32px;border:1px solid var(--baic-negro);border-radius:24px;font-size:.85rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--baic-negro);transition:all .2s ease;}
+.news-article__all:hover{background:var(--baic-negro);color:#fff;}
 /* Cards con volumen real (sombra + borde redondeado + zoom de foto al hover) en vez del
    bloque plano blanco de antes -mismo contenido, look menos "genérico". */
-.news-card{position:relative;display:block;background:#fff;color:var(--color-text);border-radius:14px;overflow:hidden;box-shadow:0 4px 18px rgba(15,17,20,.09);transition:transform .28s cubic-bezier(.25,.1,.25,1),box-shadow .28s cubic-bezier(.25,.1,.25,1);}
+.news-card{position:relative;display:flex;flex-direction:column;height:100%;background:#fff;color:var(--color-text);border-radius:14px;overflow:hidden;box-shadow:0 4px 18px rgba(15,17,20,.09);transition:transform .28s cubic-bezier(.25,.1,.25,1),box-shadow .28s cubic-bezier(.25,.1,.25,1);}
 .news-card:hover{transform:translateY(-6px);box-shadow:0 16px 34px rgba(15,17,20,.16);}
 .news-card .ph{aspect-ratio:3/2;border-radius:0;margin-bottom:0;}
-.news-card__img{position:relative;aspect-ratio:3/2;background-size:cover;background-position:50% 50%;width:100%;display:block;overflow:hidden;transition:transform .5s cubic-bezier(.25,.1,.25,1);}
+.news-card__img{position:relative;flex-shrink:0;aspect-ratio:3/2;background-size:cover;background-position:50% 50%;width:100%;display:block;overflow:hidden;transition:transform .5s cubic-bezier(.25,.1,.25,1);}
 .news-card:hover .news-card__img{transform:scale(1.06);}
 .news-card__img-inner{width:100%;height:100%;background-size:cover;background-position:50% 50%;}
 .news-card__img-overlay{position:absolute;inset:0;background:rgba(0,0,0,.25);opacity:0;transition:opacity .3s cubic-bezier(.25,.1,.25,1);}
@@ -367,25 +411,9 @@ img{max-width:100%;display:block;}
 .news-card__read:hover{color:#a81608;border-color:#a81608;}
 /* Link "Leer más »" del NewsSection (home): antes era texto suelto sin estilo -ahora es
    un renglón con color de marca, flecha visible que se corre al hover, y separador arriba. */
-.news-card .read{display:flex;align-items:center;gap:6px;margin:16px 20px 20px;padding-top:14px;border-top:1px solid #eee;font-size:.78rem;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--baic-rojo);}
+.news-card .read{display:flex;align-items:center;gap:6px;margin:16px 20px 20px;margin-top:auto;padding-top:14px;border-top:1px solid #eee;font-size:.78rem;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--baic-rojo);}
 .news-card .read__arrow{display:inline-flex;transition:transform .25s ease;}
 .news-card:hover .read__arrow{transform:translateX(4px);}
-.news-detail{max-width:100%;}
-.news-detail__img{aspect-ratio:16/9;background-size:cover;background-position:50% 50%;margin-bottom:24px;}
-.news-detail p{color:var(--baic-gris);line-height:1.7;}
-.news-detail__badge{display:block;margin:0 auto;max-width:282px;height:auto;}
-.news-detail__badge.ph{width:282px;aspect-ratio:282/179;}
-.news-detail h1{font-size:33px;font-weight:700;text-align:center;color:#000;margin:0;}
-.news-detail__media{display:block;width:100%;height:auto;object-fit:cover;margin:40px auto 20px;}
-.news-detail__inline-media{display:block;width:100%;height:auto;object-fit:cover;margin:34px auto 22px;}
-.news-detail__divider{border:none;border-top:1px solid #000;width:100%;margin:0 0 21px;}
-.news-detail__body p{font-size:20px;line-height:30px;color:#0c0c0c;text-align:justify;margin:0 0 14.4px;font-weight:400;}
-.news-detail__body p.is-italic{font-style:italic;}
-.news-detail__body p strong{font-weight:700;}
-.news-detail__body p em{font-style:italic;}
-.news-detail__list{list-style:disc;padding-left:40px;margin:0 0 14.4px;}
-.news-detail__list li{font-size:20px;line-height:30px;color:#0c0c0c;}
-.news-detail__body p.news-detail__footnote{font-size:14px;line-height:1.5;font-style:italic;color:#0c0c0c;text-align:justify;margin-top:0;}
 
 /* CTA banners */
 .cta-banner{position:relative;height:340px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;color:#fff;text-align:center;}
@@ -422,7 +450,6 @@ img{max-width:100%;display:block;}
 /* Vehicle detail / dealers / news / contact pages */
 .service-page,.downloads-page{padding:160px 0 60px;}
 .news-page{padding:60px 0;max-width:1360px;}
-.news-page.news-detail{padding:160px 0 60px;}
 .service-page__lead,.downloads-page__lead{color:var(--baic-gris);margin-top:8px;}
 .service-page__subtitle{margin-top:0;text-transform:uppercase;font-size:1.3rem;}
 .not-found-page{text-align:center;padding:80px 0;}
@@ -581,7 +608,7 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
    que es el que abre/cierra el texto. Sin esto, en algunos celulares el navegador
    intercepta el toque sobre la <img> (menú de guardar imagen, arrastre) y el tap no
    siempre "prende". */
-.vehicle-photogrid__full-img{pointer-events:none;-webkit-user-drag:none;-webkit-touch-callout:none;}
+.vehicle-photogrid__full-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none;-webkit-touch-callout:none;}
 .vehicle-photogrid__scrim{pointer-events:none;}
 .vehicle-photogrid__item:hover,.vehicle-photogrid__item.is-open{filter:saturate(.3) brightness(.75);}
 .vehicle-photogrid__item::after{content:'';position:absolute;inset:0;background:rgba(8,8,10,0);transition:background .35s ease;pointer-events:none;}
@@ -988,8 +1015,8 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
   .downloads-hero h1{font-size:1.5rem;line-height:1.3;}
   .downloads-page{padding:36px 0 40px;max-width:none;}
   .downloads-page__group{margin-bottom:40px;}
-  .downloads-page__group-heading{font-size:.95rem;}
-  .downloads-page__group-rule{margin-bottom:24px;}
+  .downloads-page__group-heading{font-size:.95rem;padding-left:14px;}
+  .downloads-page__group-rule{margin-bottom:24px;margin-left:14px;}
   .downloads-grid{grid-template-columns:1fr;gap:36px;}
   .download-card{height:auto;}
   .download-card h4{font-size:1.15rem;margin:0 0 18px;}
@@ -1327,8 +1354,8 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
      recorte a aspect-ratio 16/10 que tienen las demás hoverReveal - acá la
      foto va completa, a su alto natural, como <img> real en vez de
      background-image. */
-  .vehicle-photogrid--full .vehicle-photogrid__item{aspect-ratio:auto;height:auto;background-image:none !important;}
-  .vehicle-photogrid__full-img{display:block;width:100%;height:auto;}
+  .vehicle-photogrid--full .vehicle-photogrid__item{aspect-ratio:auto;height:auto;min-height:0;background-image:none !important;}
+  .vehicle-photogrid__full-img{position:static;display:block;width:100%;height:auto;object-fit:initial;}
   .vehicle-photogrid--full .vehicle-photogrid__item:hover:not(.is-open) .vehicle-photogrid__full-img{filter:none;}
   .vehicle-photogrid--full .vehicle-photogrid__item.is-open .vehicle-photogrid__full-img{filter:saturate(.3) brightness(.75);}
   /* Mismo criterio para un item suelto dentro de un grid (ej. la foto-diagrama
@@ -1812,24 +1839,14 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
      un poco más el espacio en blanco de arriba. */
   .news-page{padding:16px 20px 32px;}
   .news-hero__badge h2{font-size:1.15rem;}
-  /* Novedades (nota individual): .news-page.news-detail{padding:160px 0 60px} es un caso
-     aparte de .news-page -tiene 2 clases, más especificidad, así que aunque pisáramos
-     .news-page arriba esta regla seguía ganando y el texto quedaba pegado a los bordes.
-     Los 160px de arriba compensaban el navbar transparente con overlap negativo de desktop
-     (margin-bottom:-125px) -en mobile el navbar ya es sólido y sin overlap (ver más arriba),
-     así que ese espacio ahora es puro vacío de más. También el cuerpo usaba texto de 20px
-     justificado, pensado para una columna ancha de desktop -en 390px de ancho se lee todo
-     amontonado. Bajamos tamaños, sacamos el justify y le damos aire a los costados. */
-  .news-page.news-detail{padding:28px 20px 40px;}
-  .news-detail h1{font-size:1.5rem;}
-  .news-detail__body{margin-top:20px !important;}
-  .news-detail__body p{font-size:.95rem;line-height:1.6;text-align:left;}
-  .news-detail__list{padding-left:24px;}
-  .news-detail__list li{font-size:.95rem;line-height:1.6;}
-  .news-detail__body p.news-detail__footnote{font-size:.8rem;text-align:left;}
-  .news-detail__img{margin-bottom:16px;}
-  .news-detail__media{margin:20px auto 12px;}
-  .news-detail__inline-media{margin:18px auto 12px;}
+  /* Novedades (nota individual) en mobile: el navbar es sólido y sin overlap, así que el
+     espacio de arriba baja a lo justo; texto un poco más chico y la portada sin sombra pesada. */
+  .news-article{padding:32px 18px 56px;}
+  .news-article__cover{margin-top:28px;border-radius:10px;}
+  .news-article__body{margin-top:32px;}
+  .news-article__body p,.news-article__list li{font-size:1rem;line-height:1.75;}
+  .news-article__body > p:first-of-type{font-size:1.12rem;line-height:1.6;}
+  .news-article__more{margin-top:56px;padding-top:36px;}
   /* Ficha de modelo (X35 y el resto, template VehicleDetailPage): el scroll-snap con
      scroll-snap-stop:always sobre secciones de 100vh quedaba atrapando el scroll en
      mobile -100vh no coincide con el alto visible real (barra de direcciones) y el
@@ -1849,7 +1866,11 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
      no tiene sentido (sigue el dedo mientras arrastrás para rotar) y quedaba una bola
      blanca pegada en pantalla al terminar de arrastrar. La sacamos en mobile; el badge
      "360° VIEW" ahora se oculta solo (ver ThreeSixtyViewer/is-hidden) apenas se toca. */
-  .vehicle-360{height:auto;min-height:0;padding:20px 0 48px;}
+  /* padding-top: la leyenda "YOUR BAIC" (.vehicle-360__bgtext) ocupa de 14px a ~44px. Las fotos
+     de cada modelo traen distinto margen transparente arriba, y en las que casi no traen el
+     techo tocaba las letras. Esos modelos fijan su propio valor con view360.mobileTop
+     (modelDetails.js), que llega acá como --v360-top; el resto queda en 20px. */
+  .vehicle-360{height:auto;min-height:0;padding:var(--v360-top,20px) 0 48px;}
   .threesixty__lens{display:none;}
   .threesixty__badge{width:84px;height:84px;}
   .threesixty__badge span{font-size:.9rem;}

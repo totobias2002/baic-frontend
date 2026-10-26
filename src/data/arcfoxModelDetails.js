@@ -230,7 +230,7 @@ export const arcfoxModelDetails = {
         { label: 'AUTONOMÍA NEDC', value: '475', suffix: 'KM' },
         { label: 'CONSUMO', value: '12.5', suffix: 'KWH/100KM' },
         { label: 'PLATAFORMA DE CARGA', value: '400', suffix: 'V' }
-      ], bg: `${CDN}/2026/01/Arcfox_Argentina_T5-28.png`, photoPosition: 'center 8%', mobileFullPhoto: '1230/638', mobileTapReveal: true },
+      ], bg: `${CDN}/2026/01/Arcfox_Argentina_T5-28.png`, photoPosition: 'center 8%', mobileFullPhoto: '1199/550', mobileTapReveal: true },
       { type: 'text', heading: 'MANEJO ÁGIL Y FLUIDO', hoverReveal: true, body: ['Sistema de frenado inteligente ONEBOX: frenado en menos de 0,15 segundos y distancia de frenado desde 100 km/h en solo 35,7 mts.'], bg: `${CDN}/2026/01/Arcfox_Argentina_T5-27.png` },
       { type: 'stats', counters: true, items: [
         { label: '0-100 KM/H', value: '7.5', suffix: 'S' },

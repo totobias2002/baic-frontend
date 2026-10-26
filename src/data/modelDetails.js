@@ -159,6 +159,7 @@ export const modelDetails = {
       ] }
     ],
     view360: {
+      mobileTop: 47,
       images: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37]
         .map((n) => {
           const ext = (n >= 1 && n <= 3) || (n >= 17 && n <= 21) || (n >= 35 && n <= 37) ? 'webp' : 'png'
@@ -219,6 +220,7 @@ export const modelDetails = {
       { type: 'text', heading: 'CÁMARA CON VISIÓN 360°', hoverReveal: true, body: ['Diseñada para eliminar puntos ciegos y facilitar maniobras en cualquier entorno.'], bg: `${CDN}/2025/05/BJ30_BAIC-Argentina-35.jpg` }
     ],
     view360: {
+      mobileTop: 56,
       images: Array.from({ length: 36 }, (_, i) => `${CDN}/2025/01/BJ30_BAIC-Argentina_360-${i + 1}.webp`),
       bgText: 'YOUR           BAIC'
     },
@@ -279,6 +281,7 @@ export const modelDetails = {
       { type: 'text', heading: 'SISTEMA DE CONTROL TODOTERRENO (ATS)', hoverReveal: true, body: ['Puede optimizar automáticamente los diversos sistemas de control del vehículo, permitiendo que se adapte a diferentes tipos de terrenos.'], bg: `${CDN}/2025/01/BJ30_BAIC-Argentina-7.jpg` }
     ],
     view360: {
+      mobileTop: 56,
       images: Array.from({ length: 36 }, (_, i) => `${CDN}/2025/01/BJ30_BAIC-Argentina_360-${i + 1}.webp`),
       bgText: 'YOUR           BAIC'
     },
@@ -389,6 +392,7 @@ export const modelDetails = {
       { type: 'text', heading: 'NUEVAS DIMENSIONES', hoverReveal: true, body: ['Nuevas dimensiones del BJ40 Plus con una mayor distancia entre ejes garantizando una experiencia de conducción más estable y cómoda.', 'Para recorrer todo tipo de terrenos sin restricciones.'], bg: `${CDN}/2024/01/BJ40-PLUS-EXTERIOR.jpg` }
     ],
     view360: {
+      mobileTop: 26,
       images: Array.from({ length: 36 }, (_, i) => `${CDN}/2024/07/BAIC-BJ40PLUS-360-${i + 1}.png`),
       bgText: 'YOUR           BAIC'
     },
@@ -433,7 +437,7 @@ export const modelDetails = {
         { title: 'Parrilla Frontal Iluminada', text: 'En este modelo se incorpora una iluminación especial, heredando elementos característicos de la familia de los vehículos todoterreno de BAIC.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-6.jpg` }
       ] },
       { type: 'text', heading: 'INTERIOR', textBottom: true, body: ['El sistema de sonido premium Infinity, en combinación con los asientos de primera clase, lujosos y cómodos, proporcionan una experiencia de confort inigualable.'], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-16.jpg` },
-      { type: 'photo-grid', layout: '2stack-big-right', items: [
+      { type: 'photo-grid', layout: '2stack-big-left', items: [
         { title: 'Interfaz de Cuatro Pantallas', text: 'Incorpora un sistema de visualización frontal W-HUD, ideal para escenarios todoterreno, con una distancia de proyección de hasta 2.2 metros.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-7.jpg` },
         { title: 'Amplio Espacio · 7 asientos', text: 'Este modelo cuenta con una tercera fila de asientos, de muy fácil acceso, para adaptarse a diversas necesidades.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-8.jpg` },
         { title: 'Techo Solar Panorámico', text: 'Incluye de serie un techo panorámico transparente de 0.82 m², ofreciendo una agradable sensación de amplitud y conexión con el exterior.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-9.jpg` }
@@ -442,24 +446,26 @@ export const modelDetails = {
       // Chequeado contra baic.com.ar/baic-bj60/ real: estas 3 tarjetas tienen foto +
       // texto real propios (no es una única foto con texto horneado como se había
       // armado antes) - se reconstruyen con su contenido real.
-      { type: 'photo-grid', layout: 'equal', items: [
-        { title: 'Tracción 4WD Parcial', text: 'Permite una transición suave entre 2H, 4H y 4L, adaptándose a diversas condiciones de conducción.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-10-III.jpg` },
-        { title: 'Tres Bloqueos de Diferencial', text: 'Cuando una rueda motriz pierde tracción, pueden transferir el torque del motor a la rueda opuesta, ayudando al vehículo a salir de situaciones difíciles.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-10-II.jpg` },
-        { title: 'Sistema de Control de Arrastre', text: 'Desarrollado específicamente para conducir en terrenos desafiantes, con un rango de velocidad controlable de 1 a 12 km/h.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-10-I.jpg` }
-      ] },
-      { type: 'photo-grid', layout: 'equal-2', items: [
-        { title: 'Sistema Global de Control Inteligente', text: 'Ofrece 9 modos de conducción y 17 combinaciones de manejo, optimizando el rendimiento del vehículo de acuerdo al terreno que esté transitando.', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-11.jpg` },
-        { title: 'Neumáticos', text: '275/50 R20-HT', image: `${CDN}/2025/01/BJ60_BAIC-Argentina-12.jpg` }
-      ] },
+      { type: 'list', heading: 'TRACCIÓN 4WD', hoverReveal: true, fullPhoto: true, items: [
+        'Tracción 4WD Parcial: permite una transición suave entre 2H, 4H y 4L, adaptándose a diversas condiciones de conducción.',
+        'Tres Bloqueos de Diferencial: cuando una rueda motriz pierde tracción, pueden transferir el torque del motor a la rueda opuesta, ayudando al vehículo a salir de situaciones difíciles.',
+        'Sistema de Control de Arrastre: desarrollado específicamente para conducir en terrenos desafiantes, con un rango de velocidad controlable de 1 a 12 km/h.'
+      ], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-24.jpg` },
+      { type: 'list', heading: 'CONTROL INTELIGENTE', hoverReveal: true, fullPhoto: true, items: [
+        'Sistema Global de Control Inteligente: ofrece 9 modos de conducción y 17 combinaciones de manejo, optimizando el rendimiento del vehículo de acuerdo al terreno que esté transitando.',
+        'Neumáticos: 275/50 R20-HT.'
+      ], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-11.jpg` },
       // "Tecnología" (360°/chasis transparente/vista aérea/estacionamiento autónomo)
       // y "ADAS" también tienen texto real en el sitio (antes se habían dejado como
-      // foto sola horneada). Se reconstruyen como listas con foto de fondo.
+      // foto sola horneada). Se reconstruyen como listas con foto de fondo. Las fotos
+      // originales de estas dos eran verticales de 597x785 (se veían borrosas a pantalla
+      // completa), así que van sobre fotos grandes del mismo modelo.
       { type: 'list', heading: 'TECNOLOGÍA', hoverReveal: true, fullPhoto: true, items: [
         'Imágenes Panorámicas 360°: cámaras de alta definición que utilizan tecnología avanzada para proporcionar una vista completa alrededor del vehículo.',
         'Chasis Transparente 180°: muestra información precisa de los puntos ciegos debajo del chasis, reduciendo los riesgos durante la conducción.',
         'Vista Aérea: ofrece una visión del entorno, brindando una experiencia de conducción más segura.',
         'Estacionamiento Autónomo: con un solo clic, el vehículo puede estacionarse automáticamente, facilitando las maniobras en espacios reducidos.'
-      ], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-14-D.jpg` },
+      ], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-23.jpg` },
       { type: 'list', heading: 'SISTEMAS AVANZADOS DE ASISTENCIA A LA CONDUCCIÓN', hoverReveal: true, fullPhoto: true, items: [
         'Advertencia de Apertura de Puertas',
         'Frenado de Emergencia Activo',
@@ -468,9 +474,10 @@ export const modelDetails = {
         'Reconocimiento de Señales de Tráfico',
         'Advertencia de Colisión Frontal',
         'Asistente de Mantenimiento de Carril'
-      ], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-15-E.jpg` }
+      ], bg: `${CDN}/2025/01/BJ60_BAIC-Argentina-21.jpg` }
     ],
     view360: {
+      mobileTop: 51, // px de aire arriba en mobile para que el techo no toque "YOUR BAIC"
       images: Array.from({ length: 36 }, (_, i) => `${CDN}/2025/01/BJ60_BAIC-Argentina_360-${i + 1}.webp`),
       bgText: 'YOUR           BAIC'
     },

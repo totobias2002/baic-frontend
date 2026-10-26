@@ -220,7 +220,10 @@ function Section({ section, index }) {
   // igual que antes, esto es un agregado, no un reemplazo.
   if (section.type === 'photo-grid') {
     return (
-      <section className={`vehicle-section vehicle-photogrid vehicle-photogrid--${section.layout || 'equal'}`} ref={sectionRef}>
+      <section
+        className={`vehicle-section vehicle-photogrid vehicle-photogrid--${section.layout || 'equal'}`}
+        ref={sectionRef}
+      >
         {section.items.map((item, i) => (
           <div
             className={`vehicle-photogrid__item ${openIndex === i ? 'is-open' : ''} ${item.fullPhoto ? 'vehicle-photogrid__item--full' : ''}`}
@@ -365,8 +368,34 @@ function GalleryCarousel({ images }) {
     images.forEach((src) => { const img = new Image(); img.src = src })
   }, [images])
 
+  // Pasa sola cada 6 s. Se frena con el mouse encima o si la galería no está en
+  // pantalla, y como el timer depende de `index`, un clic manual lo reinicia.
+  const sectionRef = useRef(null)
+  const [visible, setVisible] = useState(false)
+  const [paused, setPaused] = useState(false)
+
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return undefined
+    const io = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.5 })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (count < 2 || !visible || paused) return undefined
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
+    const t = window.setTimeout(() => setIndex((i) => (i + 1) % count), 6000)
+    return () => window.clearTimeout(t)
+  }, [index, count, visible, paused])
+
   return (
-    <section className="vehicle-gallery">
+    <section
+      className="vehicle-gallery"
+      ref={sectionRef}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
       {images.map((src, i) => (
         <div key={src} className={`vehicle-gallery__slide ${i === index ? 'is-active' : ''}`}>
           {/* Fondo desenfocado con la misma foto: en desktop la imagen de adelante
@@ -1035,7 +1064,10 @@ export default function VehicleDetailPage() {
       {detail?.sections?.map((section, i) => <Section section={section} index={i} key={i} />)}
 
       {detail?.view360 && (
-        <section className="vehicle-360">
+        <section
+          className="vehicle-360"
+          style={detail.view360.mobileTop ? { '--v360-top': `${detail.view360.mobileTop}px` } : undefined}
+        >
           {detail.view360.bgText && <span className="vehicle-360__bgtext">{detail.view360.bgText}</span>}
           <div className="vehicle-360__car">
             {detail.view360.images
