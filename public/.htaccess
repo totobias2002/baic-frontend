@@ -7,6 +7,12 @@
   RewriteEngine On
   RewriteBase /
 
+  # >>> BAIC Torcuato: si entran por baictorcuato.com.ar, servir la carpeta /torcuato
+  RewriteCond %{HTTP_HOST} ^(www\.)?baictorcuato\.com\.ar$ [NC]
+  RewriteCond %{REQUEST_URI} !^/torcuato/
+  RewriteRule ^(.*)$ torcuato/$1 [L]
+  # <<< fin BAIC Torcuato
+
   # Si el archivo o carpeta pedido existe de verdad (index.html, /assets/*.js, favicon, etc.),
   # se sirve tal cual -no hay que reescribir nada.
   RewriteCond %{REQUEST_FILENAME} -f [OR]

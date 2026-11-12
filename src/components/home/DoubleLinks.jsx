@@ -1,4 +1,4 @@
-import visionBaic from '../../assets/images/misc/vision-baic.webp'
+import visionBaic from '../../assets/images/misc/baic-pacheco-fachada.jpg'
 import logoBaicArcfoxPacheco from '../icons/baic-pacheco-logo-tight.png'
 
 // Antes estos dos bloques eran links (a /nosotros y /nosotros#vision). El usuario pidió
