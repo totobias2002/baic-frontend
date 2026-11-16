@@ -96,3 +96,6 @@ export const socialLinks = {
   linkedin: 'https://www.linkedin.com/company/baicargentina/',
   whatsapp: 'https://wa.me/5491150008106'
 }
+
+// Línea rotativa de atención directa (distinta del WhatsApp de ventas, que va al CRM).
+export const infoLine = { label: '0810 220 1545', href: 'tel:08102201545' }

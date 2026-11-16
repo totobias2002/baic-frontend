@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { submitContactRequest, buildWhatsappUrl } from '../api/contact.js'
-import { socialLinks } from '../data/dealers.js'
+import { socialLinks, infoLine } from '../data/dealers.js'
 import { useToast } from '../toast/ToastContext.jsx'
 import { contactBg } from '../data/contactBg.js'
 
@@ -39,6 +39,10 @@ export default function ContactPage() {
       return
     }
     setSending(true)
+    // Conversión de Google Ads "Formulario enviado" (el tag gtag se carga en index.html).
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'conversion', { send_to: 'AW-18401121254/PgojCJPlxbkdEOanq8ZE', value: 1.0, currency: 'ARS' })
+    }
     // WhatsApp primero y sin esperar nada: window.open sólo está permitido en el mismo
     // instante del clic (si se llama después de un await, el navegador lo bloquea como popup).
     window.open(buildWhatsappUrl(socialLinks.whatsapp, form), '_blank', 'noopener')
@@ -68,6 +72,9 @@ export default function ContactPage() {
           <textarea placeholder="Mensaje" rows={5} value={form.message} onChange={set('message')} required />
           <button type="submit" disabled={sending}>{sending ? 'ABRIENDO WHATSAPP...' : 'ENVIAR POR WHATSAPP'}</button>
         </form>
+        <a className="contact-info-btn" href={infoLine.href}>
+          Más información: llamanos al {infoLine.label}
+        </a>
       </div>
     </section>
   )

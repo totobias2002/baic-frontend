@@ -1,6 +1,7 @@
 import { AppLink } from '../ui/index.js'
 import { models } from '../../data/models.js'
 import { arcfoxModels } from '../../data/arcfoxModels.js'
+import { infoLine } from '../../data/dealers.js'
 
 export default function Footer() {
   return (
@@ -38,6 +39,7 @@ export default function Footer() {
             <li><AppLink to="/nosotros">Empresa</AppLink></li>
             <li><AppLink to="/vision">Visión</AppLink></li>
             <li><AppLink to="/contacto">Contacto</AppLink></li>
+            <li><a href={infoLine.href}>Más información: {infoLine.label}</a></li>
           </ul>
         </div>
         <div>
