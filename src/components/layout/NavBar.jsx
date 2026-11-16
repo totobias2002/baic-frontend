@@ -151,7 +151,7 @@ export default function NavBar() {
             <AppNavLink to="/contacto" onClick={closeAll}>Contacto</AppNavLink>
             <a className="navbar__direct" href={infoLine.href} onClick={closeAll}>
               <PhoneIcon size={18} className="navbar__direct-icon" />
-              <span>Atención directa</span>
+              <span>Atención al cliente</span>
               <strong>{infoLine.label}</strong>
             </a>
           </div>
