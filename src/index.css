@@ -176,6 +176,10 @@ img{max-width:100%;display:block;}
    .navbar__links (que sigue siendo el flex row de siempre). */
 .navbar__scroll{display:contents;}
 .navbar__models-trigger{background:none;border:none;display:flex;align-items:center;gap:4px;font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:normal;cursor:pointer;color:var(--baic-negro);}
+.navbar__direct{display:flex;flex-direction:column;align-items:center;justify-content:center;align-self:center;margin-left:10px;padding:7px 14px;border:1px solid var(--baic-negro);border-radius:2px;color:var(--baic-negro);text-decoration:none;text-transform:uppercase;line-height:1.15;white-space:nowrap;background:rgba(255,255,255,.55);transition:background .2s ease,color .2s ease;}
+.navbar__direct span{font-size:.58rem;font-weight:600;letter-spacing:.6px;}
+.navbar__direct strong{font-size:.95rem;font-weight:800;letter-spacing:.3px;}
+.navbar__direct:hover{background:var(--baic-negro);color:#fff;}
 .menu-toggle{display:none;font-size:1.6rem;background:none;border:none;color:var(--baic-negro);}
 .navbar .ui-navlink{color:var(--baic-negro);text-transform:uppercase;font-size:1rem;font-weight:700;letter-spacing:normal;padding:15px 0;line-height:1rem;transition:color .2s ease,text-shadow .2s ease;}
 .navbar .ui-navlink:hover{color:var(--baic-rojo);}
@@ -966,8 +970,6 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
 .service-form textarea{height:146px;resize:vertical;}
 .service-form button{width:460px;max-width:100%;height:48px;margin-top:10px;background:#d32f2f;color:#fff;border:none;border-radius:4px;font-weight:700;letter-spacing:.3px;cursor:pointer;}
 .service-form button:hover{background:var(--baic-rojo);}
-.contact-info-btn{display:inline-block;margin-top:18px;padding:12px 24px;border:2px solid #fff;border-radius:4px;color:#fff;font-weight:700;text-decoration:none;text-align:center;}
-.contact-info-btn:hover{background:#fff;color:var(--baic-rojo);}
 
 /* Visión BAIC (5 banners full-bleed, alineación alternada) */
 .vision-section{position:relative;min-height:750px;display:flex;align-items:center;background-size:cover;background-position:50% 50%;background-repeat:no-repeat;color:#fff;}
@@ -1088,6 +1090,7 @@ h2.vehicle-cards__heading{text-align:center;font-size:1.6rem;font-weight:800;lin
   .model-card__cta{display:none;}
   .model-card h4{font-size:1.3rem;margin-bottom:0;}
   .navbar .ui-navlink{width:100%;padding:12px 0;}
+  .navbar__direct{width:100%;margin-left:0;align-items:flex-start;box-sizing:border-box;}
   .double-links{grid-template-columns:1fr;}
   .news-grid{grid-template-columns:1fr;}
   .news-hero{min-height:400px;padding:0 16px;justify-content:flex-start;align-items:flex-end;}

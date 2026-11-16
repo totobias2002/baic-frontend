@@ -4,6 +4,7 @@ import { Logo, AppNavLink } from '../ui/index.js'
 import { ChevronDownIcon } from '../icons/index.js'
 import ModelsMegaMenu from './ModelsMegaMenu.jsx'
 import ArcfoxMegaMenu from './ArcfoxMegaMenu.jsx'
+import { infoLine } from '../../data/dealers.js'
 
 const CLOSE_DELAY = 400
 
@@ -148,6 +149,10 @@ export default function NavBar() {
             <AppNavLink to="/nosotros" onClick={closeAll}>Empresa</AppNavLink>
             <AppNavLink to="/novedades" onClick={closeAll}>Novedades</AppNavLink>
             <AppNavLink to="/contacto" onClick={closeAll}>Contacto</AppNavLink>
+            <a className="navbar__direct" href={infoLine.href} onClick={closeAll}>
+              <span>Atención directa</span>
+              <strong>{infoLine.label}</strong>
+            </a>
           </div>
         </nav>
       </div>

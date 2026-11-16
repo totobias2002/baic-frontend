@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { submitContactRequest, buildWhatsappUrl } from '../api/contact.js'
-import { socialLinks, infoLine } from '../data/dealers.js'
+import { socialLinks } from '../data/dealers.js'
 import { useToast } from '../toast/ToastContext.jsx'
 import { contactBg } from '../data/contactBg.js'
 
@@ -72,9 +72,6 @@ export default function ContactPage() {
           <textarea placeholder="Mensaje" rows={5} value={form.message} onChange={set('message')} required />
           <button type="submit" disabled={sending}>{sending ? 'ABRIENDO WHATSAPP...' : 'ENVIAR POR WHATSAPP'}</button>
         </form>
-        <a className="contact-info-btn" href={infoLine.href}>
-          Más información: llamanos al {infoLine.label}
-        </a>
       </div>
     </section>
   )
