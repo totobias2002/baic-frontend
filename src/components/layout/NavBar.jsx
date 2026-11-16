@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Logo, AppNavLink } from '../ui/index.js'
-import { ChevronDownIcon } from '../icons/index.js'
+import { ChevronDownIcon, PhoneIcon } from '../icons/index.js'
 import ModelsMegaMenu from './ModelsMegaMenu.jsx'
 import ArcfoxMegaMenu from './ArcfoxMegaMenu.jsx'
 import { infoLine } from '../../data/dealers.js'
@@ -150,6 +150,7 @@ export default function NavBar() {
             <AppNavLink to="/novedades" onClick={closeAll}>Novedades</AppNavLink>
             <AppNavLink to="/contacto" onClick={closeAll}>Contacto</AppNavLink>
             <a className="navbar__direct" href={infoLine.href} onClick={closeAll}>
+              <PhoneIcon size={18} className="navbar__direct-icon" />
               <span>Atención directa</span>
               <strong>{infoLine.label}</strong>
             </a>
