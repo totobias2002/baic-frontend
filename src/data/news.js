@@ -5,7 +5,6 @@ import baicGroupImg from '../assets/images/news/baic-group-entro-en-el-top-de-la
 import nuevoX55Img from '../assets/images/news/nuevo-baic-x55.jpg'
 import baicLiderElectricosImg from '../assets/images/news/baic-lider-en-autos-electricos-en-china.jpg'
 import baicSenovaImg from '../assets/images/news/detail/baic-senova-cover.jpg.png'
-import nuevosConcesionariosImg from '../assets/images/news/detail/nuevos-concesionarios-de-baic.png'
 import baicEu5Img from '../assets/images/news/detail/baic-eu-5.jpg'
 import baicFuturoElectricoImg from '../assets/images/news/detail/baic-apuesta-al-futuro-electrico.jpg'
 
@@ -45,12 +44,6 @@ export const news = [
     title: 'BAIC SENOVA',
     excerpt: 'BAIC SENOVA Máximo confort, seguridad y un diseño joven y atractivo. Esas son las principales...',
     image: baicSenovaImg
-  },
-  {
-    id: 'nuevos-concesionarios-de-baic',
-    title: 'Nuevos concesionarios de BAIC',
-    excerpt: 'Nuevos concesionarios de BAIC BAIC, la marca china de autos premium, sigue ampliando su presencia...',
-    image: nuevosConcesionariosImg
   },
   {
     id: 'baic-eu-5',

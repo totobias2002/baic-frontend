@@ -19,8 +19,6 @@ import nuevoX55CoverImg from '../assets/images/news/detail/nuevo-x55-cover.jpg'
 import baicLiderElectricosCoverImg from '../assets/images/news/detail/baic-lider-electricos-cover.jpg'
 // Foto de tapa real de la nota "baic-senova" (misma foto que en la card de Novedades).
 import baicSenovaCoverImg from '../assets/images/news/detail/baic-senova-cover.jpg.png'
-// Foto de tapa real de la nota "nuevos-concesionarios-de-baic" (misma foto que en la card de Novedades).
-import nuevosConcesionariosCoverImg from '../assets/images/news/detail/nuevos-concesionarios-de-baic.png'
 // Foto de tapa real de la nota "baic-eu-5" (misma foto que en la card de Novedades).
 import baicEu5CoverImg from '../assets/images/news/detail/baic-eu-5.jpg'
 // Foto de tapa real de la nota "baic-apuesta-al-futuro-electrico" (misma foto que en la card de Novedades).
@@ -111,26 +109,6 @@ export const newsDetails = {
     media: { type: 'full', src: baicSenovaCoverImg, aspect: '1200/794', maxWidth: 1200 },
     body: [
       { html: 'Máximo confort, seguridad y un diseño joven y atractivo. Esas son las principales características del nuevo BAIC Senova, un crossover premiun deportivo y elegante que ya se comercializa en la Argentina.<br>Equipado con motor naftero 1.5 de 115 CV, y opciones de caja manual y automática, tiene tapizado de cuero y un completo equipamiento de serie que incluye, entre otras cosas, ABS, EDB, asistente al frenado de urgencia, control de estabilidad, anclajes Isofix, sensor de estacionamiento, cámara de retroceso, luces LED, tapizado de cuero, comandos al volante, techo solar, conectividad, pantalla touch de 7 pulgadas y puertos USB y HDMI.<br>Su relación precio/equipamiento y calidad es la mejor del segmento, lo que lo convierten en una de las mejores opciones del mercado.<br>El BAIC Senova tiene una garantía inédita en la Argentina de 7 años o 100.000 kilómetros.<br>Cabe recordar que BAIC es el socio estratégico de Mercedes-Benz (fabrica los modelos de la marca alemana en China) y es además uno de los mayores fabricantes de autos eléctricos de alta gama del mundo.<br>Ambos fabricantes, que son socios desde hace años, anunciaron en 2017 una inversión de 700 millones de euros para producir autos eléctricos (EV) y baterías. BAIC y Daimler sorprendieron este año con un nuevo anuncio: decidieron construir una nueva fábrica en Beijing con una inversión de 1.550 millones de euros para fabricar coches eléctricos de la marca eléctrica EQ de Mercedes.' }
-    ]
-  },
-
-  'nuevos-concesionarios-de-baic': {
-    // Foto centrada 734x796. Primer párrafo entero en negrita, otros con
-    // fragmentos en negrita, un párrafo entero en negrita+cursiva ("Acerca de BAIC..."),
-    // y un mini "subtítulo" en negrita ("Acerca de BAIC") que es solo texto, no un heading real.
-    titleSize: 40,
-    titleWeight: 600,
-    media: { type: 'full', src: nuevosConcesionariosCoverImg, aspect: '734/796', maxWidth: 734 },
-    body: [
-      { html: '<strong>BAIC, la marca china de autos premium, sigue ampliando su presencia en la Argentina con la apertura de nuevos concesionarios en todo el país.</strong>' },
-      { html: 'Acompañando el éxito de ventas de su familia de <strong>SUV X25, X35 y X55</strong>, ya están en funcionamiento los showrooms ubicados en Palermo, Núñez, Recoleta, Pilar, Avellaneda, Morón, Moreno y en las ciudades de La Plata, Trenque Lauquen, Concordia, Diamante (Entre Ríos), Córdoba, Rosario, Chaco, Salta y Ushuaia.' },
-      { text: 'A esos locales, se sumarán próximamente los nuevos concesionarios ubicados en las ciudades de Tucumán, Munro, Villa Urquiza (CABA) y Mendoza. De este modo BAIC extiende su cobertura comercial y de servicios de posventa a todo el territorio argentino.' },
-      { text: 'Cabe destacar que además de la familia de SUV, BAIC fue la primera automotriz en presentar un modelo totalmente eléctrico en la Argentina, el EV260, y que en los próximos meses está previsto el lanzamiento de nuevos modelos.' },
-      { text: 'Por calidad y relación precio-producto, la familia de SUV X25, X35 y X55 son un éxito de ventas en la Argentina. Además, al moderno diseño y completo equipamiento de confort y seguridad, se le suma que todos los modelos de BAIC que se venden en el país tienen una garantía de 7 años o 100.000 kilómetros, inédita en el mercado local, lo que demuestra la confiabilidad de sus productos.' },
-      { html: '<strong>Acerca de BAIC</strong>' },
-      { html: '<strong><em>BAIC Motors es un gigante automotriz que se destaca por la calidad y la tecnología de avanzada de sus modelos. De hecho es el socio estratégico de Mercedes-Benz y fabrica en China los modelos Clase E de chasis largo, Clase C, el nuevo Clase A y los SUV Mercedes-Benz GLC y GLA.</em></strong>' },
-      { html: 'Además, BAIC es <strong>líder mundial de ventas de vehículos totalmente eléctricos</strong>. En China, el mercado más grande del mundo de autos eléctricos, BAIC fue líder absoluto de ventas en 2017, con un total de 91.237 vehículos comercializados. También se quedó con récord mundial de ser el primer fabricante del planeta en superar las 10.000 ventas en un mes de un modelo totalmente eléctrico.' },
-      { html: 'Esa enorme capacidad tecnológica y productiva del gigante chino sigue creciendo ya que a la inversión conjunta de <strong>BAIC y Mercedes-Benz de 700 millones de euros</strong> para producir autos eléctricos (EV) y baterías realizada en 2017, este año se sumó un nuevo anuncio: ambas compañías decidieron construir una nueva fábrica en Beijing con una inversión de 1.550 millones de euros para fabricar coches eléctricos de la marca eléctrica EQ de Mercedes-Benz.<br><br><strong>Más información en baic.com.ar</strong><br>Descarga de fotos: https://bit.ly/2Gul9LO' }
     ]
   },
 
